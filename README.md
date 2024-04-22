@@ -41,7 +41,7 @@ Projektet er tiltænkt at være en standalone app for Geografisk Have. App'en sk
 
 <h3 align="center">Brug</h3>
 <p align="justify">
-  For at kunne køre dette projekt, skal du følge disse trin:
+  Følg disse trin, for at køre projekt:
   <ol>
     <li>Clone projektet til din computer</li>
     <li>Åben terminalen og naviger til projektets rodmappe</li>
