@@ -15,7 +15,7 @@ const HomePage = () => {
       <FrontpageProfile/>
       <div className="frontpage_content">
         <h2>Start skattejagt</h2>
-        <TreasureHunt/>
+        <TreasureHunt currentTask={0}/>
         <div>
           <h2>Praktisk</h2>
           <div className="single-container">
