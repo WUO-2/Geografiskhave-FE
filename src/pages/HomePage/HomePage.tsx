@@ -7,7 +7,6 @@ import Card from "../../components/shared/cards/card"
 import Ticket from "../../assets/icons/ticket.svg"
 import FAQ from "../../assets/icons/FAQ.svg"
 import Event from "../../assets/icons/event.svg"
-import Button from "../../components/shared/buttons/button";
 
 const HomePage = () => {
   return (

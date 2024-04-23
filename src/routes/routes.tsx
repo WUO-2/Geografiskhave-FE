@@ -14,6 +14,7 @@ import SignUpPage from "../pages/AuthPage/SignUpPage/SignUpPage.tsx";
 import TreasureHunt from "../components/shared/treasureHuntHomePage/treasureHunt.tsx";
 import TreasureHuntPage from "../pages/TreasureHuntPage/TreasureHuntPage.tsx";
 import MapPage from "../pages/MapPage/MapPage.tsx";
+import PuzzlePage from "../pages/PuzzlePage/PuzzlePage.tsx"
 
 export const Routes: IRoute[] = [
   {
@@ -74,6 +75,12 @@ export const Routes: IRoute[] = [
         title: "Register",
         component: <SignUpPage />,
         routeType: RouteType.AUTH,
+      },
+      {
+        path: "/puzzle",
+        title: "Puzzle",
+        component: <PuzzlePage />,
+        routeType: RouteType.INTERNAL,
       },
     ],
   },
