@@ -57,6 +57,12 @@ export const Routes: IRoute[] = [
         component: <TestPage />,
       },
       {
+        path: "/test/:id",
+        title: "Test dynamic",
+        routeType: RouteType.INTERNAL,
+        component: <TestPage />,
+      },
+      {
         path: "/auth",
         title: "Auth",
         routeType: RouteType.AUTH,
