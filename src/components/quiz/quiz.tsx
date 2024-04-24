@@ -7,8 +7,9 @@ import pause from "../../assets/icons/pause.svg";
 import { useStore } from "../../stores/store";
 import { IAnswer, ITask } from "../../interfaces/ITreasureHunt";
 import { observer } from "mobx-react-lite";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { GetVideoById } from "../../utils/VideoUtil";
+import { Clamp } from "../../utils/Clamp";
 
 const Quiz = () => {
   const [isPaused, setIsPaused] = useState<boolean>(true);
@@ -16,9 +17,11 @@ const Quiz = () => {
   const [video, setVideo] = useState<any>();
   const { treasureStore } = useStore();
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (treasureStore.currentTask === null) {
-      const taskId = id ? parseInt(id) : 1;
+      const taskId = Clamp(parseInt(id), 1, 6);
       treasureStore.fetchTask(taskId);
       setVideo(GetVideoById(taskId));
     }
@@ -32,7 +35,7 @@ const Quiz = () => {
       return;
     }
     if (selectedAnswer.isCorrect) {
-      console.log("Correct");
+      navigate(`/quiz/success/${treasureStore.currentTask?.id || id}`);
     } else {
       console.log("Incorrect");
     }
