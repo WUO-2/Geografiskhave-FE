@@ -13,6 +13,7 @@ import SignInPage from "../pages/AuthPage/SignInPage/SignInPage.tsx";
 import SignUpPage from "../pages/AuthPage/SignUpPage/SignUpPage.tsx";
 import TreasureHuntPage from "../pages/TreasureHuntPage/TreasureHuntPage.tsx";
 import MapPage from "../pages/MapPage/MapPage.tsx";
+import Success from "../components/quiz/success/success.tsx";
 
 export const Routes: IRoute[] = [
   {
@@ -55,6 +56,18 @@ export const Routes: IRoute[] = [
         title: "Test",
         routeType: RouteType.INTERNAL,
         component: <TestPage />,
+      },
+      {
+        path: "/quiz/:id",
+        title: "Opgave",
+        routeType: RouteType.INTERNAL,
+        component: <TestPage />,
+      },
+      {
+        path: "/quiz/success/:id",
+        title: "Opgave Klaret",
+        routeType: RouteType.INTERNAL,
+        component: <Success />,
       },
       {
         path: "/auth",

@@ -1,0 +1,104 @@
+@import "../../../assets/variable.scss";
+
+.Success {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 35px;
+  justify-content: center;
+  align-items: center;
+  &_Wrapper {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    &_Info {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+      &_Title {
+        font-size: $h1;
+        color: $brown;
+        margin: 0;
+        font-weight: bold;
+      }
+      &_Paragraph {
+        color: $grey;
+        margin: 0;
+        font-size: $small;
+      }
+    }
+    &_ImageContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 160px;
+        height: 160px;
+        object-fit: contain;
+      }
+    }
+    &_Flavor {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      &_Text {
+        color: $grey;
+        font-size: $small;
+        margin: 0;
+        text-align: center;
+      }
+    }
+    &_Progress {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 10px;
+      &_Text {
+        margin: 0;
+        color: $grey;
+        text-align: center;
+        font-size: $small;
+      }
+      &_Container {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        max-height: 15px;
+        height: 15px;
+        justify-content: center;
+
+        &_Item {
+          height: 100%;
+          background: $grey;
+          width: 40px;
+
+          &:first-child {
+            border-radius: 100px 0 0 100px;
+          }
+
+          &:last-child {
+            border-radius: 0 100px 100px 0;
+          }
+        }
+      }
+    }
+  }
+  &_ButtonContainer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 60px;
+  }
+}
+
+.Success_CurrentItem {
+  background: $orange !important;
+}
