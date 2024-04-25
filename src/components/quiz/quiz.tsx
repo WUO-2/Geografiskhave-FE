@@ -11,11 +11,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { GetVideoById } from "../../utils/VideoUtil";
 import { Clamp } from "../../utils/Clamp";
 import Header from "../shared/header/header";
+import Wrong from "./wrong/wrong";
 
 const Quiz = () => {
   const [isPaused, setIsPaused] = useState<boolean>(true);
   const [selectedAnswer, setSelectedAnswer] = useState<IAnswer | null>(null);
   const [video, setVideo] = useState<any>();
+  const [wrongAnswer, setWrongAnswer] = useState<boolean>(false);
   const { treasureStore } = useStore();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -38,7 +40,7 @@ const Quiz = () => {
     if (selectedAnswer.isCorrect) {
       navigate(`/quiz/success/${treasureStore.currentTask?.id || id}`);
     } else {
-      console.log("Incorrect");
+      setWrongAnswer(true);
     }
   };
 
@@ -51,6 +53,7 @@ const Quiz = () => {
 
   return (
     <>
+      {wrongAnswer && <Wrong onClick={() => setWrongAnswer(false)} />}
       <Header
         currentPage={`Opgave ${Clamp(parseInt(id), 1, 6)}`}
         onBack={() => handleBack()}
