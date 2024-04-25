@@ -24,7 +24,7 @@ const Success = () => {
       stepItems.push(
         <div
           key={i}
-          style={{ background: i <= currentStep ? "#fd8721" : "#828282" }}
+          style={{ background: i <= currentStep ? "#fd8721" : "#D9D9D9" }}
           className={`Success_Wrapper_Progress_Container_Item `}
         ></div>,
       );
