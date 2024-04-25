@@ -1,7 +1,6 @@
 @use "../../../assets/variable.scss" as v;
 
 .TreasureHunt {
-  
   color: v.$brown;
 
   .TreasureHunt_Container {
@@ -22,13 +21,12 @@
     .TreasureHunt_InfoContainer {
       display: flex;
       flex-direction: column;
-      background-color: v.$lightGreen;
+      background-color: v.$white;
       color: v.$brown;
       border-radius: inherit;
       width: 80%;
       margin-bottom: 15px;
       padding: 15px 20px 8px 20px;
- 
 
       .TreasureHunt_InfoContainer_Content_Text {
         margin: 0;
@@ -36,47 +34,40 @@
 
       .TreasureHunt_InfoContainer_Header {
         margin: 0;
-    
+
         font-weight: 700;
       }
 
       .TreasureHunt_InfoContainer_Content {
         display: flex;
         column-gap: 5px;
-        
       }
 
-      
       .Left1,
       .Right1 {
         font-weight: 600;
         margin: 0;
       }
-      
-      
+
       .Right1 {
         color: v.$grey;
       }
-      
-      
+
       .TreasureHunt_InfoContainer_Progress {
         display: flex;
         flex-direction: row;
         column-gap: 10px;
         justify-content: space-between;
         margin-top: 20px;
-      
 
         .Progressbar {
           display: flex;
-          flex-direction:row;
+          flex-direction: row;
           align-items: center;
           column-gap: 10px;
           width: 75%;
-
-          
         }
-         .Line {
+        .Line {
           background: v.$darkOrange;
           width: 100%;
           height: 7px;
@@ -86,14 +77,13 @@
             width: 60%;
             height: inherit;
             border-radius: inherit;
-            background:v.$orange;
+            background: v.$orange;
           }
         }
         .TasksProgress {
           color: v.$orange;
-         }
+        }
       }
-      
     }
   }
 }

@@ -39,5 +39,8 @@
   }
   .TreasureHuntPage_ContentContainer_StartButton {
     width: 100%;
+    button {
+      color: v.$white;
+    }
   }
 }
