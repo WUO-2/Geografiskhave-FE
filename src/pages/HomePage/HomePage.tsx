@@ -8,38 +8,42 @@ import Ticket from "../../assets/icons/ticket.svg";
 import FAQ from "../../assets/icons/FAQ.svg";
 import Event from "../../assets/icons/event.svg";
 import Button from "../../components/shared/buttons/button";
+import Header from "../../components/shared/header/header";
 
 const HomePage = () => {
   return (
-    <div className="HomePage">
-      <FrontpageProfile />
-      <div className="frontpage_content">
-        <h2>Start skattejagt</h2>
-        <TreasureHunt />
-        <div>
-          <h2>Praktisk</h2>
-          <div className="single-container">
-            <Card
-              text="Køb billet"
-              icon={Ticket}
-              link="https://geografiskhave.dk/priser-abningstider/"
-            />
-          </div>
-          <div className="double-container">
-            <Card
-              text="Events"
-              icon={Event}
-              link="https://geografiskhave.dk/all-events/"
-            />
-            <Card
-              text="FAQ"
-              icon={FAQ}
-              link="https://geografiskhave.dk/godt-at-vide/"
-            />
+    <>
+      <Header currentPage="Hjem" />
+      <div className="HomePage">
+        <FrontpageProfile />
+        <div className="frontpage_content">
+          <h2>Start skattejagt</h2>
+          <TreasureHunt />
+          <div>
+            <h2>Praktisk</h2>
+            <div className="single-container">
+              <Card
+                text="Køb billet"
+                icon={Ticket}
+                link="https://geografiskhave.dk/priser-abningstider/"
+              />
+            </div>
+            <div className="double-container">
+              <Card
+                text="Events"
+                icon={Event}
+                link="https://geografiskhave.dk/all-events/"
+              />
+              <Card
+                text="FAQ"
+                icon={FAQ}
+                link="https://geografiskhave.dk/godt-at-vide/"
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

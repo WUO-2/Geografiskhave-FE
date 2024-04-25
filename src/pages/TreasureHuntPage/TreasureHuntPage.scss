@@ -1,6 +1,11 @@
 @use "../../assets/variable.scss" as v;
 
 .TreasureHuntPage {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
   .TreasureHuntPage_ImageContainer {
     height: 300px;
     width: 100%;
