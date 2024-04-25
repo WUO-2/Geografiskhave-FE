@@ -4,6 +4,7 @@ import { observer } from "mobx-react-lite";
 import Button from "../../shared/buttons/button";
 import { useNavigate, useParams } from "react-router-dom";
 import { Clamp } from "../../../utils/Clamp";
+import Header from "../../shared/header/header.tsx";
 
 const Success = () => {
   const [totalSteps, setTotalSteps] = useState(6);
@@ -37,41 +38,44 @@ const Success = () => {
   };
 
   return (
-    <div className="Success">
-      <div className="Success_Wrapper">
-        <div className="Success_Wrapper_Info">
-          <h1 className="Success_Wrapper_Info_Title">Godt klaret!</h1>
-          <p className="Success_Wrapper_Info_Paragraph">Ny puslebrik</p>
-        </div>
-        <div className="Success_Wrapper_ImageContainer">
-          <img
-            src="https://www.pngkey.com/png/full/115-1150152_treasure-chest-png-clip-art-image-pirate-treasure.png"
-            alt="treasure"
-          />
-        </div>
-        <div className="Success_Wrapper_Flavor">
-          <p className="Success_Wrapper_Flavor_Text">
-            I gættede rigtigt og har fået en puslebrik til puslespillet
-          </p>
-        </div>
-        <div className="Success_Wrapper_Progress">
-          <p className="Success_Wrapper_Progress_Text">
-            I har klaret {currentStep} ud af {totalSteps} opgaver
-          </p>
-          <div className="Success_Wrapper_Progress_Container">
-            {listSteps()}
+    <>
+      <Header currentPage="Opgave klaret!" onClose={() => console.log("asd")} />
+      <div className="Success">
+        <div className="Success_Wrapper">
+          <div className="Success_Wrapper_Info">
+            <h1 className="Success_Wrapper_Info_Title">Godt klaret!</h1>
+            <p className="Success_Wrapper_Info_Paragraph">Ny puslebrik</p>
+          </div>
+          <div className="Success_Wrapper_ImageContainer">
+            <img
+              src="https://www.pngkey.com/png/full/115-1150152_treasure-chest-png-clip-art-image-pirate-treasure.png"
+              alt="treasure"
+            />
+          </div>
+          <div className="Success_Wrapper_Flavor">
+            <p className="Success_Wrapper_Flavor_Text">
+              I gættede rigtigt og har fået en puslebrik til puslespillet
+            </p>
+          </div>
+          <div className="Success_Wrapper_Progress">
+            <p className="Success_Wrapper_Progress_Text">
+              I har klaret {currentStep} ud af {totalSteps} opgaver
+            </p>
+            <div className="Success_Wrapper_Progress_Container">
+              {listSteps()}
+            </div>
           </div>
         </div>
+        <div className="Success_ButtonContainer">
+          <Button
+            text="Næste opgave"
+            size="large"
+            onClick={() => handleNextStep()}
+            color="green"
+          />
+        </div>
       </div>
-      <div className="Success_ButtonContainer">
-        <Button
-          text="Næste opgave"
-          size="large"
-          onClick={() => handleNextStep()}
-          color="green"
-        />
-      </div>
-    </div>
+    </>
   );
 };
 
