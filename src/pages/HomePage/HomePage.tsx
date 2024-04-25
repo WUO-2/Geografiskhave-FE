@@ -25,7 +25,7 @@ const HomePage = () => {
               <Card
                 text="Køb billet"
                 icon={Ticket}
-                link="https://geografiskhave.dk/priser-abningstider/"
+                link="https://www.place2book.com/da/sw2/sales/39pfs0v0xy"
               />
             </div>
             <div className="double-container">

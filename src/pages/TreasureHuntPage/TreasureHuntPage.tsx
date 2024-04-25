@@ -7,6 +7,10 @@ import { useNavigate } from "react-router-dom";
 
 const TreasureHuntPage = () => {
   const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/quiz/1");
+  };
+
 
   const handleBack = () => {
     navigate(-1);
@@ -44,7 +48,7 @@ const TreasureHuntPage = () => {
           </div>
 
           <div className="TreasureHuntPage_ContentContainer_StartButton">
-            <Button text="Start skattejagt" size="large" />
+            <Button text="Start skattejagt" size="large" onClick={handleClick}/>
           </div>
         </div>
       </div>
