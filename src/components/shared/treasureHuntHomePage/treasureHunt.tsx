@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import "./treasureHunt.scss";
+import arrowIcon from "../../../assets/icons/backIcon.svg";
 
-const TreasureHunt = ({ currentTask }) => {
+const TreasureHunt = () => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate("/skattejagt");
@@ -30,15 +31,12 @@ const TreasureHunt = ({ currentTask }) => {
             <div className="TreasureHunt_InfoContainer_Progress">
               <div className="Progressbar">
                 <div className="Line">
-                  <div
-                    className="Line_Taskprogress"
-                    style={{ width: (currentTask / 6) * 100 +'%' }}
-                  ></div>
+                  <div className="Line_Taskprogress"></div>
                 </div>
-                <div className="TasksProgress">{currentTask}/6</div>
+                <div className="TasksProgress">4/6</div>
               </div>
-              <div className="TreasureHunt_BackButton">
-                <img src="./src/assets/icons/edit.svg" alt="Back Arrow" />
+              <div className="TreasureHunt_InfoContainer_Progress_Arrow">
+                <img src={arrowIcon} alt="arrow" />
               </div>
             </div>
           </div>
