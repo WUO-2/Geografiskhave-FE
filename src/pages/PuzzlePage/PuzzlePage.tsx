@@ -15,11 +15,9 @@ function PuzzlePage() {
     <img src={Placeholder} alt="" />
   </Draggable>),
   (<Draggable id='piece2'>
-  <img src={Placeholder} alt="" />
-</Draggable>),
-  (<Draggable id='piece6'>
-  <img src={Placeholder} alt="" />
-</Draggable>),
+    <img src={Placeholder} alt="" />
+  </Draggable>),
+  (<div></div>),
 
   ]);
   
