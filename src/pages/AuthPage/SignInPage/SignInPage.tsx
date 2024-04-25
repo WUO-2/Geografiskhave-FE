@@ -49,9 +49,6 @@ const SignInPage = () => {
               <input type="checkbox" id="checkbox" />
               <label for="checkbox">Husk mig</label>
             </div>
-            <Link to="#" className="SignIn_Container_Form_Container_Forgot">
-              Glemt adgangskode?
-            </Link>
           </div>
         </div>
       </div>
