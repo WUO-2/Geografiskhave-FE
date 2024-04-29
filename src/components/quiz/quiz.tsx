@@ -44,6 +44,7 @@ const Quiz = () => {
       if (response.correct && response.completed) {
         //TODO: navigate to completed page
         console.log("completed");
+        navigate("/");
       } else if (response.correct) {
         navigate(`/quiz/success/${id}`);
       } else {
