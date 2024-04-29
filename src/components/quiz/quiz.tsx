@@ -18,7 +18,7 @@ const Quiz = () => {
   const [selectedAnswer, setSelectedAnswer] = useState<IAnswer | null>(null);
   const [video, setVideo] = useState<any>();
   const [wrongAnswer, setWrongAnswer] = useState<boolean>(false);
-  const { treasureStore } = useStore();
+  const { treasureStore, authStore } = useStore();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
@@ -34,14 +34,30 @@ const Quiz = () => {
   }, []);
 
   const checkAnswer = () => {
-    if (selectedAnswer === null) {
+    console.log("check answer");
+    if (authStore.user === null || selectedAnswer === null) {
       return;
     }
-    if (selectedAnswer.isCorrect) {
-      navigate(`/quiz/success/${treasureStore.currentTask?.id || id}`);
-    } else {
-      setWrongAnswer(true);
-    }
+    const userId = authStore.user?.id;
+    const answerId = selectedAnswer?.id;
+    treasureStore.answer(userId, answerId).then((response) => {
+      if (response.correct && response.completed) {
+        //TODO: navigate to completed page
+        console.log("completed");
+      } else if (response.correct) {
+        navigate(`/quiz/success/${id}`);
+      } else {
+        setWrongAnswer(true);
+      }
+    });
+    //if (selectedAnswer === null) {
+    //  return;
+    //}
+    //if (selectedAnswer.isCorrect) {
+    //  navigate(`/quiz/success/${treasureStore.currentTask?.id || id}`);
+    //} else {
+    //  setWrongAnswer(true);
+    //}
   };
 
   const handleBack = () => {

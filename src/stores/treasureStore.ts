@@ -1,6 +1,10 @@
 import { makeAutoObservable, observable, action } from "mobx";
 import { ITask, ITreasureHunt } from "../interfaces/ITreasureHunt";
-import { getTask } from "../services/treasureService";
+import {
+  answer,
+  getTask,
+  startTreasureHunt,
+} from "../services/treasureService";
 
 export class TreasureStore {
   @observable treasureHunt: ITreasureHunt | null = null;
@@ -18,6 +22,29 @@ export class TreasureStore {
     await getTask(id).then((task) => {
       this.setCurrentTask(task);
       console.log(this.currentTask);
+    });
+  };
+
+  @action startTreasureHunt = async (userId: string) => {
+    await startTreasureHunt(userId).then((currentTask) => {
+      this.setCurrentTask(currentTask);
+      console.log(this.currentTask);
+    });
+  };
+
+  @action answer = async (id: string, answerId: number) => {
+    return await answer(id, answerId).then((currentTask) => {
+      if (currentTask.message === "Wrong answer") {
+        return { correct: false };
+      } else if (currentTask.message === "treasurehunt completed") {
+        this.setCurrentTask(null);
+        return { correct: true, completed: true };
+      } else {
+        console.log(currentTask);
+        this.setCurrentTask(currentTask);
+        console.log(this.currentTask);
+        return { correct: true };
+      }
     });
   };
 
