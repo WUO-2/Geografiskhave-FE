@@ -19,3 +19,9 @@ export const answer = async (id: string, answerId: number) => {
       return response.data;
     });
 };
+
+export const getTasks = async () => {
+  return http.get("treasurehunt/tasks").then((response) => {
+    return response.data;
+  });
+};

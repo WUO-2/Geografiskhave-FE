@@ -5,16 +5,26 @@ import TimeIcon from "../../assets/icons/timeIcon.svg";
 import Distanceicon from "../../assets/icons/distanceIcon.svg";
 import { useNavigate } from "react-router-dom";
 import { useStore } from "../../stores/store";
+import { useEffect, useState } from "react";
+import TreasurehuntTask from "./TreasurehuntTask/TreasurehuntTask";
 
 const TreasureHuntPage = () => {
   const navigate = useNavigate();
   const { treasureStore, authStore } = useStore();
+  const [showTask, setShowTask] = useState<boolean>(false);
 
   const handleClick = async () => {
     await treasureStore.startTreasureHunt(authStore.user!.id).then(() => {
-      navigate(`/quiz/${treasureStore.currentTask?.id}`);
+      setShowTask(true);
+      //navigate(`/quiz/${treasureStore.currentTask?.id}`);
     });
   };
+
+  useEffect(() => {
+    if (treasureStore.currentTask) {
+      setShowTask(true);
+    }
+  }, [treasureStore.currentTask]);
 
   const handleBack = () => {
     navigate(-1);
@@ -22,8 +32,8 @@ const TreasureHuntPage = () => {
 
   return (
     <>
-      <Header currentPage="Skattejagt" onBack={() => handleBack()} />
       <div className="TreasureHuntPage">
+        <Header currentPage="Skattejagt" onBack={() => handleBack()} />
         <div className="TreasureHuntPage_ImageContainer"></div>
 
         <div className="TreasureHuntPage_ContentContainer">
@@ -60,6 +70,9 @@ const TreasureHuntPage = () => {
           </div>
         </div>
       </div>
+      {showTask && (
+        <TreasurehuntTask showTask={showTask} setShowTask={setShowTask} />
+      )}
     </>
   );
 };

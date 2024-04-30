@@ -1,0 +1,52 @@
+@import "../../../assets/variable.scss";
+
+.TreasurehuntTask {
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: height 0.3s ease-in-out;
+  pointer-events: none;
+  display: none;
+
+  &_Wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 0;
+    width: 100%;
+    height: 100%;
+    &_Image {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+    }
+    &_Content {
+      display: flex;
+      padding: 35px;
+      width: calc(100% - 70px);
+      height: calc(100% - 70px);
+      flex: 1;
+      flex-direction: column;
+      gap: 10px;
+      &_Title {
+        font-size: $h1;
+        font-weight: bold;
+        color: $brown;
+        margin: 0;
+      }
+      &_Description {
+        color: $brown;
+        margin: 0;
+        flex: 1 0 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+    }
+  }
+}
+
+.TreasurehuntTask_Show {
+  pointer-events: all;
+  display: flex;
+  height: 100% !important;
+}

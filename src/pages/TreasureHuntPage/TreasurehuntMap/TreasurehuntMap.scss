@@ -1,0 +1,50 @@
+@import "../../../assets/variable.scss";
+
+.TreasurehuntMap {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: height 0.3s ease-in-out;
+}
+
+.TreasurehuntMap_Show {
+  height: 100% !important;
+  #Leaflet {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.TreasurehuntMap_Icon {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50%;
+  background-color: $white;
+  img {
+    width: 24px;
+    height: 24px;
+    filter: $brownFilter;
+  }
+}
+
+.TreasurehuntMap_Icon-Active {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50%;
+  background-color: $orange;
+  img {
+    width: 24px;
+    height: 24px;
+    filter: $brownFilter;
+  }
+}
