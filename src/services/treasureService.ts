@@ -25,3 +25,15 @@ export const getTasks = async () => {
     return response.data;
   });
 };
+
+export const getCurrentTask = async (id: string) => {
+  return http
+    .get(`treasurehunt/task`, {
+      headers: {
+        requesterid: id,
+      },
+    })
+    .then((response) => {
+      return response.data;
+    });
+};

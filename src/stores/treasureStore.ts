@@ -2,6 +2,7 @@ import { makeAutoObservable, observable, action } from "mobx";
 import { ITask, ITreasureHunt } from "../interfaces/ITreasureHunt";
 import {
   answer,
+  getCurrentTask,
   getTask,
   getTasks,
   startTreasureHunt,
@@ -57,6 +58,13 @@ export class TreasureStore {
         console.log(this.currentTask);
         return { correct: true };
       }
+    });
+  };
+
+  @action getCurrentTask = async (id: string) => {
+    await getCurrentTask(id).then((task) => {
+      this.setCurrentTask(task);
+      console.log(this.currentTask);
     });
   };
 
