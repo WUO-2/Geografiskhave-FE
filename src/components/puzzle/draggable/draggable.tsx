@@ -20,9 +20,9 @@ function Draggable(props: DraggableProps) {
     : undefined;
 
   return (
-    <button className={`puzzlePiece ${props.id}`} ref={setNodeRef} style={style} {...listeners} {...attributes}>
+    <div className={`puzzlePiece ${props.id}`} ref={setNodeRef} style={style} {...listeners} {...attributes}>
       {props.children}
-    </button>
+    </div>
   );
 }
 

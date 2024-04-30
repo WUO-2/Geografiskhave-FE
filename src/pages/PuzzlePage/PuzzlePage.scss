@@ -1,4 +1,35 @@
-Draggable {
-    padding-top: 50px;
-    padding-right: 50px;
+@use "../../assets/variable.scss" as v;
+
+.puzzlePage {
+    margin-top: 50px;
+    color: v.$brown;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    
+    .dropArea {
+        display: flex;
+        justify-content: center;
+        background: v.$white;
+        margin: auto;
+        border: 1px black solid;
+    }
+
+    .top {
+        border-bottom: 0px;
+    }
+    .bottom {
+        border-top: 0px;
+    }
+
+    .piecesArea {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    Draggable {
+        padding-top: 20px;
+        padding-right: 50px;
+    }
 }
+

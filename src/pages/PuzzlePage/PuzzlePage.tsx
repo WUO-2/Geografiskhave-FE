@@ -3,19 +3,32 @@ import { DndContext, DragEndEvent, DragStartEvent, closestCorners } from '@dnd-k
 import Droppable from '../../components/puzzle/droppable/droppable';
 import Draggable from '../../components/puzzle/draggable/draggable';
 import "./PuzzlePage.scss";
-import Piece from "../../assets/icons/puzzle-piece.svg";
-import Placeholder from "../../assets/icons/placeholder.svg";
+import Piece1 from "../../assets/puzzlePieces/puzzle_piece1.png";
+import Piece2 from "../../assets/puzzlePieces/puzzle_piece2.png";
+import Piece3 from "../../assets/puzzlePieces/puzzle_piece3.png";
+import Piece4 from "../../assets/puzzlePieces/puzzle_piece4.png";
+import Piece5 from "../../assets/puzzlePieces/puzzle_piece5.png";
+import Piece6 from "../../assets/puzzlePieces/puzzle_piece6.png";
 
 function PuzzlePage() {
   const [pieces, setPieces] = useState([
   (<Draggable id='piece0'>
-    <img src={Piece} alt="" />
+    <img src={Piece1} alt="" />
   </Draggable>),
   (<Draggable id='piece1'>
-    <img src={Placeholder} alt="" />
+    <img src={Piece2} alt="" />
   </Draggable>),
   (<Draggable id='piece2'>
-    <img src={Placeholder} alt="" />
+    <img src={Piece3} alt="" />
+  </Draggable>),
+  (<Draggable id='piece3'>
+    <img src={Piece4} alt="" />
+  </Draggable>),
+  (<Draggable id='piece4' isWonck>
+    <img src={Piece5} alt="" />
+  </Draggable>),
+  (<Draggable id='piece5' isWonck>
+    <img src={Piece6} alt="" />
   </Draggable>),
   (<div></div>),
 
@@ -25,6 +38,9 @@ function PuzzlePage() {
     {content: pieces[0]},
     {content: pieces[1]},
     {content: pieces[2]},
+    {content: pieces[3]},
+    {content: pieces[4]},
+    {content: pieces[5]},
     {content: null},
   ])
 
@@ -35,7 +51,7 @@ function PuzzlePage() {
     { content: null},
     { content: null},
     { content: null},
-    { content: pieces[3]}
+    { content: pieces[6]}
   ]);
 
   let currentlyHeld:any
@@ -92,21 +108,39 @@ function PuzzlePage() {
 
   return (
     <div className='puzzlePage'>
+      <h2>Saml dit puslespil</h2>
       <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-        <Droppable id="0">
-          {placedContent[0].content}
-        </Droppable>
-        <Droppable id="1">
-          {placedContent[1].content}
-        </Droppable>
-        <Droppable id="2">
-          {placedContent[2].content}
-        </Droppable>
+        <div className='dropArea top'>
+          <Droppable id="0">
+            {placedContent[0].content}
+          </Droppable>
+          <Droppable id="1">
+            {placedContent[1].content}
+          </Droppable>
+          <Droppable id="2">
+            {placedContent[2].content}
+          </Droppable>
+        </div>
+        <div className='dropArea bottom'>
+          <Droppable id="3">
+            {placedContent[3].content}
+          </Droppable>
+          <Droppable id="4">
+            {placedContent[4].content}
+          </Droppable>
+          <Droppable id="5">
+            {placedContent[5].content}
+          </Droppable>
+        </div>
+          
+        <div className='piecesArea'>
           {toPlayPeices.map((piece, index) => (
             <div key={index} id={index.toString()}>
               {piece.content}
             </div>
           ))}
+        </div>
+        
       </DndContext>
     </div>
   );

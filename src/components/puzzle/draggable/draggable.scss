@@ -1,5 +1,40 @@
 .puzzlePiece {
+    border: none;
+    padding: 0px;
+    z-index: 1;
+}
+
+.piece0 {
     img {
-        width: 200px;
+        width: calc(100px + 22px);
     }
+}
+.piece1 {
+    img {
+        width: calc(100px + 22px);
+    }
+}
+.piece2 {
+    img {
+        width: calc(100px);
+    }
+}
+.piece3 {
+    img {
+        width: calc(100px);
+    }
+}
+.piece4 {
+    img{
+        transform: translate(-22px,-22px);
+        width: calc(100px + 22px*2);
+    }
+    
+}
+.piece5 {
+    img {
+        transform: translate(0px,-22px);
+        width: calc(100px);
+    }
+    
 }

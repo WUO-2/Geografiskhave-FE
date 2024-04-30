@@ -1,5 +1,6 @@
 .droppable {
-    width: 150px;
-    height: 150px;
-    border: 2px solid green;
+    width: 100px;
+    height: 100px;
+    overflow: visible;
+    z-index: 2;
 }
