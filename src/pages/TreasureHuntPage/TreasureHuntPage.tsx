@@ -4,13 +4,17 @@ import Button from "../../components/shared/buttons/button";
 import TimeIcon from "../../assets/icons/timeIcon.svg";
 import Distanceicon from "../../assets/icons/distanceIcon.svg";
 import { useNavigate } from "react-router-dom";
+import { useStore } from "../../stores/store";
 
 const TreasureHuntPage = () => {
   const navigate = useNavigate();
-  const handleClick = () => {
-    navigate("/quiz/1");
-  };
+  const { treasureStore, authStore } = useStore();
 
+  const handleClick = async () => {
+    await treasureStore.startTreasureHunt(authStore.user!.id).then(() => {
+      navigate(`/quiz/${treasureStore.currentTask?.id}`);
+    });
+  };
 
   const handleBack = () => {
     navigate(-1);
@@ -48,7 +52,11 @@ const TreasureHuntPage = () => {
           </div>
 
           <div className="TreasureHuntPage_ContentContainer_StartButton">
-            <Button text="Start skattejagt" size="large" onClick={handleClick}/>
+            <Button
+              text="Start skattejagt"
+              size="large"
+              onClick={handleClick}
+            />
           </div>
         </div>
       </div>
