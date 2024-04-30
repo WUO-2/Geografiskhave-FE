@@ -10,17 +10,26 @@ import { IPoi } from "../../../interfaces/IPois";
 import Header from "../../../components/shared/header/header";
 import { ITask } from "../../../interfaces/ITreasureHunt";
 import { useNavigate } from "react-router-dom";
+import { Toaster, toast, useToasterStore } from "react-hot-toast";
+import { Distance } from "../../../utils/distanceUtil";
+import { ITreasurehuntMap } from "../../../interfaces/IPages";
 
-const TreasurehuntMap = ({
-  show,
-  setShow,
-}: {
-  show: boolean;
-  setShow: any;
-}) => {
+const TreasurehuntMap = ({ show, setShow }: ITreasurehuntMap) => {
   const [loading, setLoading] = useState(true);
-  const { treasureStore } = useStore();
+  const { treasureStore, authStore } = useStore();
   const navigate = useNavigate();
+  const { toasts } = useToasterStore();
+
+  const TOAST_LIMIT = 1;
+
+  useEffect(() => {
+    toasts
+      .filter((t) => t.visible)
+      .filter((_, i) => i >= TOAST_LIMIT)
+      .forEach((t) => toast.dismiss(t.id));
+  }, [toasts]);
+
+  const distanceThreshold = 150;
 
   const testIcon = transformIcon(t, "TreasurehuntMap_Icon");
   const activeIcon = transformIcon(t, "TreasurehuntMap_Icon-Active");
@@ -39,6 +48,29 @@ const TreasurehuntMap = ({
     if (treasureStore.currentTask?.id !== task.id) {
       return;
     }
+
+    console.log(
+      Distance(
+        task.latitude,
+        task.longitude,
+        authStore.position.lat,
+        authStore.position.lng,
+      ) > distanceThreshold,
+    );
+
+    if (
+      Distance(
+        task.latitude,
+        task.longitude,
+        authStore.position.lat,
+        authStore.position.lng,
+      ) > distanceThreshold
+    ) {
+      console.log("distance too far");
+      toast.error("Du er for langt væk fra opgaven", { duration: 2000 });
+      return;
+    }
+
     navigate(`/quiz/${task.id}`);
   };
 
@@ -82,6 +114,13 @@ const TreasurehuntMap = ({
             <Location />
           </MapContainer>
         )}
+        <Toaster
+          position="bottom-center"
+          containerStyle={{ bottom: "150px" }}
+          toastOptions={{
+            style: { backgroundColor: "#fff9e8" },
+          }}
+        />
       </div>
     </>
   );

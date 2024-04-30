@@ -1,23 +1,14 @@
-import React, { Dispatch, SetStateAction } from "react";
 import Header from "../../../components/shared/header/header";
-import { IPoi } from "../../../interfaces/IPois";
 import "./PoiPage.scss";
+import { IPoiPage } from "../../../interfaces/IPages";
 
-const PoiPage = ({
-  showPopup,
-  setShowPopup,
-  selectedPoi,
-}: {
-  showPopup: boolean;
-  setShowPopup: Dispatch<SetStateAction<boolean>>;
-  selectedPoi: IPoi | null;
-}) => {
+const PoiPage = ({ showPopup, setShowPopup, selectedPoi }: IPoiPage) => {
   return (
     <div className={`selected-poi ${showPopup ? "selected-poi_active" : ""}`}>
       <Header
         currentPage={`${selectedPoi?.name}`}
         onBack={() => setShowPopup(false)}
-      />{" "}
+      />
       <img
         src="https://via.placeholder.com/390x300"
         alt="placeholder"

@@ -14,6 +14,8 @@ export interface ITask {
   treasureHuntId: number;
   treasureHunt: ITreasureHunt;
   answers: IAnswer[];
+  imageURL: string;
+  info: string;
 }
 
 export interface IProgress {
@@ -27,4 +29,5 @@ export interface IAnswer {
   answer: string;
   isCorrect: boolean;
   taskId: number;
+  imageURL: string;
 }

@@ -82,9 +82,7 @@ const Quiz = () => {
         onClose={() => handleClose()}
       />
       <div className="Quiz">
-        <div className="Quiz_Info">
-          {treasureStore.currentTask?.description}
-        </div>
+        <div className="Quiz_Info">{treasureStore.currentTask?.question}</div>
         <div className="Quiz_Video">
           <ReactPlayer url={video} playing={!isPaused} autoPlay={true} />
           <div className="Quiz_Video_Button">
@@ -103,6 +101,11 @@ const Quiz = () => {
                 className={`Quiz_Answer ${selectedAnswer === answer ? "Quiz_Answer_Selected" : ""}`}
                 onClick={() => setSelectedAnswer(answer)}
               >
+                <img
+                  src={answer.imageURL}
+                  alt={answer.answer}
+                  className="Quiz_Answer_Image"
+                />
                 {answer.answer}
               </button>
             ))}
