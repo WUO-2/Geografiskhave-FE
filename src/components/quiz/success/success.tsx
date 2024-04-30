@@ -5,12 +5,14 @@ import Button from "../../shared/buttons/button";
 import { useNavigate, useParams } from "react-router-dom";
 import { Clamp } from "../../../utils/Clamp";
 import Header from "../../shared/header/header.tsx";
+import { useStore } from "../../../stores/store.ts";
 
 const Success = () => {
   const [totalSteps, setTotalSteps] = useState(6);
   const [currentStep, setCurrentStep] = useState(2);
   const params = useParams();
   const navigate = useNavigate();
+  const { treasureStore, authStore } = useStore();
 
   useEffect(() => {
     setCurrentStep(
@@ -34,7 +36,10 @@ const Success = () => {
   };
 
   const handleNextStep = () => {
-    navigate(`/quiz/${currentStep + 1}`);
+    treasureStore
+      .startTreasureHunt(authStore.user!.id)
+      .then(() => navigate("/skattejagt"));
+    // navigate(`/quiz/${currentStep + 1}`);
   };
 
   return (

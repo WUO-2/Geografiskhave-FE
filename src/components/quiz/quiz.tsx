@@ -27,23 +27,26 @@ const Quiz = () => {
       const taskId = Clamp(parseInt(id), 1, 6);
       treasureStore.fetchTask(taskId);
       setVideo(GetVideoById(taskId));
+    } else {
+      setVideo(GetVideoById(treasureStore.currentTask.id));
     }
     return () => {
-      treasureStore.setCurrentTask(null);
+      //treasureStore.setCurrentTask(null);
     };
   }, []);
 
-  const checkAnswer = () => {
+  const checkAnswer = async () => {
     console.log("check answer");
     if (authStore.user === null || selectedAnswer === null) {
       return;
     }
     const userId = authStore.user?.id;
     const answerId = selectedAnswer?.id;
-    treasureStore.answer(userId, answerId).then((response) => {
+    await treasureStore.answer(userId, answerId).then((response) => {
       if (response.correct && response.completed) {
         //TODO: navigate to completed page
         console.log("completed");
+        treasureStore.setCurrentTask(null);
         navigate("/");
       } else if (response.correct) {
         navigate(`/quiz/success/${id}`);
@@ -61,8 +64,10 @@ const Quiz = () => {
     //}
   };
 
-  const handleBack = () => {
-    console.log("back");
+  const handleBack = async () => {
+    await treasureStore.startTreasureHunt(authStore.user!.id).then(() => {
+      navigate(-1);
+    });
   };
   const handleClose = () => {
     console.log("close");

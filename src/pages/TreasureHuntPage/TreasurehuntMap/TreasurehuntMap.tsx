@@ -8,6 +8,8 @@ import { transformIcon } from "../../../utils/IconUtil";
 import t from "../../../assets/icons/map.svg";
 import { IPoi } from "../../../interfaces/IPois";
 import Header from "../../../components/shared/header/header";
+import { ITask } from "../../../interfaces/ITreasureHunt";
+import { useNavigate } from "react-router-dom";
 
 const TreasurehuntMap = ({
   show,
@@ -17,22 +19,27 @@ const TreasurehuntMap = ({
   setShow: any;
 }) => {
   const [loading, setLoading] = useState(true);
-  const { mapStore } = useStore();
+  const { treasureStore } = useStore();
+  const navigate = useNavigate();
 
-  const testIcon = transformIcon(t, "test");
+  const testIcon = transformIcon(t, "TreasurehuntMap_Icon");
+  const activeIcon = transformIcon(t, "TreasurehuntMap_Icon-Active");
 
   useEffect(() => {
-    if (mapStore.Pois.length === 0) {
-      mapStore.fetchPois().then(() => {
+    if (treasureStore.tasks.length === 0) {
+      treasureStore.getTasks().then(() => {
         setLoading(false);
       });
     } else {
       setLoading(false);
     }
-  }, [mapStore.Pois]);
+  }, [treasureStore.tasks]);
 
-  const handleMarkerClick = (poi: IPoi) => {
-    console.log("handleMarkerClick");
+  const handleMarkerClick = (task: ITask) => {
+    if (treasureStore.currentTask?.id !== task.id) {
+      return;
+    }
+    navigate(`/quiz/${task.id}`);
   };
 
   return (
@@ -46,20 +53,28 @@ const TreasurehuntMap = ({
         {loading && <h1>Loading...</h1>}
         {!loading && (
           <MapContainer
-            center={[mapStore.Pois[0].latitude, mapStore.Pois[0].longitude]}
+            center={[
+              treasureStore.tasks[0].latitude,
+              treasureStore.tasks[0].longitude,
+            ]}
             zoom={17}
             scrollWheelZoom={true}
             id="Leaflet"
           >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            {mapStore.Pois.map((poi) => (
+            {treasureStore.tasks.map((task) => (
               <Marker
-                key={poi.id}
-                position={[poi.latitude, poi.longitude]}
-                icon={testIcon}
+                key={task.id}
+                position={[task.latitude, task.longitude]}
+                icon={
+                  treasureStore.currentTask?.id === task.id
+                    ? activeIcon
+                    : testIcon
+                }
                 eventHandlers={{
                   click: () => {
-                    handleMarkerClick(poi);
+                    console.log("click");
+                    handleMarkerClick(task);
                   },
                 }}
               ></Marker>

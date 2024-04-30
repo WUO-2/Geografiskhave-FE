@@ -3,12 +3,14 @@ import { ITask, ITreasureHunt } from "../interfaces/ITreasureHunt";
 import {
   answer,
   getTask,
+  getTasks,
   startTreasureHunt,
 } from "../services/treasureService";
 
 export class TreasureStore {
   @observable treasureHunt: ITreasureHunt | null = null;
   @observable currentTask: ITask | null = null;
+  @observable tasks: ITask[] = [];
 
   @action setTreasureHunt(treasureHunt: ITreasureHunt) {
     this.treasureHunt = treasureHunt;
@@ -29,6 +31,16 @@ export class TreasureStore {
     await startTreasureHunt(userId).then((currentTask) => {
       this.setCurrentTask(currentTask);
       console.log(this.currentTask);
+    });
+  };
+
+  @action setTasks(tasks: ITask[]) {
+    this.tasks = tasks;
+  }
+
+  @action getTasks = async () => {
+    await getTasks().then((tasks) => {
+      this.setTasks(tasks);
     });
   };
 

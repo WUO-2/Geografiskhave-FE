@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TreasurehuntMap from "../TreasurehuntMap/TreasurehuntMap";
 import Header from "../../../components/shared/header/header";
 import { useStore } from "../../../stores/store";
@@ -54,8 +54,7 @@ const TreasurehuntTask = ({
           </div>
         </div>
       </div>
-
-      <TreasurehuntMap show={showMap} setShow={setShowMap} />
+      {showMap && <TreasurehuntMap show={showMap} setShow={setShowMap} />}
     </>
   );
 };

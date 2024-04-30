@@ -7,7 +7,7 @@ export interface ITreasureHunt {
 export interface ITask {
   id: number;
   name: string;
-  longtiude: number;
+  longitude: number;
   latitude: number;
   description: string;
   question: string;

@@ -5,7 +5,7 @@ import TimeIcon from "../../assets/icons/timeIcon.svg";
 import Distanceicon from "../../assets/icons/distanceIcon.svg";
 import { useNavigate } from "react-router-dom";
 import { useStore } from "../../stores/store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TreasurehuntTask from "./TreasurehuntTask/TreasurehuntTask";
 
 const TreasureHuntPage = () => {
@@ -19,6 +19,12 @@ const TreasureHuntPage = () => {
       //navigate(`/quiz/${treasureStore.currentTask?.id}`);
     });
   };
+
+  useEffect(() => {
+    if (treasureStore.currentTask) {
+      setShowTask(true);
+    }
+  }, [treasureStore.currentTask]);
 
   const handleBack = () => {
     navigate(-1);
@@ -64,7 +70,9 @@ const TreasureHuntPage = () => {
           </div>
         </div>
       </div>
-      <TreasurehuntTask showTask={showTask} setShowTask={setShowTask} />
+      {showTask && (
+        <TreasurehuntTask showTask={showTask} setShowTask={setShowTask} />
+      )}
     </>
   );
 };
