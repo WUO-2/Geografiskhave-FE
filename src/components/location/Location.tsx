@@ -2,13 +2,18 @@ import { LatLngLiteral } from "leaflet";
 import { useEffect, useState } from "react";
 import { Marker, Popup, useMapEvents } from "react-leaflet";
 import "./Location.scss";
+import { useStore } from "../../stores/store";
 const Location = () => {
   const [position, setPosition] = useState<LatLngLiteral>();
+  const { authStore } = useStore();
+
   const map = useMapEvents({
     click() {
       map.locate();
     },
     locationfound(e) {
+      authStore.setPosition(e.latlng);
+      console.log(authStore.position);
       setPosition(e.latlng);
     },
   });
