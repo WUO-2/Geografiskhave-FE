@@ -34,7 +34,7 @@ function PrizePage() {
             Godt gådt! Du har gennemført din første skattejagt gennem haven.
         </p>
 
-        <div className='yellowBubble'>
+        <div className='yellowBubble bold'>
             Plus <img className='coin' src={Coin} alt="" /> 55 Eventyrmønter og en hemmelig præmie
         </div>
 
