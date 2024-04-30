@@ -29,7 +29,7 @@ const TreasurehuntMap = ({ show, setShow }: ITreasurehuntMap) => {
       .forEach((t) => toast.dismiss(t.id));
   }, [toasts]);
 
-  const distanceThreshold = 1500000;
+  const distanceThreshold = 150;
 
   const testIcon = transformIcon(t, "TreasurehuntMap_Icon");
   const activeIcon = transformIcon(t, "TreasurehuntMap_Icon-Active");
