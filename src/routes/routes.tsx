@@ -15,6 +15,7 @@ import TreasureHunt from "../components/shared/treasureHuntHomePage/treasureHunt
 import TreasureHuntPage from "../pages/TreasureHuntPage/TreasureHuntPage.tsx";
 import MapPage from "../pages/MapPage/MapPage.tsx";
 import PuzzlePage from "../pages/PuzzlePage/PuzzlePage.tsx"
+import PuzzleCompletePage from "../pages/PuzzlePage/PuzzleCompletePage.tsx";
 
 export const Routes: IRoute[] = [
   {
@@ -80,6 +81,12 @@ export const Routes: IRoute[] = [
         path: "/puzzle",
         title: "Puzzle",
         component: <PuzzlePage />,
+        routeType: RouteType.INTERNAL,
+      },
+      {
+        path: "/puzzle/complete",
+        title: "Puzzle Complete",
+        component: <PuzzleCompletePage />,
         routeType: RouteType.INTERNAL,
       },
     ],

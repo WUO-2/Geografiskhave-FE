@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DndContext, DragEndEvent, DragStartEvent, closestCorners } from '@dnd-kit/core';
+import { DndContext, DragEndEvent, DragStartEvent } from '@dnd-kit/core';
 import Droppable from '../../components/puzzle/droppable/droppable';
 import Draggable from '../../components/puzzle/draggable/draggable';
 import "./PuzzlePage.scss";
@@ -12,6 +12,7 @@ import Piece5 from "../../assets/puzzlePieces/puzzle_piece5.png";
 import Piece6 from "../../assets/puzzlePieces/puzzle_piece6.png";
 
 import DefButton from '../../components/shared/buttons/button';
+import { useNavigate } from 'react-router-dom';
 
 function PuzzlePage() {
   const [pieces, setPieces] = useState([
@@ -117,11 +118,13 @@ function PuzzlePage() {
       placedContent[4].content == pieces[4] && 
       placedContent[5].content == pieces[5]) {
         console.log("hurray");
+        navigate("/puzzle/complete")
       } else {
         console.log("øv");
-        
       }
   };
+
+  const navigate = useNavigate();
 
   return (
     <div className='puzzlePage'>
