@@ -9,15 +9,15 @@ const TreasureHunt = () => {
   const navigate = useNavigate();
   const { treasureStore, authStore } = useStore();
   useEffect(() => {
-    if (!treasureStore.currentTask) {
+    if (!treasureStore.progress) {
       console.log(authStore.user?.id);
       if (authStore.user) {
         treasureStore.getCurrentTask(authStore.user.id);
       }
       //treasureStore.getCurrentTask(authStore.user!.id);
     }
-    console.log("TreasureHunt useEffect ", treasureStore.currentTask);
-  }, [treasureStore.currentTask, authStore.user]);
+    console.log("TreasureHunt useEffect ", treasureStore.progress);
+  }, [treasureStore.progress, authStore.user]);
 
   const handleClick = () => {
     navigate("/skattejagt");
@@ -35,14 +35,13 @@ const TreasureHunt = () => {
               <div className="Left1">
                 <p className="TreasureHunt_InfoContainer_Content_Text">
                   Opgave{" "}
-                  {treasureStore.currentTask ? treasureStore.currentTask.id : 0}{" "}
-                  |{" "}
+                  {treasureStore.progress ? treasureStore.progress.id : 0} |{" "}
                 </p>
               </div>
               <div className="Right1">
                 <p className="TreasureHunt_InfoContainer_Content_Text">
-                  {treasureStore.currentTask
-                    ? treasureStore.currentTask.name
+                  {treasureStore.progress
+                    ? treasureStore.progress.name
                     : "Start Skattejagt"}
                 </p>
               </div>
@@ -53,7 +52,7 @@ const TreasureHunt = () => {
                   <div className="Line_Taskprogress"></div>
                 </div>
                 <div className="TasksProgress">
-                  {treasureStore.currentTask ? treasureStore.currentTask.id : 0}
+                  {treasureStore.progress ? treasureStore.progress.id : 0}
                   /6
                 </div>
               </div>

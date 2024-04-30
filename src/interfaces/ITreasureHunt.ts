@@ -16,6 +16,12 @@ export interface ITask {
   answers: IAnswer[];
 }
 
+export interface IProgress {
+  id: number;
+  name: string;
+  description: string;
+}
+
 export interface IAnswer {
   id: number;
   answer: string;
