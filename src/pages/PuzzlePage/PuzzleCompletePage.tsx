@@ -79,7 +79,7 @@ function PuzzleCompletePage() {
             <DefButton
             text='Afslut skattejagt'
             size='large'
-            onClick={() => {navigate("/")}}/>
+            onClick={() => {navigate("/prize")}}/>
         </div>
       
     </div>
