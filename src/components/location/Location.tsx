@@ -13,7 +13,6 @@ const Location = () => {
     },
     locationfound(e) {
       authStore.setPosition(e.latlng);
-      console.log(authStore.position);
       setPosition(e.latlng);
     },
   });
@@ -24,8 +23,11 @@ const Location = () => {
 
   setTimeout(() => {
     map.locate();
-    console.log("Location: ", position);
   }, 60000);
+
+  useEffect(() => {
+    map.locate();
+  }, []);
 
   return position === undefined ? null : (
     <Marker position={position} icon={locationIcon}></Marker>

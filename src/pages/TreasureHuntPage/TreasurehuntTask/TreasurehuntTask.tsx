@@ -4,14 +4,9 @@ import Header from "../../../components/shared/header/header";
 import { useStore } from "../../../stores/store";
 import "./TreasurehuntTask.scss";
 import Button from "../../../components/shared/buttons/button";
+import { ITreasurehuntTask } from "../../../interfaces/IPages";
 
-const TreasurehuntTask = ({
-  showTask,
-  setShowTask,
-}: {
-  showTask: boolean;
-  setShowTask: any;
-}) => {
+const TreasurehuntTask = ({ showTask, setShowTask }: ITreasurehuntTask) => {
   const [showMap, setShowMap] = useState(false);
   const { treasureStore } = useStore();
 
@@ -27,8 +22,8 @@ const TreasurehuntTask = ({
         <div className="TreasurehuntTask_Wrapper">
           <img
             className="TreasurehuntTask_Wrapper_Image"
-            src="https://via.placeholder.com/150"
-            alt="placeholder"
+            src={treasureStore.currentTask?.imageURL}
+            alt=""
           />
           <div className="TreasurehuntTask_Wrapper_Content">
             <h1 className="TreasurehuntTask_Wrapper_Content_Title">
@@ -36,18 +31,7 @@ const TreasurehuntTask = ({
               {treasureStore.currentTask?.name}
             </h1>
             <p className="TreasurehuntTask_Wrapper_Content_Description">
-              Lorem ipsum dolor sit amet, officia excepteur ex fugiat
-              reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit
-              ex esse exercitation amet. Nisi anim cupidatat excepteur officia.
-              Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet
-              voluptate voluptate dolor minim nulla est proident. Nostrud
-              officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex
-              occaecat reprehenderit commodo officia dolor Lorem duis laboris
-              cupidatat officia voluptate. Culpa proident adipisicing id nulla
-              nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua
-              reprehenderit commodo ex non excepteur duis sunt velit enim.
-              Voluptate laboris sint cupidatat ullamco ut ea consectetur et est
-              culpa et culpa duis.
+              {treasureStore.currentTask?.info}{" "}
             </p>
             <Button
               onClick={() => setShowMap(true)}

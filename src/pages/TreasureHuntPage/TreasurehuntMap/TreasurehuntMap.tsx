@@ -12,14 +12,9 @@ import { ITask } from "../../../interfaces/ITreasureHunt";
 import { useNavigate } from "react-router-dom";
 import { Toaster, toast, useToasterStore } from "react-hot-toast";
 import { Distance } from "../../../utils/distanceUtil";
+import { ITreasurehuntMap } from "../../../interfaces/IPages";
 
-const TreasurehuntMap = ({
-  show,
-  setShow,
-}: {
-  show: boolean;
-  setShow: any;
-}) => {
+const TreasurehuntMap = ({ show, setShow }: ITreasurehuntMap) => {
   const [loading, setLoading] = useState(true);
   const { treasureStore, authStore } = useStore();
   const navigate = useNavigate();
@@ -34,7 +29,7 @@ const TreasurehuntMap = ({
       .forEach((t) => toast.dismiss(t.id));
   }, [toasts]);
 
-  const distanceThreshold = 150;
+  const distanceThreshold = 1500000;
 
   const testIcon = transformIcon(t, "TreasurehuntMap_Icon");
   const activeIcon = transformIcon(t, "TreasurehuntMap_Icon-Active");
