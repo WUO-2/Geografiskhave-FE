@@ -25,7 +25,11 @@ const TreasurehuntTask = ({
           onClose={() => setShowTask(false)}
         />
         <div className="TreasurehuntTask_Wrapper">
-          <img src="https://via.placeholder.com/150" alt="placeholder" />
+          <img
+            className="TreasurehuntTask_Wrapper_Image"
+            src="https://via.placeholder.com/150"
+            alt="placeholder"
+          />
           <div className="TreasurehuntTask_Wrapper_Content">
             <h1 className="TreasurehuntTask_Wrapper_Content_Title">
               Opgave {treasureStore.currentTask?.id}:{" "}
