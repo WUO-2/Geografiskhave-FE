@@ -23,8 +23,16 @@
     }
 
     .piecesArea {
+        margin-top: 50px;
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
+        height: 340px;
+    }
+
+    .buttonContainer {
+        margin-left: 30px;
+        margin-right: 30px;
     }
 
     Draggable {

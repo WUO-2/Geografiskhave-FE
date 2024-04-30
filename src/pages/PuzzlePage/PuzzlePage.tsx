@@ -3,12 +3,15 @@ import { DndContext, DragEndEvent, DragStartEvent, closestCorners } from '@dnd-k
 import Droppable from '../../components/puzzle/droppable/droppable';
 import Draggable from '../../components/puzzle/draggable/draggable';
 import "./PuzzlePage.scss";
+
 import Piece1 from "../../assets/puzzlePieces/puzzle_piece1.png";
 import Piece2 from "../../assets/puzzlePieces/puzzle_piece2.png";
 import Piece3 from "../../assets/puzzlePieces/puzzle_piece3.png";
 import Piece4 from "../../assets/puzzlePieces/puzzle_piece4.png";
 import Piece5 from "../../assets/puzzlePieces/puzzle_piece5.png";
 import Piece6 from "../../assets/puzzlePieces/puzzle_piece6.png";
+
+import DefButton from '../../components/shared/buttons/button';
 
 function PuzzlePage() {
   const [pieces, setPieces] = useState([
@@ -24,10 +27,10 @@ function PuzzlePage() {
   (<Draggable id='piece3'>
     <img src={Piece4} alt="" />
   </Draggable>),
-  (<Draggable id='piece4' isWonck>
+  (<Draggable id='piece4'>
     <img src={Piece5} alt="" />
   </Draggable>),
-  (<Draggable id='piece5' isWonck>
+  (<Draggable id='piece5'>
     <img src={Piece6} alt="" />
   </Draggable>),
   (<div></div>),
@@ -106,6 +109,20 @@ function PuzzlePage() {
     };
   };
 
+  const puzzleCompletionChecker = () => {
+    if (placedContent[0].content == pieces[0] && 
+      placedContent[1].content == pieces[1] && 
+      placedContent[2].content == pieces[2] && 
+      placedContent[3].content == pieces[3] && 
+      placedContent[4].content == pieces[4] && 
+      placedContent[5].content == pieces[5]) {
+        console.log("hurray");
+      } else {
+        console.log("øv");
+        
+      }
+  };
+
   return (
     <div className='puzzlePage'>
       <h2>Saml dit puslespil</h2>
@@ -142,6 +159,13 @@ function PuzzlePage() {
         </div>
         
       </DndContext>
+      <div className='buttonContainer'>
+        <DefButton
+        text='Godkend puslespil'
+        size='large'
+        onClick={() => {puzzleCompletionChecker();}}/>
+      </div>
+      
     </div>
   );
 }
