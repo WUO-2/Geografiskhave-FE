@@ -1,34 +1,35 @@
 @use "../../../assets/variable.scss" as v;
 
 .defButton {
-    background-color: v.$green;
-    font-size: v.$regular;
-    border-radius: 100px;
-    padding: 12px 42px;
-    border-width: 2px;
-    border-color: v.$green;
-    border-style: solid;
-    cursor: pointer;
+  background-color: v.$green;
+  font-size: v.$regular;
+  border-radius: 100px;
+  padding: 12px 42px;
+  border-width: 2px;
+  border-color: v.$green;
+  border-style: solid;
+  cursor: pointer;
+  color: v.$white;
 }
-
 
 //style
 .orange {
-    background-color: v.$orange;
-    border-color: v.$orange;
+  background-color: v.$orange;
+  border-color: v.$orange;
 }
 
 .white {
-    background-color: white;
-    color: v.$green;
+  background-color: white;
+  color: v.$green;
 }
 
 //size
 .small {
-    font-size: v.$small;
-    padding: 8px 42px;
+  font-size: v.$small;
+  padding: 8px 42px;
 }
 
 .large {
-    width: 100%;
+  width: 100%;
 }
+

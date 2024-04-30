@@ -6,14 +6,14 @@ import profile from "../assets/icons/user.svg";
 import TestPage from "../pages/TestPage/TestPage.tsx";
 import placeholder from "../assets/icons/placeholder.svg";
 import ProfilePage from "../pages/ProfilePage/ProfilePage.tsx";
+import skattejagt from "../assets/icons/skattejagt.svg";
 import AuthPage from "../pages/AuthPage/AuthPage.tsx";
 import App from "../App.tsx";
-import React from "react";
 import SignInPage from "../pages/AuthPage/SignInPage/SignInPage.tsx";
 import SignUpPage from "../pages/AuthPage/SignUpPage/SignUpPage.tsx";
-import TreasureHunt from "../components/shared/treasureHuntHomePage/treasureHunt.tsx";
 import TreasureHuntPage from "../pages/TreasureHuntPage/TreasureHuntPage.tsx";
 import MapPage from "../pages/MapPage/MapPage.tsx";
+import Success from "../components/quiz/success/success.tsx";
 import PuzzlePage from "../pages/PuzzlePage/PuzzlePage.tsx"
 import PuzzleCompletePage from "../pages/PuzzlePage/PuzzleCompletePage.tsx";
 import PrizePage from "../pages/PrizePage/PrizePage.tsx";
@@ -42,7 +42,7 @@ export const Routes: IRoute[] = [
       {
         path: "/skattejagt",
         title: "Skattejagt",
-        icon: placeholder,
+        icon: skattejagt,
         component: <TreasureHuntPage />,
         routeType: RouteType.NAVBAR,
       },
@@ -59,6 +59,18 @@ export const Routes: IRoute[] = [
         title: "Test",
         routeType: RouteType.INTERNAL,
         component: <TestPage />,
+      },
+      {
+        path: "/quiz/:id",
+        title: "Opgave",
+        routeType: RouteType.INTERNAL,
+        component: <TestPage />,
+      },
+      {
+        path: "/quiz/success/:id",
+        title: "Opgave Klaret",
+        routeType: RouteType.INTERNAL,
+        component: <Success />,
       },
       {
         path: "/auth",

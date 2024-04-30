@@ -2,13 +2,16 @@ import { IRoute } from "../../../interfaces/IRoute";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./navbar.scss";
 import logoutIcon from "../../../assets/icons/logout.svg";
+import { useStore } from "../../../stores/store";
 
 const Navbar = ({ routes }: { routes: IRoute[] }) => {
+  const { authStore } = useStore();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
+  const handleLogout = async () => {
+    await authStore.signOut().then(() => {
+      navigate("/auth");
+    });
   };
 
   return (

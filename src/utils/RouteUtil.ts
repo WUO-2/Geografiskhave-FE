@@ -19,12 +19,12 @@ export const findRoute = (route: string) => {
     }
     if (r.children) {
       r.children.map((child) => {
-        if (r.path + child.path === route) {
+        if (child.path === route) {
           foundRoute = child;
         }
         if (child.children) {
           child.children.map((grandChild) => {
-            if (r.path + child.path + grandChild.path === route) {
+            if (child.path + grandChild.path === route) {
               foundRoute = grandChild;
             }
           });

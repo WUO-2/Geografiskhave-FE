@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 const Input = ({ type, placeholder, value, onChange, icon }: IInput) => {
   const [inputType, setInputType] = useState(
-    type !== undefined ? type : "text"
+    type !== undefined ? type : "text",
   );
   const handleClick = () => {
     setInputType(inputType === "password" ? "text" : "password");
