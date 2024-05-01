@@ -13,13 +13,13 @@ import { useStore } from "../../stores/store";
 
 function PrizePage() {
   
-
   const navigate = useNavigate();
   const { treasureStore, authStore } = useStore();
 
   const handleUpdatePoints = async (points: number) => {
-    await treasureStore.updatePoints(authStore.user!.id, points).then(() => {
-      });
+    const response = await treasureStore.updatePoints(authStore.user!.id, points);
+    console.log(response.totalPoints);
+
   }
 
   return (

@@ -62,9 +62,8 @@ export class TreasureStore {
   };
 
   @action updatePoints = async (id: string, points: number) => {
-    await updatePoints(id, points).then((mes) => {
-      console.log(mes);
-    })
+    const response = await updatePoints(id, points);
+    return response;
   }
 
   constructor() {
