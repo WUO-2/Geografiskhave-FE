@@ -5,6 +5,7 @@ import {
   getTask,
   getTasks,
   startTreasureHunt,
+  updatePoints,
 } from "../services/treasureService";
 
 export class TreasureStore {
@@ -59,6 +60,12 @@ export class TreasureStore {
       }
     });
   };
+
+  @action updatePoints = async (id: string, points: number) => {
+    await updatePoints(id, points).then((mes) => {
+      console.log(mes);
+    })
+  }
 
   constructor() {
     makeAutoObservable(this);

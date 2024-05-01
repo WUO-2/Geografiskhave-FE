@@ -1,7 +1,6 @@
 import React from 'react';
 
 import "./PrizePage.scss";
-import Placeholder from "../../assets/icons/placeholder.svg"
 import Coin from "../../assets/Mønt.png"
 import BadgeTest from "../../assets/images/badges/BadgeProfil.png"
 import DefButton from "../../components/shared/buttons/button"
@@ -10,10 +9,18 @@ import Confetti from 'react-confetti';
 
 import { useNavigate } from 'react-router-dom';
 
+import { useStore } from "../../stores/store";
+
 function PrizePage() {
   
 
   const navigate = useNavigate();
+  const { treasureStore, authStore } = useStore();
+
+  const handleUpdatePoints = async (points: number) => {
+    await treasureStore.updatePoints(authStore.user!.id, points).then(() => {
+      });
+  }
 
   return (
     <div className='prizePage'>
@@ -40,7 +47,10 @@ function PrizePage() {
 
         <DefButton
         text='Indløs præmie'
-        onClick={()=>{navigate("/profile")}}/>
+        onClick={()=>{
+            handleUpdatePoints(55);
+            navigate("/profile");
+            }}/>
     </div>
   );
 }
