@@ -19,6 +19,10 @@ const TreasureHunt = () => {
     console.log("TreasureHunt useEffect ", treasureStore.progress);
   }, [treasureStore.progress, authStore.user]);
 
+  const completionPercentage = treasureStore.progress
+  ? (treasureStore.progress.id / 6) * 100 
+  : 0;
+
   const handleClick = () => {
     navigate("/skattejagt");
   };
@@ -49,7 +53,7 @@ const TreasureHunt = () => {
             <div className="TreasureHunt_InfoContainer_Progress">
               <div className="Progressbar">
                 <div className="Line">
-                  <div className="Line_Taskprogress"></div>
+                  <div className="Line_Taskprogress" style={{ width: `${completionPercentage}%` }}></div>
                 </div>
                 <div className="TasksProgress">
                   {treasureStore.progress ? treasureStore.progress.id : 0}
