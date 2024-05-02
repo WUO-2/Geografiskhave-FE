@@ -7,21 +7,33 @@ import { useNavigate } from "react-router-dom";
 import { useStore } from "../../stores/store";
 import { useEffect, useState } from "react";
 import TreasurehuntTask from "./TreasurehuntTask/TreasurehuntTask";
+import { EUserTreasureHuntStatus } from "../../interfaces/IUser";
 
 const TreasureHuntPage = () => {
   const navigate = useNavigate();
   const { treasureStore, authStore } = useStore();
 
   const handleClick = async () => {
-    await treasureStore.startTreasureHunt(authStore.user!.id).then(() => {
-      //setShowTask(true);
-      navigate("/skattejagt/task");
+    await treasureStore.startTreasureHunt(authStore.user!.id).then(async () => {
+      await authStore.getUser(authStore.user!.id).then(() => {
+        navigate("/skattejagt/task");
+      });
     });
   };
 
   useEffect(() => {
-    if (treasureStore.currentTask) {
+    console.log(treasureStore.currentTask);
+    console.log(authStore.user?.treasureHuntStatus);
+    if (
+      treasureStore.currentTask &&
+      authStore.user?.treasureHuntStatus !== EUserTreasureHuntStatus.FINISHED
+    ) {
       navigate("/skattejagt/task");
+    } else if (
+      !treasureStore.currentTask &&
+      authStore.user?.treasureHuntStatus === EUserTreasureHuntStatus.IN_PROGRESS
+    ) {
+      navigate("/puzzle");
     }
   }, [treasureStore.currentTask]);
 

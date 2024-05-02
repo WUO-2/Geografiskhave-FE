@@ -13,4 +13,11 @@ export interface IUser {
   points: number;
   currentTask: any;
   imageURL: string;
+  treasureHuntStatus: EUserTreasureHuntStatus;
+}
+
+export enum EUserTreasureHuntStatus {
+  NOT_STARTED = "NOT_STARTED",
+  IN_PROGRESS = "IN_PROGRESS",
+  FINISHED = "FINISHED",
 }

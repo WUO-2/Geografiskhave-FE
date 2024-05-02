@@ -45,3 +45,9 @@ export const getCurrentTask = async (id: string) => {
       return response.data;
     });
 };
+
+export const endTreasureHunt = async (id: string) => {
+  return http.post("treasurehunt/end", { id: id }).then((response) => {
+    return response.data;
+  });
+};

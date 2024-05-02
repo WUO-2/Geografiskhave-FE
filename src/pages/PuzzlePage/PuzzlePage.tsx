@@ -146,7 +146,7 @@ function PuzzlePage() {
 
   return (
     <>
-      <Header currentPage="Puslespil" onClose={() => console.log("asdasd")} />
+      <Header currentPage="Puslespil" onClose={() => navigate("/")} />
       <div className="puzzlePage">
         <h2>Saml dit puslespil</h2>
         <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
@@ -185,4 +185,3 @@ function PuzzlePage() {
 }
 
 export default PuzzlePage;
-

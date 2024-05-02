@@ -20,8 +20,8 @@ const TreasureHunt = () => {
   }, [treasureStore.progress, authStore.user]);
 
   const completionPercentage = treasureStore.progress
-  ? (treasureStore.progress.id / 6) * 100 
-  : 0;
+    ? (treasureStore.progress.id / 6) * 100
+    : 0;
 
   const handleClick = () => {
     navigate("/skattejagt");
@@ -37,28 +37,105 @@ const TreasureHunt = () => {
             </div>
             <div className="TreasureHunt_InfoContainer_Content">
               <div className="Left1">
-                <p className="TreasureHunt_InfoContainer_Content_Text">
-                  Opgave{" "}
-                  {treasureStore.progress ? treasureStore.progress.id : 0} |{" "}
-                </p>
+                {!treasureStore.currentTask && (
+                  <>
+                    {authStore.user?.treasureHuntStatus === "NOT_STARTED" && (
+                      <p className="TreasureHunt_InfoContainer_Content_Text">
+                        Opgave{" "}
+                        {treasureStore.progress ? treasureStore.progress.id : 0}{" "}
+                        |{" "}
+                      </p>
+                    )}
+
+                    {authStore.user?.treasureHuntStatus === "IN_PROGRESS" && (
+                      <p className="TreasureHunt_InfoContainer_Content_Text">
+                        Skattejagt færdig |{" "}
+                      </p>
+                    )}
+
+                    {authStore.user?.treasureHuntStatus === "FINISHED" && (
+                      <p className="TreasureHunt_InfoContainer_Content_Text">
+                        Opgave{" "}
+                        {treasureStore.progress ? treasureStore.progress.id : 0}{" "}
+                        |{" "}
+                      </p>
+                    )}
+                  </>
+                )}
+                {treasureStore.currentTask && (
+                  <p className="TreasureHunt_InfoContainer_Content_Text">
+                    Opgave{" "}
+                    {treasureStore.progress ? treasureStore.progress.id : 0} |{" "}
+                  </p>
+                )}
               </div>
               <div className="Right1">
-                <p className="TreasureHunt_InfoContainer_Content_Text">
-                  {treasureStore.progress
-                    ? treasureStore.progress.name
-                    : "Start Skattejagt"}
-                </p>
+                {!treasureStore.currentTask && (
+                  <>
+                    {authStore.user?.treasureHuntStatus === "NOT_STARTED" && (
+                      <p className="TreasureHunt_InfoContainer_Content_Text">
+                        {treasureStore.progress
+                          ? treasureStore.progress.name
+                          : "Start Skattejagt"}
+                      </p>
+                    )}
+                    {authStore.user?.treasureHuntStatus === "IN_PROGRESS" && (
+                      <p className="TreasureHunt_InfoContainer_Content_Text">
+                        Saml puslespil{" "}
+                      </p>
+                    )}
+                    {authStore.user?.treasureHuntStatus === "FINISHED" && (
+                      <p className="TreasureHunt_InfoContainer_Content_Text">
+                        {treasureStore.progress
+                          ? treasureStore.progress.name
+                          : "Start Skattejagt"}
+                      </p>
+                    )}
+                  </>
+                )}
+
+                {treasureStore.currentTask && (
+                  <p className="TreasureHunt_InfoContainer_Content_Text">
+                    {treasureStore.progress
+                      ? treasureStore.progress.name
+                      : "Start Skattejagt"}
+                  </p>
+                )}
               </div>
             </div>
             <div className="TreasureHunt_InfoContainer_Progress">
               <div className="Progressbar">
                 <div className="Line">
-                  <div className="Line_Taskprogress" style={{ width: `${completionPercentage}%` }}></div>
+                  <div
+                    className="Line_Taskprogress"
+                    style={{ width: `${completionPercentage}%` }}
+                  ></div>
                 </div>
-                <div className="TasksProgress">
-                  {treasureStore.progress ? treasureStore.progress.id : 0}
-                  /6
-                </div>
+                {!treasureStore.currentTask && (
+                  <>
+                    {authStore.user?.treasureHuntStatus === "NOT_STARTED" && (
+                      <div className="TasksProgress">
+                        {treasureStore.progress ? treasureStore.progress.id : 0}
+                        /6
+                      </div>
+                    )}
+                    {authStore.user?.treasureHuntStatus === "IN_PROGRESS" && (
+                      <div className="TasksProgress">6/6</div>
+                    )}
+                    {authStore.user?.treasureHuntStatus === "FINISHED" && (
+                      <div className="TasksProgress">
+                        {treasureStore.progress ? treasureStore.progress.id : 0}
+                        /6
+                      </div>
+                    )}
+                  </>
+                )}
+                {treasureStore.currentTask && (
+                  <div className="TasksProgress">
+                    {treasureStore.progress ? treasureStore.progress.id : 0}
+                    /6
+                  </div>
+                )}
               </div>
               <div className="TreasureHunt_InfoContainer_Progress_Arrow">
                 <img src={arrowIcon} alt="arrow" />

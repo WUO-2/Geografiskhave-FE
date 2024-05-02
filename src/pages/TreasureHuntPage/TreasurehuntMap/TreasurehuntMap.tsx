@@ -12,7 +12,6 @@ import { ITask } from "../../../interfaces/ITreasureHunt";
 import { useNavigate } from "react-router-dom";
 import { Toaster, toast, useToasterStore } from "react-hot-toast";
 import { Distance } from "../../../utils/distanceUtil";
-import { ITreasurehuntMap } from "../../../interfaces/IPages";
 
 const TreasurehuntMap = () => {
   const [loading, setLoading] = useState(true);

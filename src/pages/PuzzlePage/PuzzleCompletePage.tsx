@@ -13,8 +13,10 @@ import Piece6 from "../../assets/puzzlePieces/puzzle_piece6.png";
 import DefButton from "../../components/shared/buttons/button";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/shared/header/header";
+import { useStore } from "../../stores/store";
 
 function PuzzleCompletePage() {
+  const { authStore, treasureStore } = useStore();
   const [pieces, setPieces] = useState([
     <Draggable id="piece0">
       <img src={Piece1} alt="" />
@@ -38,6 +40,12 @@ function PuzzleCompletePage() {
   ]);
 
   const navigate = useNavigate();
+
+  const handleComplete = async () => {
+    await treasureStore
+      .endTreasureHunt(authStore.user!.id)
+      .then(() => navigate("/prize"));
+  };
 
   return (
     <>
@@ -70,7 +78,7 @@ function PuzzleCompletePage() {
             text="Afslut skattejagt"
             size="large"
             onClick={() => {
-              navigate("/prize");
+              handleComplete();
             }}
           />
         </div>
@@ -80,4 +88,3 @@ function PuzzleCompletePage() {
 }
 
 export default PuzzleCompletePage;
-

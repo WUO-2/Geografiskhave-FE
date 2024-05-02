@@ -4,7 +4,6 @@ import Header from "../../../components/shared/header/header";
 import { useStore } from "../../../stores/store";
 import "./TreasurehuntTask.scss";
 import Button from "../../../components/shared/buttons/button";
-import { ITreasurehuntTask } from "../../../interfaces/IPages";
 import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
