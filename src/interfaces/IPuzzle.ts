@@ -1,3 +1,4 @@
 export interface IPuzzle {
-    props?: any
-  }
+  id: string;
+  children: React.ReactNode;
+}

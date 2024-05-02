@@ -1,23 +1,19 @@
 import React from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import "./droppable.scss"
+import {IPuzzle} from "../../../interfaces/IPuzzle"
 
-interface DroppableProps {
-  id: string;
-  children: React.ReactNode;
-}
-
-function Droppable(props: DroppableProps) {
+function Droppable({id, children}: IPuzzle) {
   const { isOver, setNodeRef } = useDroppable({
-    id: props.id,
+    id: id,
   });
   const style: React.CSSProperties = {
     color: isOver ? 'green' : undefined,
   };
 
   return (
-    <div className={`droppable ${props.id}`} ref={setNodeRef} style={style}>
-      {props.children}
+    <div className={`droppable ${id}`} ref={setNodeRef} style={style}>
+      {children}
     </div>
   );
 }
