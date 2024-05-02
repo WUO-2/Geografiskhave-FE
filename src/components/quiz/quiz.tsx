@@ -47,7 +47,7 @@ const Quiz = () => {
         //TODO: navigate to completed page
         console.log("completed");
         treasureStore.setCurrentTask(null);
-        navigate("/");
+        navigate("/puzzle");
       } else if (response.correct) {
         navigate(`/quiz/success/${id}`);
       } else {
