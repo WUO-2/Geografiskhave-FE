@@ -6,12 +6,15 @@ import { useStore } from "../../../stores/store";
 import { observer } from "mobx-react-lite";
 const FrontpageProfile = () => {
   const { authStore } = useStore();
-
+  console.log(authStore.user);
   return (
     <div className="frontPageProfile_Container">
       <div className="frontpageProfile_ImageContainer">
         <ProfilePic
-          imgSrc="https://via.placeholder.com/150"
+          imgSrc={
+            authStore.user?.imageURL ||
+            "http://localhost:5000/assets/avatars/bamboo.png"
+          }
           alt="profile"
           editable={false}
         />

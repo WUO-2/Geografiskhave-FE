@@ -12,4 +12,5 @@ export interface IUser {
   id: string;
   points: number;
   currentTask: any;
+  imageURL: string;
 }

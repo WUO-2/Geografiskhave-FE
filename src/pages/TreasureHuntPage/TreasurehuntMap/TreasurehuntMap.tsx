@@ -100,8 +100,8 @@ const TreasurehuntMap = ({ show, setShow }: ITreasurehuntMap) => {
                 position={[task.latitude, task.longitude]}
                 icon={
                   treasureStore.currentTask?.id === task.id
-                    ? activeIcon
-                    : testIcon
+                    ? transformIcon(task.iconURL, "TreasurehuntMap_Icon-Active")
+                    : transformIcon(task.iconURL, "TreasurehuntMap_Icon")
                 }
                 eventHandlers={{
                   click: () => {

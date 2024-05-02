@@ -16,6 +16,7 @@ export interface ITask {
   answers: IAnswer[];
   imageURL: string;
   info: string;
+  iconURL: string;
 }
 
 export interface IProgress {

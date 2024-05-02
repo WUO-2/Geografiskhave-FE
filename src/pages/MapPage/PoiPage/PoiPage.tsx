@@ -10,7 +10,7 @@ const PoiPage = ({ showPopup, setShowPopup, selectedPoi }: IPoiPage) => {
         onBack={() => setShowPopup(false)}
       />
       <img
-        src="https://via.placeholder.com/390x300"
+        src={selectedPoi?.imageURL}
         alt="placeholder"
         className="selected-poi-image"
       />

@@ -58,7 +58,7 @@ const MapPage = () => {
               <Marker
                 key={poi.id}
                 position={[poi.latitude, poi.longitude]}
-                icon={testIcon}
+                icon={transformIcon(poi.iconURL, "test")}
                 eventHandlers={{
                   click: () => {
                     handleMarkerClick(poi);

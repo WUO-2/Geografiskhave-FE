@@ -11,6 +11,7 @@ export const getUser = async (id: string) => {
   return http
     .get("auth/user", { headers: { requesterid: id } })
     .then((response) => {
+      console.log(response.data);
       return response.data;
     });
 };

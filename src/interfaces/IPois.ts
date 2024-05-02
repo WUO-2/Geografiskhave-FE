@@ -4,4 +4,6 @@ export interface IPoi {
   description: string;
   latitude: number;
   longitude: number;
+  imageURL: string;
+  iconURL: string;
 }
