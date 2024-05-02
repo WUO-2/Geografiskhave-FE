@@ -11,18 +11,17 @@ import TreasurehuntTask from "./TreasurehuntTask/TreasurehuntTask";
 const TreasureHuntPage = () => {
   const navigate = useNavigate();
   const { treasureStore, authStore } = useStore();
-  const [showTask, setShowTask] = useState<boolean>(false);
 
   const handleClick = async () => {
     await treasureStore.startTreasureHunt(authStore.user!.id).then(() => {
-      setShowTask(true);
-      //navigate(`/quiz/${treasureStore.currentTask?.id}`);
+      //setShowTask(true);
+      navigate("/skattejagt/task");
     });
   };
 
   useEffect(() => {
     if (treasureStore.currentTask) {
-      setShowTask(true);
+      navigate("/skattejagt/task");
     }
   }, [treasureStore.currentTask]);
 
@@ -70,9 +69,6 @@ const TreasureHuntPage = () => {
           </div>
         </div>
       </div>
-      {showTask && (
-        <TreasurehuntTask showTask={showTask} setShowTask={setShowTask} />
-      )}
     </>
   );
 };

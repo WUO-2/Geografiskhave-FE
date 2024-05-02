@@ -7,6 +7,10 @@ export const routeHasNavbar = (route: string) => {
   if (!lookedUpRoute) {
     return false;
   }
+  if (lookedUpRoute.path === "/") {
+    return true;
+  }
+  return lookedUpRoute.hasNavbar;
   return lookedUpRoute.routeType !== RouteType.AUTH;
 };
 

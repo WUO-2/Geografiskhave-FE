@@ -5,19 +5,23 @@ import { useStore } from "../../../stores/store";
 import "./TreasurehuntTask.scss";
 import Button from "../../../components/shared/buttons/button";
 import { ITreasurehuntTask } from "../../../interfaces/IPages";
+import { useNavigate } from "react-router-dom";
+import { observer } from "mobx-react-lite";
 
-const TreasurehuntTask = ({ showTask, setShowTask }: ITreasurehuntTask) => {
-  const [showMap, setShowMap] = useState(false);
-  const { treasureStore } = useStore();
-
+const TreasurehuntTask = () => {
+  const { treasureStore, authStore } = useStore();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (authStore.user !== null && treasureStore.currentTask === null) {
+      treasureStore.startTreasureHunt(authStore.user!.id);
+    }
+  }, [authStore.user, treasureStore.currentTask]);
   return (
     <>
-      <div
-        className={`TreasurehuntTask ${showTask && !showMap ? "TreasurehuntTask_Show" : ""}`}
-      >
+      <div className={`TreasurehuntTask  TreasurehuntTask_Show`}>
         <Header
           currentPage={`Opgave ${treasureStore.currentTask?.id}`}
-          onClose={() => setShowTask(false)}
+          onClose={() => navigate("/")}
         />
         <div className="TreasurehuntTask_Wrapper">
           <img
@@ -34,7 +38,7 @@ const TreasurehuntTask = ({ showTask, setShowTask }: ITreasurehuntTask) => {
               {treasureStore.currentTask?.info}{" "}
             </p>
             <Button
-              onClick={() => setShowMap(true)}
+              onClick={() => navigate("/skattejagt/map")}
               text="Se lokation"
               size="large"
               color="green"
@@ -42,9 +46,8 @@ const TreasurehuntTask = ({ showTask, setShowTask }: ITreasurehuntTask) => {
           </div>
         </div>
       </div>
-      {showMap && <TreasurehuntMap show={showMap} setShow={setShowMap} />}
     </>
   );
 };
 
-export default TreasurehuntTask;
+export default observer(TreasurehuntTask);

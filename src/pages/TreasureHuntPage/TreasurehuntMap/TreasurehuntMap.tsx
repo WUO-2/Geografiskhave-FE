@@ -14,11 +14,17 @@ import { Toaster, toast, useToasterStore } from "react-hot-toast";
 import { Distance } from "../../../utils/distanceUtil";
 import { ITreasurehuntMap } from "../../../interfaces/IPages";
 
-const TreasurehuntMap = ({ show, setShow }: ITreasurehuntMap) => {
+const TreasurehuntMap = () => {
   const [loading, setLoading] = useState(true);
   const { treasureStore, authStore } = useStore();
   const navigate = useNavigate();
   const { toasts } = useToasterStore();
+
+  useEffect(() => {
+    if (authStore.user !== null && treasureStore.currentTask === null) {
+      treasureStore.startTreasureHunt(authStore.user!.id);
+    }
+  }, [authStore.user, treasureStore.currentTask]);
 
   const TOAST_LIMIT = 1;
 
@@ -30,9 +36,6 @@ const TreasurehuntMap = ({ show, setShow }: ITreasurehuntMap) => {
   }, [toasts]);
 
   const distanceThreshold = 150000;
-
-  const testIcon = transformIcon(t, "TreasurehuntMap_Icon");
-  const activeIcon = transformIcon(t, "TreasurehuntMap_Icon-Active");
 
   useEffect(() => {
     if (treasureStore.tasks.length === 0) {
@@ -76,10 +79,10 @@ const TreasurehuntMap = ({ show, setShow }: ITreasurehuntMap) => {
 
   return (
     <>
-      <div className={`TreasurehuntMap ${show ? "TreasurehuntMap_Show" : ""}`}>
+      <div className={`TreasurehuntMap TreasurehuntMap_Show`}>
         <Header
           currentPage="Din placering"
-          onBack={() => setShow(false)}
+          onBack={() => navigate(-1)}
           onClose={() => console.log("bbbb")}
         />
         {loading && <h1>Loading...</h1>}

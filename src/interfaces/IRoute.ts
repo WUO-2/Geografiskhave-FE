@@ -8,6 +8,7 @@ export interface IRoute {
   children?: IRoute[];
   isAuth?: boolean;
   routeType: RouteType;
+  hasNavbar?: boolean;
 }
 
 export enum RouteType {
