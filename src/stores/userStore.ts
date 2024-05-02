@@ -34,9 +34,6 @@ export class AuthStore {
     this.userFirebase = user;
   }
 
-  @action setCoins(coins: number) {
-    this.coins = coins;
-  }
 
   @action async registerUser(user: IUserFirebase) {
     await createUserWithEmailAndPassword(auth, user.email, user.password);
@@ -56,7 +53,6 @@ export class AuthStore {
       async () => {
         this.setUserFirebase(auth.currentUser);
         this.setUser(await getUser(auth.currentUser!.uid));
-        this.getCoins(auth.currentUser!.uid);
         console.log(this.user);
       },
     );
@@ -66,12 +62,6 @@ export class AuthStore {
     await auth.signOut().then(() => {
       this.setUser(null);
       this.setUserFirebase(null);
-    });
-  }
-
-  @action async getCoins(id: string) {
-    await getCoins(id).then((points) => {
-      this.setCoins(points);
     });
   }
 
