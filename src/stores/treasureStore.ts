@@ -1,7 +1,8 @@
 import { makeAutoObservable, observable, action } from "mobx";
-import { ITask, ITreasureHunt } from "../interfaces/ITreasureHunt";
+import { IProgress, ITask, ITreasureHunt } from "../interfaces/ITreasureHunt";
 import {
   answer,
+  getCurrentTask,
   getTask,
   getTasks,
   startTreasureHunt,
@@ -12,6 +13,7 @@ export class TreasureStore {
   @observable treasureHunt: ITreasureHunt | null = null;
   @observable currentTask: ITask | null = null;
   @observable tasks: ITask[] = [];
+  @observable progress: IProgress | null = null;
 
   @action setTreasureHunt(treasureHunt: ITreasureHunt) {
     this.treasureHunt = treasureHunt;
@@ -19,6 +21,11 @@ export class TreasureStore {
 
   @action setCurrentTask(task: ITask | null) {
     this.currentTask = task;
+  }
+
+  @action setProgress(progress: IProgress) {
+    console.log(progress);
+    this.progress = progress;
   }
 
   @action fetchTask = async (id: number) => {
@@ -65,6 +72,14 @@ export class TreasureStore {
     const response = await updatePoints(id, points);
     return response;
   }
+  
+  @action getCurrentTask = async (id: string) => {
+    await getCurrentTask(id).then((task) => {
+      console.log(task);
+      this.setProgress(task);
+      console.log(this.currentTask);
+    });
+  };
 
   constructor() {
     makeAutoObservable(this);

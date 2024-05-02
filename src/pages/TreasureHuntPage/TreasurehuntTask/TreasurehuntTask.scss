@@ -31,11 +31,12 @@
       &_Title {
         font-size: $h1;
         font-weight: bold;
-        color: $brown;
+        color: $black;
         margin: 0;
       }
       &_Description {
-        color: $brown;
+        color: $black;
+        font-weight: 400;
         margin: 0;
         flex: 1 0 0;
         overflow-y: auto;

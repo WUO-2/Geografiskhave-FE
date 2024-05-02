@@ -30,4 +30,15 @@ export const updatePoints = async (id: string, points: number) => {
   return http.patch("treasurehunt/points", { id: id, points: points }).then((response) => {
     return response.data;
   });
+
+export const getCurrentTask = async (id: string) => {
+  return http
+    .get(`treasurehunt/task`, {
+      headers: {
+        requesterid: id,
+      },
+    })
+    .then((response) => {
+      return response.data;
+    });
 };

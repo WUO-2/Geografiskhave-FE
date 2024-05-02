@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   User,
 } from "firebase/auth";
+import { LatLngLiteral } from "leaflet";
 import { initializeApp } from "firebase/app";
 import { registerUser, getCoins, getUser } from "../services/authService";
 const firebaseConfig = {
@@ -25,6 +26,12 @@ export class AuthStore {
   @observable user: IUser | null = null;
   @observable userFirebase: User | null = null;
   @observable coins: number = 0;
+  @observable position: LatLngLiteral | null = null;
+
+  @action setPosition(position: LatLngLiteral) {
+    console.log(position);
+    this.position = position;
+  }
 
   @action setUser(user: IUser | null) {
     this.user = user;
