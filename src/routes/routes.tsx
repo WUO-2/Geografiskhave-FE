@@ -14,6 +14,9 @@ import SignUpPage from "../pages/AuthPage/SignUpPage/SignUpPage.tsx";
 import TreasureHuntPage from "../pages/TreasureHuntPage/TreasureHuntPage.tsx";
 import MapPage from "../pages/MapPage/MapPage.tsx";
 import Success from "../components/quiz/success/success.tsx";
+import PuzzlePage from "../pages/PuzzlePage/PuzzlePage.tsx"
+import PuzzleCompletePage from "../pages/PuzzlePage/PuzzleCompletePage.tsx";
+import PrizePage from "../pages/PrizePage/PrizePage.tsx";
 
 export const Routes: IRoute[] = [
   {
@@ -86,6 +89,24 @@ export const Routes: IRoute[] = [
         title: "Register",
         component: <SignUpPage />,
         routeType: RouteType.AUTH,
+      },
+      {
+        path: "/puzzle",
+        title: "Puzzle",
+        component: <PuzzlePage />,
+        routeType: RouteType.INTERNAL,
+      },
+      {
+        path: "/puzzle/complete",
+        title: "Puzzle Complete",
+        component: <PuzzleCompletePage />,
+        routeType: RouteType.INTERNAL,
+      },
+      {
+        path: "/prize",
+        title: "Prize",
+        component: <PrizePage />,
+        routeType: RouteType.INTERNAL,
       },
     ],
   },

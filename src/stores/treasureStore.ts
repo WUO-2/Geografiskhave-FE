@@ -6,6 +6,7 @@ import {
   getTask,
   getTasks,
   startTreasureHunt,
+  updatePoints,
 } from "../services/treasureService";
 
 export class TreasureStore {
@@ -67,6 +68,11 @@ export class TreasureStore {
     });
   };
 
+  @action updatePoints = async (id: string, points: number) => {
+    const response = await updatePoints(id, points);
+    return response;
+  }
+  
   @action getCurrentTask = async (id: string) => {
     await getCurrentTask(id).then((task) => {
       console.log(task);
