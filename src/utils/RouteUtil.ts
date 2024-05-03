@@ -14,6 +14,14 @@ export const routeHasNavbar = (route: string) => {
   return lookedUpRoute.routeType !== RouteType.AUTH;
 };
 
+export const routeHasGuard = (route: string) => {
+  const lookedUpRoute = findRoute(route);
+  if (!lookedUpRoute) {
+    return false;
+  }
+  return lookedUpRoute.routeType !== RouteType.AUTH;
+};
+
 export const findRoute = (route: string) => {
   let foundRoute: IRoute | undefined;
 

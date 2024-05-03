@@ -4,7 +4,6 @@ import home from "../assets/icons/home.svg";
 import map from "../assets/icons/map.svg";
 import profile from "../assets/icons/user.svg";
 import TestPage from "../pages/TestPage/TestPage.tsx";
-import placeholder from "../assets/icons/placeholder.svg";
 import ProfilePage from "../pages/ProfilePage/ProfilePage.tsx";
 import skattejagt from "../assets/icons/skattejagt.svg";
 import AuthPage from "../pages/AuthPage/AuthPage.tsx";

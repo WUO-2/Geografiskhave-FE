@@ -4,7 +4,7 @@ import { navRoutes } from "./routes/routes";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Navbar from "./components/shared/navbar/navbar";
-import { routeHasNavbar } from "./utils/RouteUtil";
+import { routeHasGuard, routeHasNavbar } from "./utils/RouteUtil";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useStore } from "./stores/store";
 
@@ -37,10 +37,17 @@ const App = () => {
   useEffect(() => {
     handleRouteChange();
     console.log("location changed");
-  }, [location]);
+  }, [location, authStore.user]);
 
   const handleRouteChange = () => {
     const currentPath = location.pathname;
+    console.log(authStore.user);
+    console.log(routeHasGuard(currentPath));
+    if (routeHasGuard(currentPath) && !auth.currentUser) {
+      navigate("/login");
+      return;
+    }
+
     setRenderNavbar(routeHasNavbar(currentPath));
   };
   return (
