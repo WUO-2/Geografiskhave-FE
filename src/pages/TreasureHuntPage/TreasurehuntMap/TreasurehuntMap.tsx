@@ -38,13 +38,17 @@ const TreasurehuntMap = () => {
 
   useEffect(() => {
     if (treasureStore.tasks.length === 0) {
-      treasureStore.getTasks().then(() => {
-        setLoading(false);
-      });
+      load();
     } else {
       setLoading(false);
     }
   }, [treasureStore.tasks]);
+
+  const load = async () => {
+    await treasureStore.getTasks().then(() => {
+      setLoading(false);
+    });
+  };
 
   const handleMarkerClick = (task: ITask) => {
     if (treasureStore.currentTask?.id !== task.id) {
