@@ -11,7 +11,10 @@ const Profile = () => {
     <div className="Profile">
       <div className="Profile_ImageContainer">
         <ProfilePic
-          imgSrc="https://via.placeholder.com/150"
+          imgSrc={
+            authStore.user?.imageURL ||
+            "http://localhost:5000/assets/avatars/bird.png"
+          }
           alt="profile"
           editable={true}
         />

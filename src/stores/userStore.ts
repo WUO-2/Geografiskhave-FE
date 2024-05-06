@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   User,
 } from "firebase/auth";
+import { LatLngLiteral } from "leaflet";
 import { initializeApp } from "firebase/app";
 import { registerUser, getCoins, getUser } from "../services/authService";
 const firebaseConfig = {
@@ -25,6 +26,12 @@ export class AuthStore {
   @observable user: IUser | null = null;
   @observable userFirebase: User | null = null;
   @observable coins: number = 0;
+  @observable position: LatLngLiteral | null = null;
+
+  @action setPosition(position: LatLngLiteral) {
+    console.log(position);
+    this.position = position;
+  }
 
   @action setUser(user: IUser | null) {
     this.user = user;
@@ -34,9 +41,6 @@ export class AuthStore {
     this.userFirebase = user;
   }
 
-  @action setCoins(coins: number) {
-    this.coins = coins;
-  }
 
   @action async registerUser(user: IUserFirebase) {
     await createUserWithEmailAndPassword(auth, user.email, user.password);
@@ -56,7 +60,6 @@ export class AuthStore {
       async () => {
         this.setUserFirebase(auth.currentUser);
         this.setUser(await getUser(auth.currentUser!.uid));
-        this.getCoins(auth.currentUser!.uid);
         console.log(this.user);
       },
     );
@@ -66,12 +69,6 @@ export class AuthStore {
     await auth.signOut().then(() => {
       this.setUser(null);
       this.setUserFirebase(null);
-    });
-  }
-
-  @action async getCoins(id: string) {
-    await getCoins(id).then((points) => {
-      this.setCoins(points);
     });
   }
 

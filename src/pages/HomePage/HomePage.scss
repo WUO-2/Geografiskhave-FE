@@ -1,20 +1,26 @@
 @use "../../assets/variable.scss" as v;
 
-.frontpage_content {
-  margin-left: 50px;
-  margin-right: 50px;
-  color: v.$brown;
+.HomePage {
+  display: flex;
+  flex: 1 0 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-direction: column;
 
-  .single-container {
-    display: flex;
-  }
+  .frontpage_content {
+    margin-left: 50px;
+    margin-right: 50px;
+    color: v.$brown;
 
-  .double-container {
-    display: flex;
-    gap: 15px;
-    margin-top: 15px;
-    margin-bottom: 30px;
+    .single-container {
+      display: flex;
+    }
+
+    .double-container {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+      margin-bottom: 30px;
+    }
   }
 }
-
-

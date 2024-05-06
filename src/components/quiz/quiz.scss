@@ -1,0 +1,104 @@
+@import "../../assets/variable.scss";
+.Quiz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  background: $lightGreen;
+  &_Info {
+    padding: 50px 35px;
+    color: $brown;
+    font-size: $h2;
+    font-weight: bold;
+    text-align: center;
+    width: calc(100% - 70px);
+  }
+  &_Video {
+    width: 100%;
+    position: relative;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &_Button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(25%);
+      padding: 15px;
+      border-radius: 40px;
+      background: $orange;
+      color: $white;
+      text-align: center;
+      outline: none;
+      cursor: pointer;
+      border: none;
+      width: calc(48px - 30px);
+      height: calc(48px - 30px);
+      img {
+        margin: 0;
+        width: 24px;
+        height: 24px;
+        filter: invert(1);
+      }
+    }
+  }
+  &_Answers {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 70px);
+    flex: 1;
+    padding: 35px;
+    gap: 40px;
+    &_Container {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      .Quiz_Answer {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        min-width: 94px;
+        flex: 1;
+        height: 94px;
+        border-radius: 15px;
+        gap: 5px;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background: $white;
+        color: $black;
+        font-weight: 600;
+        border: none;
+        outline: none;
+        &_Image {
+          width: 54px;
+          height: 54px;
+          object-fit: contain;
+        }
+        &_Selected {
+          border: 2px solid $orange;
+        }
+      }
+    }
+    &_Button {
+      border-radius: 40px;
+      background: $green;
+      color: $white;
+      text-align: center;
+      outline: none;
+      cursor: pointer;
+      border: none;
+      width: 100%;
+      flex: 1;
+      max-height: 48px;
+      min-height: 48px;
+    }
+  }
+}

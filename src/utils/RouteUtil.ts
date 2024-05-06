@@ -7,6 +7,18 @@ export const routeHasNavbar = (route: string) => {
   if (!lookedUpRoute) {
     return false;
   }
+  if (lookedUpRoute.path === "/") {
+    return true;
+  }
+  return lookedUpRoute.hasNavbar;
+  return lookedUpRoute.routeType !== RouteType.AUTH;
+};
+
+export const routeHasGuard = (route: string) => {
+  const lookedUpRoute = findRoute(route);
+  if (!lookedUpRoute) {
+    return false;
+  }
   return lookedUpRoute.routeType !== RouteType.AUTH;
 };
 
