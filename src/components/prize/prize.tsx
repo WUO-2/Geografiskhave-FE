@@ -49,6 +49,7 @@ const Prize = ({ name, price, imageUrl }: IPrize) => {
           <p className="Prize_Info_Text_Price">{getCoinText(price)}</p>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };
