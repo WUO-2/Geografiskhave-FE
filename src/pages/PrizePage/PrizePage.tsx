@@ -18,7 +18,7 @@ function PrizePage() {
 
   const handleUpdatePoints = async (points: number) => {
     const response = await treasureStore.updatePoints(authStore.user!.id, points);
-    await authStore.getUser(authStore.user!.id)
+    await authStore.getUser(authStore.user!.id);
     console.log(response.totalPoints);
     
   }
