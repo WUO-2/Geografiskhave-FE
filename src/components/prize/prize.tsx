@@ -4,21 +4,25 @@ import { IPrize } from "../../interfaces/IPrize";
 import Mønt from "../../assets/Mønt.png";
 import { useStore } from "../../stores/store";
 import { toast, Toaster, useToasterStore } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Prize = ({ name, price, imageUrl }: IPrize) => {
   const getCoinText = (price: number) => {
     return price > 0 ? price.toString() + " Eventyrmønter" : "Gratis præmie";
   };
 
+  const navigate = useNavigate();
   const { treasureStore, authStore } = useStore();
+
   const handlePay = () => {
-    console.log(authStore.user?.points + " " + price);
-    if (price <= authStore.user!.points) {
-      handleUpdatePoints(-price);
-    }else{
-      toast.error("Du har ikke nok mønter", { duration: 2000 });
-      console.log("øv");
-    }
+    navigate("/pay");
+    // console.log(authStore.user?.points + " " + price);
+    // if (price <= authStore.user!.points) {
+    //   handleUpdatePoints(-price);
+    // }else{
+    //   toast.error("Du har ikke nok mønter", { duration: 2000 });
+    //   console.log("øv");
+    // }
   }
   
   const { toasts } = useToasterStore();
