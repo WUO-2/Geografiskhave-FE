@@ -1,4 +1,4 @@
-@import "../../../assets/scss/variables.scss";
+@import "../../../assets/variable.scss";
 
 .EditProfilePage {
   flex: 1;
@@ -6,6 +6,11 @@
   flex-direction: column;
   align-items: center;
   background-color: $lightGreen;
+  h2 {
+    font-weight: 700;
+    margin-top: 49px;
+    margin-bottom: 48px;
+  }
   &_Form {
     display: flex;
     flex-direction: column;
