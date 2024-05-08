@@ -18,6 +18,7 @@ import PuzzleCompletePage from "../pages/PuzzlePage/PuzzleCompletePage.tsx";
 import PrizePage from "../pages/PrizePage/PrizePage.tsx";
 import TreasureHuntTask from "../pages/TreasureHuntPage/TreasurehuntTask/TreasurehuntTask.tsx";
 import TreasureHuntMap from "../pages/TreasureHuntPage/TreasurehuntMap/TreasurehuntMap.tsx";
+import EditProfilePage from "../pages/ProfilePage/EditProfilePage/EditProfilePage.tsx";
 
 export const Routes: IRoute[] = [
   {
@@ -69,6 +70,13 @@ export const Routes: IRoute[] = [
         title: "Profil",
         icon: profile,
         component: <ProfilePage />,
+        routeType: RouteType.NAVBAR,
+        hasNavbar: true,
+      },
+      {
+        path: "/editprofile",
+        title: "Rediger profil",
+        component: <EditProfilePage />,
         routeType: RouteType.NAVBAR,
         hasNavbar: true,
       },

@@ -1,0 +1,49 @@
+@import "../../../assets/scss/variables.scss";
+
+.EditProfilePage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $lightGreen;
+  &_Form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+    background-color: $white;
+    border-radius: 20px;
+    margin-top: -1px;
+    &_Input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid $lightGreen;
+      border-radius: 5px;
+      outline: none;
+      font-size: 16px;
+      &:focus {
+        border: 1px solid $orange;
+      }
+    }
+    &_Button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 20px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+      border: none;
+      background-color: $orange;
+      border-radius: 5px;
+      &:focus {
+        border: none;
+        outline: none;
+      }
+    }
+  }
+}
