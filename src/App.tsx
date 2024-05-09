@@ -7,6 +7,7 @@ import Navbar from "./components/shared/navbar/navbar";
 import { routeHasGuard, routeHasNavbar } from "./utils/RouteUtil";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useStore } from "./stores/store";
+import NewAchievement from "./components/newAchievement/newAchievement";
 
 const App = () => {
   const [renderNavbar, setRenderNavbar] = useState(true);
@@ -35,6 +36,10 @@ const App = () => {
   });
 
   useEffect(() => {
+    console.log(authStore.newAchievement);
+  }, [authStore.newAchievement]);
+
+  useEffect(() => {
     handleRouteChange();
     console.log("location changed");
   }, [location, authStore.user]);
@@ -56,6 +61,7 @@ const App = () => {
         <div className="Wrapper">
           <Outlet />
         </div>
+        {authStore.newAchievement && <NewAchievement />}
         {renderNavbar && <Navbar routes={navRoutes} />}
       </div>
     </>

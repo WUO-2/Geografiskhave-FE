@@ -1,0 +1,51 @@
+@import "../../assets/variable.scss";
+
+.Achievement {
+  background-color: $beige;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 9999;
+  &_Header {
+    width: 100%;
+    z-index: 3;
+  }
+  &_Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    flex: 1 0 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    gap: 20px;
+
+    &_Title {
+      color: $brown;
+      font-weight: bold;
+      margin: 0;
+      font-size: 24px;
+    }
+
+    &_Paragraph {
+      color: $brown;
+      margin: 0;
+      text-align: center;
+    }
+
+    &_Image_Container {
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      img {
+        width: 95px;
+        height: 95px;
+      }
+    }
+  }
+}

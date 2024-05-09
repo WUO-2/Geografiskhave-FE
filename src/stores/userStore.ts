@@ -1,5 +1,5 @@
 import { makeAutoObservable, observable, action } from "mobx";
-import { IUser, IUserFirebase } from "../interfaces/IUser";
+import { IBadge, IUser, IUserFirebase } from "../interfaces/IUser";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -28,6 +28,7 @@ export class AuthStore {
   @observable coins: number = 0;
   @observable position: LatLngLiteral | null = null;
   @observable selectedItem: any | null = null;
+  @observable newAchievement: IBadge | null = null;
 
   @action setPosition(position: LatLngLiteral) {
     console.log(position);
@@ -46,6 +47,10 @@ export class AuthStore {
     this.selectedItem = selectedItem;
   }
 
+  @action setNewAchievement(achievement: IBadge | null) {
+    console.log("new achievement: ", achievement);
+    this.newAchievement = achievement;
+  }
 
   @action async registerUser(user: IUserFirebase) {
     await createUserWithEmailAndPassword(auth, user.email, user.password);
