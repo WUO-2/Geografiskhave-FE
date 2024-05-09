@@ -33,8 +33,9 @@
     justify-content: center;
   }
   &_Avatar {
-    width: 95px;
-    height: 95 px;
+    width: calc(95px - 8px);
+    height: calc(95px - 8px);
+    border: 4px solid transparent;
     .ProfilePic_Container {
       width: 100%;
       height: 100%;
