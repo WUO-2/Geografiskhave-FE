@@ -84,13 +84,22 @@ const Quiz = () => {
     setIsquit(true);
   };
 
+  const handleReset = async () => {
+    treasureStore.endTreasureHunt(authStore.user!.id);
+    await authStore.user!.id;
+    navigate("/");
+  }
+
   return (
     <>
       {loading && <div>Loading...</div>}
       {!loading && (
         <>
           {wrongAnswer && <Wrong onClick={() => setWrongAnswer(false)} />}
-          {isQuit && <QuitMenu onClick={() => setIsquit(false)} />}
+          {isQuit && <QuitMenu 
+            forsæt={() => setIsquit(false)} 
+            start_forfra={() => handleReset()}
+            afslut={() => navigate("/")}/>}
           <Header
             currentPage={`Opgave ${Clamp(parseInt(id), 1, 6)}`}
             onBack={() => handleBack()}

@@ -1,8 +1,9 @@
 import React from "react";
 import Button from "../../shared/buttons/button";
 import "./quitMenu.scss";
+import {IQuit} from "../../../interfaces/IQuit"
 
-const QuitMenu = ({ onClick }: { onClick: () => void }) => {
+const QuitMenu = ({forsæt, start_forfra, afslut}: IQuit) => {
   return (
     <div className="QuitMenu">
       <div className="QuitMenu_Wrapper">
@@ -11,19 +12,19 @@ const QuitMenu = ({ onClick }: { onClick: () => void }) => {
             text="Forsæt"
             size="small"
             color="orange"
-            onClick={() => onClick()}
+            onClick={() => forsæt()}
           />
           <Button
             text="Start forfra"
             size="small"
             color="green"
-            onClick={() => console.log("bob")}
+            onClick={() => start_forfra()}
           />
           <Button
             text="Afslut"
             size="small"
             color="green"
-            onClick={() => console.log("ton")}
+            onClick={() => afslut()}
           />
         </div>
       </div>
