@@ -5,19 +5,22 @@ import { useNavigate } from "react-router-dom";
 import  SwipeableButton  from "../../components/shared/swipe/SwipeableButton"
 import { toast, Toaster, useToasterStore } from "react-hot-toast";
 import { useStore } from "../../stores/store";
+import BackImg from "../../assets/images/is.jpg"
 
 const PayPage = () => {
 
-  const price = 35
+  
+
   const navigate = useNavigate();
   const { treasureStore, authStore } = useStore();
+
+  const price = authStore.selectedItem.price;
   
   const handleBack = () => {
     navigate(-1);
   }
 
   const handlePay = () => {
-    console.log(authStore.user?.points + " " + price);
     if (price <= authStore.user!.points) {
       handleUpdatePoints(-price);
       navigate(-1);
@@ -47,17 +50,19 @@ const PayPage = () => {
     <>
       <div className="PayPage">
         <Header currentPage="Brug mønter" onBack={() => handleBack()} />
-        <div className="PayPage_ImageContainer"></div>
+        <div className="PayPage_ImageContainer">
+          <img src={authStore.selectedItem.imageUrl} alt="" />
+        </div>
 
         <div className="PayPage_ContentContainer">
           <div className="PayPage_ContentContainer_Header">
-            Skarø is
+            {authStore.selectedItem.name}
           </div>
-          <div className="bold Orange_Text">
-            {price} Eventyrmønter
+          <div className={`bold Orange_Text ${authStore.selectedItem.price==0? "Hidden" : ""}`}>
+            {authStore.selectedItem.price} Eventyrmønter
           </div>
           <div className="PayPage_ContentContainer_Text">
-            Nyd en forfriskende kugle is fra Skarø! Denne lækre præmie gælder for 2x is med én kugle. Præmien kan indløses i Geografisk Haves café, og køb kan ikke fortrydes.
+            {authStore.selectedItem.description}
           </div>
           <div className="Swipe_Container">
             <SwipeableButton

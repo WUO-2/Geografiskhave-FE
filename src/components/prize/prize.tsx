@@ -2,8 +2,12 @@ import "./prize.scss";
 import { IPrize } from "../../interfaces/IPrize";
 import Mønt from "../../assets/Mønt.png";
 import { useNavigate } from "react-router-dom";
+import { useStore } from "../../stores/store";
 
-const Prize = ({ name, price, imageUrl }: IPrize) => {
+
+const Prize = ({ name, price, imageUrl, description }: IPrize) => {
+  const {authStore} = useStore();
+  
   const getCoinText = (price: number) => {
     return price > 0 ? price.toString() + " Eventyrmønter" : "Gratis præmie";
   };
@@ -11,6 +15,14 @@ const Prize = ({ name, price, imageUrl }: IPrize) => {
   const navigate = useNavigate();
 
   const handlePay = () => {
+    authStore.setSelectedItem(
+      {
+        name: name,
+        price: price,
+        imageUrl: imageUrl,
+        description: description,
+      }
+    )
     navigate("/pay");
   }
 

@@ -10,9 +10,13 @@
   .PayPage_ImageContainer {
     height: 250px;
     width: 100%;
-    background-image: url("../../assets/images/is.jpg");
-    background-size: cover;
-    background-position: bottom;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    img {
+      width: 100%;
+    }
   }
   .PayPage_ContentContainer {
     display: flex;
@@ -31,6 +35,10 @@
     color: v.$orange;
     align-self: start;
     margin-bottom: 10px;
+  }
+
+  .Hidden {
+    display: none;
   }
 
   .Swipe_Container{
