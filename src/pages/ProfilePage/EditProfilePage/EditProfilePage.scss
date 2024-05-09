@@ -18,8 +18,8 @@
     gap: 20px;
     width: 100%;
     margin-bottom: 35px;
-    
-    input{
+
+    input {
       font-size: $regular;
     }
   }
@@ -34,11 +34,15 @@
   }
   &_Avatar {
     width: 95px;
-    height: 95  px;
+    height: 95 px;
     .ProfilePic_Container {
-      width:100%;
+      width: 100%;
       height: 100%;
     }
+  }
+  .selected {
+    border: 4px solid $black;
+    border-radius: 50%;
   }
   &_Button {
     width: 100%;

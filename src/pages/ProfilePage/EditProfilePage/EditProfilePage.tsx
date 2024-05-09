@@ -13,44 +13,74 @@ const EditProfilePage = () => {
   const handleBack = () => {
     navigate(-1);
   };
-  const { selectedImage, setSelectedImage } = useState<any | null>(null);
+  const [selectedImage, setSelectedImage] = useState<any>({});
   const { authStore } = useStore();
+  const [loaded, setLoaded] = useState(false);
+
   useEffect(() => {
-    authStore.getAvatars();
-  }, [authStore]);
+    if (authStore.avatars.length === 0) {
+      authStore.getAvatars(); 
+    }
+
+    const avatar = authStore.avatars.find(
+      (avatar) => avatar.imageURL === authStore.user?.imageURL
+    );
+
+    setSelectedImage(avatar);
+
+    console.log(selectedImage);
+
+    if(selectedImage !== null ){
+      setLoaded(true)
+    }
+  }, [authStore.user, authStore.avatars]);
+
+  const handleSelectedImage = (avatar: any) => {
+    return selectedImage.imageURL === avatar.imageURL;
+  }
 
   return (
     <>
-      <Header currentPage="Rediger profil" onBack={handleBack} />
-      <div className="EditProfilePage">
-        <h2>Rediger din profil</h2>
-        <div className="EditProfilePage_Form">
-          <Input
-            placeholder="Fornavn"
-            value={authStore.user?.firstName}
-            onChange={(e) => authStore.setFirstName(e.target.value)}
-          />
-        </div>
-        <div className="EditProfilePage_Avatars">
-          {authStore.avatars.map((avatar) => (
-            <div className="EditProfilePage_Avatar">
-              <ProfilePic
-                imgSrc={avatar.imageURL}
-                alt="profile"
-                onClick={() => setSelectedImage(avatar)}
+      {loaded && (
+        <>
+          <Header currentPage="Rediger profil" onBack={handleBack} />
+          <div className="EditProfilePage">
+            <h2>Rediger din profil</h2>
+            <div className="EditProfilePage_Form">
+              <Input
+                placeholder="Fornavn"
+                value={authStore.user?.firstName}
+                onChange={(e) => authStore.setFirstName(e.target.value)}
               />
             </div>
-          ))}
-        </div>
+            <div className="EditProfilePage_Avatars">
+              {authStore.avatars.map((avatar) => (
+                <div
+                  className={`EditProfilePage_Avatar ${
+                    handleSelectedImage(avatar) ? "selected" : ""
+                  } `}
+                >
+                  <ProfilePic
+                    imgSrc={avatar.imageURL}
+                    alt="profile"
+                    onClick={() => setSelectedImage(avatar)}
+                  />
+                </div>
+              ))}
+            </div>
 
-        <div className="EditProfilePage_Button">
-          <Button
-            text="Gem"
-            size="large"
-            color="green"
-            onClick={() => authStore.updateUser(selectedImage)} ></Button>
-        </div>
-      </div>
+            <div className="EditProfilePage_Button">
+              <Button
+                text="Gem"
+                size="large"
+                color="green"
+                onClick={() => authStore.updateUser(selectedImage)}
+              ></Button>
+            </div>
+          </div>
+        </>
+      )}
+      {!loaded && <div>Loading...</div>}
     </>
   );
 };
