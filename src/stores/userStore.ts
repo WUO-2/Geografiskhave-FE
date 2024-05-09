@@ -27,6 +27,7 @@ export class AuthStore {
   @observable userFirebase: User | null = null;
   @observable coins: number = 0;
   @observable position: LatLngLiteral | null = null;
+  @observable selectedItem: any | null = null;
 
   @action setPosition(position: LatLngLiteral) {
     console.log(position);
@@ -39,6 +40,10 @@ export class AuthStore {
 
   @action setUserFirebase(user: User | null) {
     this.userFirebase = user;
+  }
+
+  @action setSelectedItem(selectedItem: any | null) {
+    this.selectedItem = selectedItem;
   }
 
 
