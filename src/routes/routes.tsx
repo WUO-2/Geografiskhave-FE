@@ -77,7 +77,7 @@ export const Routes: IRoute[] = [
         path: "/editprofile",
         title: "Rediger profil",
         component: <EditProfilePage />,
-        routeType: RouteType.NAVBAR,
+        routeType: RouteType.INTERNAL,
         hasNavbar: true,
       },
       //TODO: REMOVE THIS IN PRODUCTION

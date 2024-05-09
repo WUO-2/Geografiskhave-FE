@@ -5,14 +5,18 @@ import { useStore } from "../../../stores/store";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
 
-
 const Profile = () => {
   const { authStore } = useStore();
   const navigate = useNavigate();
 
   return (
     <div className="Profile">
-      <div className="Profile_ImageContainer">
+      <div
+        className="Profile_ImageContainer"
+        onClick={() => {
+          navigate("/editprofile");
+        }}
+      >
         <ProfilePic
           imgSrc={
             authStore.user?.imageURL ||
@@ -20,7 +24,6 @@ const Profile = () => {
           }
           alt="profile"
           editable={true}
-          onClick={() => {navigate("/editprofile")}}
         />
       </div>
       <div className="Profile_InfoContainer">
