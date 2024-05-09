@@ -12,12 +12,15 @@ import { GetVideoById } from "../../utils/VideoUtil";
 import { Clamp } from "../../utils/Clamp";
 import Header from "../shared/header/header";
 import Wrong from "./wrong/wrong";
+import QuitMenu from "./quit/quitMenu"
 
 const Quiz = () => {
   const [isPaused, setIsPaused] = useState<boolean>(true);
   const [selectedAnswer, setSelectedAnswer] = useState<IAnswer | null>(null);
   const [video, setVideo] = useState<any>();
   const [wrongAnswer, setWrongAnswer] = useState<boolean>(false);
+  const [quitMenu, setQuitMenu] = useState<boolean>(false);
+
   const { treasureStore, authStore } = useStore();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -78,6 +81,7 @@ const Quiz = () => {
   };
   const handleClose = () => {
     console.log("close");
+    setQuitMenu(true);
   };
 
   return (
@@ -86,6 +90,7 @@ const Quiz = () => {
       {!loading && (
         <>
           {wrongAnswer && <Wrong onClick={() => setWrongAnswer(false)} />}
+          {quitMenu && <QuitMenu onClick={() => setQuitMenu(false)} />}
           <Header
             currentPage={`Opgave ${Clamp(parseInt(id), 1, 6)}`}
             onBack={() => handleBack()}
