@@ -27,3 +27,9 @@ export const getCoins = async (id: string) => {
       return points;
     });
 };
+
+export const getAvatars = async () => {
+  return http.get("auth/avatars").then((response) => {
+    return response.data;
+  });
+}

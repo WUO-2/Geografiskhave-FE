@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import { LatLngLiteral } from "leaflet";
 import { initializeApp } from "firebase/app";
-import { registerUser, getCoins, getUser } from "../services/authService";
+import { registerUser, getCoins, getUser, getAvatars } from "../services/authService";
 const firebaseConfig = {
   apiKey: "AIzaSyB5k3ues-VyvT8rxUwuWHyFwospSFIKgCc",
   authDomain: "geografiskhave-wuo2.firebaseapp.com",
@@ -27,6 +27,7 @@ export class AuthStore {
   @observable userFirebase: User | null = null;
   @observable coins: number = 0;
   @observable position: LatLngLiteral | null = null;
+  @observable avatars: any[] = [];
 
   @action setPosition(position: LatLngLiteral) {
     console.log(position);
@@ -41,6 +42,9 @@ export class AuthStore {
     this.userFirebase = user;
   }
 
+  @action setAvatars(avatars: any[]) {
+    this.avatars = avatars;
+  }
 
   @action async registerUser(user: IUserFirebase) {
     await createUserWithEmailAndPassword(auth, user.email, user.password);
@@ -51,7 +55,7 @@ export class AuthStore {
           this.setUserFirebase(auth.currentUser);
           this.setUser(user);
         });
-      },
+      }
     );
   }
 
@@ -61,7 +65,7 @@ export class AuthStore {
         this.setUserFirebase(auth.currentUser);
         this.setUser(await getUser(auth.currentUser!.uid));
         console.log(this.user);
-      },
+      }
     );
   }
 
@@ -75,6 +79,12 @@ export class AuthStore {
   @action async getUser(id: string) {
     await getUser(id).then((user) => {
       this.setUser(user);
+    });
+  }
+
+  @action async getAvatars() {
+    await getAvatars().then((avatars) => {
+      this.setAvatars(avatars);
     });
   }
 
