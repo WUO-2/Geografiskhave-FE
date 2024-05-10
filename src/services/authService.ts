@@ -33,3 +33,11 @@ export const getAvatars = async () => {
     return response.data;
   });
 }
+
+export const updateAvatar = async (id: string, imageURL: string) => {
+  return http
+    .patch("auth/avatar", { id: id, imageURL: imageURL })
+    .then((response) => {
+      return response.data;
+    });
+}

@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import { LatLngLiteral } from "leaflet";
 import { initializeApp } from "firebase/app";
-import { registerUser, getCoins, getUser, getAvatars } from "../services/authService";
+import { registerUser, getCoins, getUser, getAvatars, updateAvatar } from "../services/authService";
 const firebaseConfig = {
   apiKey: "AIzaSyB5k3ues-VyvT8rxUwuWHyFwospSFIKgCc",
   authDomain: "geografiskhave-wuo2.firebaseapp.com",
@@ -88,6 +88,13 @@ export class AuthStore {
     });
   }
 
+  @action async updateUser(avatar: any) {
+    console.log(avatar);
+    await updateAvatar(this.user!.id, avatar.imageURL).then(() => {
+      this.getUser(this.user!.id);
+    });
+    
+  }
   constructor() {
     makeAutoObservable(this);
   }

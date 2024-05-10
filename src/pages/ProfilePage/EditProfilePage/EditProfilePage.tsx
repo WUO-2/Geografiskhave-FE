@@ -13,7 +13,7 @@ const EditProfilePage = () => {
   const handleBack = () => {
     navigate(-1);
   };
-  const [selectedImage, setSelectedImage] = useState<any>({});
+  const [selectedImage, setSelectedImage] = useState<any>();
   const { authStore } = useStore();
   const [loaded, setLoaded] = useState(false);
 
@@ -36,7 +36,13 @@ const EditProfilePage = () => {
   }, [authStore.user, authStore.avatars]);
 
   const handleSelectedImage = (avatar: any) => {
+    if (!selectedImage) return false;
     return selectedImage.imageURL === avatar.imageURL;
+  }
+
+  const handleSave = () => {
+    authStore.updateUser(selectedImage);
+    navigate("/profile");
   }
 
   return (
@@ -63,7 +69,8 @@ const EditProfilePage = () => {
                   <ProfilePic
                     imgSrc={avatar.imageURL}
                     alt="profile"
-                    onClick={() => setSelectedImage(avatar)}
+                    onClick={() => {setSelectedImage(avatar); console.log(avatar);
+                    }}
                   />
                 </div>
               ))}
@@ -74,7 +81,7 @@ const EditProfilePage = () => {
                 text="Gem"
                 size="large"
                 color="green"
-                onClick={() => authStore.updateUser(selectedImage)}
+                onClick={() => handleSave()}
               ></Button>
             </div>
           </div>
