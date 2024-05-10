@@ -37,6 +37,9 @@ const TreasurehuntTask = () => {
   const handleReset = async () => {
     await treasureStore
       .endTreasureHunt(authStore.user!.id)
+      .then(() => {
+        treasureStore.setProgress(null)
+      })
       .then(() => navigate("/"));
   }
 
@@ -50,7 +53,7 @@ const TreasurehuntTask = () => {
             afslut={() => navigate("/")}/>}
           <Header
             currentPage={`Opgave ${treasureStore.currentTask?.id}`}
-            onClose={() => handleClose}
+            onClose={() => handleClose()}
           />
           <div className="TreasurehuntTask_Wrapper">
             <img
