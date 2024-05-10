@@ -88,7 +88,7 @@ export class AuthStore {
     });
   }
 
-  @action async updateUser(avatar: any) {
+  @action async updateUserAvatar(avatar: any) {
     console.log(avatar);
     await updateAvatar(this.user!.id, avatar.imageURL).then(() => {
       this.getUser(this.user!.id);
@@ -97,5 +97,13 @@ export class AuthStore {
   }
   constructor() {
     makeAutoObservable(this);
+  }
+
+  @action async updateUserName(name: string) {
+    if (this.userFirebase && name.length > 1) {
+      await updateProfile(auth.currentUser!, { displayName: name });
+      const updatedUser = await getUser(auth.currentUser!.uid);
+      this.setUser(updatedUser);
+    }
   }
 }

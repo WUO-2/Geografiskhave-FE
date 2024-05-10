@@ -7,19 +7,24 @@ import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import Input from "../../../components/shared/inputField/input";
 import Button from "../../../components/shared/buttons/button";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { set } from "firebase/database";
 
 const EditProfilePage = () => {
   const navigate = useNavigate();
   const handleBack = () => {
     navigate(-1);
   };
+  const auth = getAuth();
+
   const [selectedImage, setSelectedImage] = useState<any>();
   const { authStore } = useStore();
   const [loaded, setLoaded] = useState(false);
+  const [newUsername, setNewUsername] = useState("");
 
   useEffect(() => {
     if (authStore.avatars.length === 0) {
-      authStore.getAvatars(); 
+      authStore.getAvatars();
     }
 
     const avatar = authStore.avatars.find(
@@ -30,20 +35,21 @@ const EditProfilePage = () => {
 
     console.log(selectedImage);
 
-    if(selectedImage !== null ){
-      setLoaded(true)
+    if (selectedImage !== null) {
+      setLoaded(true);
     }
   }, [authStore.user, authStore.avatars]);
 
   const handleSelectedImage = (avatar: any) => {
     if (!selectedImage) return false;
     return selectedImage.imageURL === avatar.imageURL;
-  }
+  };
 
   const handleSave = () => {
-    authStore.updateUser(selectedImage);
+    authStore.updateUserAvatar(selectedImage);
+    authStore.updateUserName(newUsername);
     navigate("/profile");
-  }
+  };
 
   return (
     <>
@@ -55,8 +61,7 @@ const EditProfilePage = () => {
             <div className="EditProfilePage_Form">
               <Input
                 placeholder="Fornavn"
-                value={authStore.user?.firstName}
-                onChange={(e) => authStore.setFirstName(e.target.value)}
+                onChange={(e) => setNewUsername(e.target.value)}
               />
             </div>
             <div className="EditProfilePage_Avatars">
@@ -69,7 +74,9 @@ const EditProfilePage = () => {
                   <ProfilePic
                     imgSrc={avatar.imageURL}
                     alt="profile"
-                    onClick={() => {setSelectedImage(avatar); console.log(avatar);
+                    onClick={() => {
+                      setSelectedImage(avatar);
+                      console.log(avatar);
                     }}
                   />
                 </div>
