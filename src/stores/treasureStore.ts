@@ -24,7 +24,7 @@ export class TreasureStore {
     this.currentTask = task;
   }
 
-  @action setProgress(progress: IProgress) {
+  @action setProgress(progress: IProgress | null) {
     console.log(progress);
     this.progress = progress;
   }

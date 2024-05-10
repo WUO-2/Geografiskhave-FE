@@ -13,6 +13,7 @@ import { Clamp } from "../../utils/Clamp";
 import Header from "../shared/header/header";
 import Wrong from "./wrong/wrong";
 import QuitMenu from "./quit/quitMenu";
+import { getAuth } from "firebase/auth";
 
 const Quiz = () => {
   const [isPaused, setIsPaused] = useState<boolean>(true);
@@ -25,6 +26,8 @@ const Quiz = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+
+  const auth = getAuth()
 
   useEffect(() => {
     if (treasureStore.currentTask === null) {
@@ -85,9 +88,12 @@ const Quiz = () => {
   };
 
   const handleReset = async () => {
-    treasureStore.endTreasureHunt(authStore.user!.id);
-    await authStore.user!.id;
-    navigate("/");
+    await treasureStore
+      .endTreasureHunt(authStore.user!.id)
+      .then(() => {
+        treasureStore.setProgress(null)
+      })
+      .then(() => navigate("/"));
   }
 
   return (
