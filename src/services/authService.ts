@@ -27,3 +27,11 @@ export const getCoins = async (id: string) => {
       return points;
     });
 };
+
+export const assignAchievement = async (id: string, achievementId: number) => {
+  return http
+    .post("auth/achievement", { userId: id, badgeId: achievementId })
+    .then((response) => {
+      return response.data;
+    });
+};
