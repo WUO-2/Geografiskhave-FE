@@ -17,6 +17,7 @@ const PrizePage = () => {
       name: "Skarø is",
       price: 45,
       imageUrl: is,
+      description: "Nyd en forfriskende kugle is fra Skarø! Denne lækre præmie gælder for 2x is med én kugle. Præmien kan indløses i Geografisk Haves café, og køb kan ikke fortrydes."
     },
     {
       name: "Klassisk toast",
@@ -27,6 +28,7 @@ const PrizePage = () => {
       name: "Slikkepind",
       price: 0,
       imageUrl: slikkepind,
+      description: "Præmien gælder for 2x slikkepind. Den kan kun indløses én gang i Geografisk Haves café, og køb kan ikke fortrydes."
     },
     {
       name: "Kakao",

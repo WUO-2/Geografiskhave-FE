@@ -28,6 +28,7 @@ export class AuthStore {
   @observable coins: number = 0;
   @observable position: LatLngLiteral | null = null;
   @observable avatars: any[] = [];
+  @observable selectedItem: any | null = null;
 
   @action setPosition(position: LatLngLiteral) {
     console.log(position);
@@ -45,6 +46,11 @@ export class AuthStore {
   @action setAvatars(avatars: any[]) {
     this.avatars = avatars;
   }
+
+  @action setSelectedItem(selectedItem: any | null) {
+    this.selectedItem = selectedItem;
+  }
+
 
   @action async registerUser(user: IUserFirebase) {
     await createUserWithEmailAndPassword(auth, user.email, user.password);

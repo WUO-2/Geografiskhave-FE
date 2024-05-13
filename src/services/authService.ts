@@ -41,3 +41,11 @@ export const updateAvatar = async (id: string, imageURL: string) => {
       return response.data;
     });
 }
+
+export const assignAchievement = async (id: string, achievementId: number) => {
+  return http
+    .post("auth/achievement", { userId: id, badgeId: achievementId })
+    .then((response) => {
+      return response.data;
+    });
+};

@@ -19,6 +19,7 @@ import PrizePage from "../pages/PrizePage/PrizePage.tsx";
 import TreasureHuntTask from "../pages/TreasureHuntPage/TreasurehuntTask/TreasurehuntTask.tsx";
 import TreasureHuntMap from "../pages/TreasureHuntPage/TreasurehuntMap/TreasurehuntMap.tsx";
 import EditProfilePage from "../pages/ProfilePage/EditProfilePage/EditProfilePage.tsx";
+import PayPage from "../pages/PayPage/PayPage.tsx"
 
 export const Routes: IRoute[] = [
   {
@@ -144,6 +145,14 @@ export const Routes: IRoute[] = [
         routeType: RouteType.INTERNAL,
         hasNavbar: false,
       },
+      {
+        path: "/pay",
+        title: "Pay",
+        component: <PayPage />,
+        routeType: RouteType.INTERNAL,
+        hasNavbar: false,
+      },
+      
     ],
   },
 ];
