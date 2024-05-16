@@ -14,6 +14,20 @@ export interface IUser {
   currentTask: any;
   imageURL: string;
   treasureHuntStatus: EUserTreasureHuntStatus;
+  badges: IBadges[];
+}
+
+export interface IBadges {
+  id: number;
+  badgeId: number;
+  userId: string;
+  completed: boolean;
+  badge: IBadge;
+}
+
+export interface IBadge {
+  id: number;
+  imageURL: string;
 }
 
 export enum EUserTreasureHuntStatus {

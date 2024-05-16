@@ -6,6 +6,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Clamp } from "../../../utils/Clamp";
 import Header from "../../shared/header/header.tsx";
 import { useStore } from "../../../stores/store.ts";
+import puzzle1 from "../../../assets/puzzlePieces/puzzle_piece1.png"
+import puzzle2 from "../../../assets/puzzlePieces/puzzle_piece2.png"
+import puzzle3 from "../../../assets/puzzlePieces/puzzle_piece3.png"
+import puzzle4 from "../../../assets/puzzlePieces/puzzle_piece4.png"
+import puzzle5 from "../../../assets/puzzlePieces/puzzle_piece5.png"
+import puzzle6 from "../../../assets/puzzlePieces/puzzle_piece6.png"
 
 const Success = () => {
   const [totalSteps, setTotalSteps] = useState(6);
@@ -13,6 +19,7 @@ const Success = () => {
   const params = useParams();
   const navigate = useNavigate();
   const { treasureStore, authStore } = useStore();
+  const pieces = [puzzle1, puzzle2, puzzle3, puzzle4, puzzle5, puzzle6]
 
   useEffect(() => {
     setCurrentStep(
@@ -53,7 +60,7 @@ const Success = () => {
           </div>
           <div className="Success_Wrapper_ImageContainer">
             <img
-              src="https://www.pngkey.com/png/full/115-1150152_treasure-chest-png-clip-art-image-pirate-treasure.png"
+              src={pieces[currentStep-1]}
               alt="treasure"
             />
           </div>

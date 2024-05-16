@@ -7,9 +7,12 @@ import Button from "../../../components/shared/buttons/button";
 import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
+import QuitMenu from "../../../components/quiz/quit/quitMenu";
+
 const TreasurehuntTask = () => {
   const { treasureStore, authStore } = useStore();
   const [loading, setLoading] = useState(true);
+  const [isQuit, setIsquit] = useState<boolean>(false);
   const navigate = useNavigate();
   useEffect(() => {
     if (treasureStore.currentTask === null) {
@@ -26,13 +29,31 @@ const TreasurehuntTask = () => {
     });
   };
 
+  const handleClose = () => {
+    console.log("close");
+    setIsquit(true);
+  };
+
+  const handleReset = async () => {
+    await treasureStore
+      .endTreasureHunt(authStore.user!.id)
+      .then(() => {
+        treasureStore.setProgress(null)
+      })
+      .then(() => navigate("/"));
+  }
+
   return (
     <>
       {!loading && (
         <div className={`TreasurehuntTask  TreasurehuntTask_Show`}>
+          {isQuit && <QuitMenu 
+            forsæt={() => setIsquit(false)} 
+            start_forfra={() => handleReset()}
+            afslut={() => navigate("/")}/>}
           <Header
             currentPage={`Opgave ${treasureStore.currentTask?.id}`}
-            onClose={() => navigate("/")}
+            onClose={() => handleClose()}
           />
           <div className="TreasurehuntTask_Wrapper">
             <img

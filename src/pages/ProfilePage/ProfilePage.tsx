@@ -3,11 +3,27 @@ import { EProfilePage } from "../../interfaces/EProfilePage";
 import "./ProfilePage.scss";
 import PrizePage from "./PrizePage/PrizePage";
 import BadgePage from "./BadgePage/BadgePage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../../components/shared/header/header";
+import { useStore } from "../../stores/store";
+import { AchievementType, checkAchievement } from "../../utils/achievementUtil";
+import { getAuth } from "firebase/auth";
 
 const ProfilePage = () => {
   const [page, setPage] = useState<EProfilePage>(EProfilePage.PRIZES);
+  const { authStore } = useStore();
+  const auth = getAuth();
+
+  useEffect(() => {
+    checkAchievement(authStore.user!.id, AchievementType.PROFILE).then(
+      (response) => {
+        if (response.message === undefined) {
+          authStore.getUser(auth.currentUser!.uid);
+          authStore.setNewAchievement(response.badge);
+        }
+      },
+    );
+  }, []);
 
   return (
     <>

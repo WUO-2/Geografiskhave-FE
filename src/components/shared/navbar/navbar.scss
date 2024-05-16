@@ -5,18 +5,21 @@
   flex-direction: row;
   justify-content: center;
   padding: 12px;
+  padding-bottom: 0px;
   height: calc(90px - 24px);
   background-color: #fff;
   flex: 1;
   width: calc(100% - 24px);
   z-index: 100;
   max-width: calc(768px - 24px);
-  max-height: 90px;
+  max-height: 80px;
+  
   .Navbar_Link {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: min-content;
     color: $brown;
     text-decoration: none;
     gap: 6px;
@@ -38,7 +41,6 @@
       .Navbar_Link_Icon {
         height: 24px;
         width: 24px;
-        filter: $brownFilter;
       }
     }
     .Navbar_Link_Text {
@@ -53,6 +55,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: min-content;
     color: $brown;
     text-decoration: none;
     gap: 6px;
@@ -71,6 +74,11 @@
       color: $orange;
       padding: 0;
       margin: 0;
+      font-size: $nav;
     }
   }
 }
+
+// #LogOutIcon {
+//   filter: $brownFilter;
+// }
