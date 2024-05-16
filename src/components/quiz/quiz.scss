@@ -40,8 +40,9 @@
       height: calc(48px - 30px);
       img {
         margin: 0;
-        width: 24px;
-        height: 24px;
+        width: 23px;
+        height: 23px;
+        transform: translateX(1px);
         filter: invert(1);
       }
     }
