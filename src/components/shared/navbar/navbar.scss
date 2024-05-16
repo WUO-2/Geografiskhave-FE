@@ -41,7 +41,6 @@
       .Navbar_Link_Icon {
         height: 24px;
         width: 24px;
-        //filter: $brownFilter;
       }
     }
     .Navbar_Link_Text {
@@ -78,4 +77,8 @@
       font-size: $nav;
     }
   }
+}
+
+#LogOutIcon {
+  filter: $brownFilter;
 }
