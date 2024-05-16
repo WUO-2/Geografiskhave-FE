@@ -8,6 +8,7 @@ import Header from "../../components/shared/header/header";
 import { useStore } from "../../stores/store";
 import { AchievementType, checkAchievement } from "../../utils/achievementUtil";
 import { getAuth } from "firebase/auth";
+import { observer } from "mobx-react-lite";
 
 const ProfilePage = () => {
   const [page, setPage] = useState<EProfilePage>(EProfilePage.PRIZES);
@@ -53,4 +54,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default observer(ProfilePage);
