@@ -40,8 +40,9 @@
       height: calc(48px - 30px);
       img {
         margin: 0;
-        width: 24px;
-        height: 24px;
+        width: 23px;
+        height: 23px;
+        transform: translateX(1px);
         filter: invert(1);
       }
     }
@@ -99,6 +100,8 @@
       flex: 1;
       max-height: 48px;
       min-height: 48px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
   }
 }
