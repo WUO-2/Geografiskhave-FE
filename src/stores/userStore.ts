@@ -1,5 +1,5 @@
 import { makeAutoObservable, observable, action } from "mobx";
-import { IUser, IUserFirebase } from "../interfaces/IUser";
+import { IBadge, IUser, IUserFirebase } from "../interfaces/IUser";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import { LatLngLiteral } from "leaflet";
 import { initializeApp } from "firebase/app";
-import { registerUser, getCoins, getUser } from "../services/authService";
+import { registerUser, getCoins, getUser, getAvatars, updateAvatar } from "../services/authService";
 const firebaseConfig = {
   apiKey: "AIzaSyB5k3ues-VyvT8rxUwuWHyFwospSFIKgCc",
   authDomain: "geografiskhave-wuo2.firebaseapp.com",
@@ -27,6 +27,9 @@ export class AuthStore {
   @observable userFirebase: User | null = null;
   @observable coins: number = 0;
   @observable position: LatLngLiteral | null = null;
+  @observable avatars: any[] = [];
+  @observable selectedItem: any | null = null;
+  @observable newAchievement: IBadge | null = null;
 
   @action setPosition(position: LatLngLiteral) {
     console.log(position);
@@ -41,6 +44,18 @@ export class AuthStore {
     this.userFirebase = user;
   }
 
+  @action setAvatars(avatars: any[]) {
+    this.avatars = avatars;
+  }
+
+  @action setSelectedItem(selectedItem: any | null) {
+    this.selectedItem = selectedItem;
+  }
+
+  @action setNewAchievement(achievement: IBadge | null) {
+    console.log("new achievement: ", achievement);
+    this.newAchievement = achievement;
+  }
 
   @action async registerUser(user: IUserFirebase) {
     await createUserWithEmailAndPassword(auth, user.email, user.password);
@@ -51,7 +66,7 @@ export class AuthStore {
           this.setUserFirebase(auth.currentUser);
           this.setUser(user);
         });
-      },
+      }
     );
   }
 
@@ -61,7 +76,7 @@ export class AuthStore {
         this.setUserFirebase(auth.currentUser);
         this.setUser(await getUser(auth.currentUser!.uid));
         console.log(this.user);
-      },
+      }
     );
   }
 
@@ -78,7 +93,28 @@ export class AuthStore {
     });
   }
 
+  @action async getAvatars() {
+    await getAvatars().then((avatars) => {
+      this.setAvatars(avatars);
+    });
+  }
+
+  @action async updateUserAvatar(avatar: any) {
+    console.log(avatar);
+    await updateAvatar(this.user!.id, avatar.imageURL).then(() => {
+      this.getUser(this.user!.id);
+    });
+    
+  }
   constructor() {
     makeAutoObservable(this);
+  }
+
+  @action async updateUserName(name: string) {
+    if (this.userFirebase && name.length > 1) {
+      await updateProfile(auth.currentUser!, { displayName: name });
+      const updatedUser = await getUser(auth.currentUser!.uid);
+      this.setUser(updatedUser);
+    }
   }
 }

@@ -1,13 +1,14 @@
 import { IProfileImage } from "../../../../interfaces/IProfileImage";
 import "./profilePic.scss";
 import edit from "../../../../assets/icons/edit.svg";
+
 const profilePic = ({ imgSrc, alt, onClick, editable }: IProfileImage) => {
   return (
     <div className="ProfilePic_Container">
       <img
         src={imgSrc}
         alt={alt}
-        onClick={() => onClick}
+        onClick= {onClick}
         className="ProfilePic"
       />
       {editable && (

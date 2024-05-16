@@ -1,0 +1,48 @@
+@use "../../assets/variable.scss" as v;
+
+.PayPage {
+  
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  .PayPage_ImageContainer {
+    height: 250px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    img {
+      width: 100%;
+    }
+  }
+  .PayPage_ContentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: v.$brown;
+    padding: 30px;
+  }
+  .PayPage_ContentContainer_Header {
+    align-self: flex-start;
+    font-size: v.$h2;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .Orange_Text{
+    color: v.$orange;
+    align-self: start;
+    margin-bottom: 10px;
+  }
+
+  .Hidden {
+    display: none;
+  }
+
+  .Swipe_Container{
+    width: 100%;
+    margin-top: 100px;
+  }
+}

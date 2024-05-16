@@ -4,10 +4,12 @@ import arrowIcon from "../../../assets/icons/backIcon.svg";
 import { useStore } from "../../../stores/store";
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
+import { getAuth } from "firebase/auth";
 
 const TreasureHunt = () => {
   const navigate = useNavigate();
   const { treasureStore, authStore } = useStore();
+  const auth = getAuth()
   useEffect(() => {
     if (!treasureStore.progress) {
       console.log(authStore.user?.id);
@@ -16,6 +18,7 @@ const TreasureHunt = () => {
       }
       //treasureStore.getCurrentTask(authStore.user!.id);
     }
+    //authStore.getUser(auth.currentUser!.uid)
     console.log("TreasureHunt useEffect ", treasureStore.progress);
   }, [treasureStore.progress, authStore.user]);
 
