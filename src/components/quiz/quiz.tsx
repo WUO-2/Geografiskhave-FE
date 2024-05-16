@@ -12,16 +12,22 @@ import { GetVideoById } from "../../utils/VideoUtil";
 import { Clamp } from "../../utils/Clamp";
 import Header from "../shared/header/header";
 import Wrong from "./wrong/wrong";
+import QuitMenu from "./quit/quitMenu";
+import { getAuth } from "firebase/auth";
 
 const Quiz = () => {
   const [isPaused, setIsPaused] = useState<boolean>(true);
   const [selectedAnswer, setSelectedAnswer] = useState<IAnswer | null>(null);
   const [video, setVideo] = useState<any>();
   const [wrongAnswer, setWrongAnswer] = useState<boolean>(false);
+  const [isQuit, setIsquit] = useState<boolean>(false);
+
   const { treasureStore, authStore } = useStore();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+
+  const auth = getAuth()
 
   useEffect(() => {
     if (treasureStore.currentTask === null) {
@@ -78,7 +84,17 @@ const Quiz = () => {
   };
   const handleClose = () => {
     console.log("close");
+    setIsquit(true);
   };
+
+  const handleReset = async () => {
+    await treasureStore
+      .endTreasureHunt(authStore.user!.id)
+      .then(() => {
+        treasureStore.setProgress(null)
+      })
+      .then(() => navigate("/"));
+  }
 
   return (
     <>
@@ -86,6 +102,10 @@ const Quiz = () => {
       {!loading && (
         <>
           {wrongAnswer && <Wrong onClick={() => setWrongAnswer(false)} />}
+          {isQuit && <QuitMenu 
+            forsæt={() => setIsquit(false)} 
+            start_forfra={() => handleReset()}
+            afslut={() => navigate("/")}/>}
           <Header
             currentPage={`Opgave ${Clamp(parseInt(id), 1, 6)}`}
             onBack={() => handleBack()}

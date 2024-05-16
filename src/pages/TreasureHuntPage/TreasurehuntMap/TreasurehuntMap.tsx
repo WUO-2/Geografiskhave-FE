@@ -13,11 +13,15 @@ import { useNavigate } from "react-router-dom";
 import { Toaster, toast, useToasterStore } from "react-hot-toast";
 import { Distance } from "../../../utils/distanceUtil";
 
+import QuitMenu from "../../../components/quiz/quit/quitMenu";
+
 const TreasurehuntMap = () => {
   const [loading, setLoading] = useState(true);
   const { treasureStore, authStore } = useStore();
   const navigate = useNavigate();
   const { toasts } = useToasterStore();
+
+  const [isQuit, setIsquit] = useState<boolean>(false);
 
   useEffect(() => {
     if (authStore.user !== null && treasureStore.currentTask === null) {
@@ -80,13 +84,31 @@ const TreasurehuntMap = () => {
     navigate(`/quiz/${task.id}`);
   };
 
+  const handleClose = () => {
+    console.log("close");
+    setIsquit(true);
+  };
+
+  const handleReset = async () => {
+    await treasureStore
+      .endTreasureHunt(authStore.user!.id)
+      .then(() => {
+        treasureStore.setProgress(null)
+      })
+      .then(() => navigate("/"));
+  }
+
   return (
     <>
       <div className={`TreasurehuntMap TreasurehuntMap_Show`}>
+        {isQuit && <QuitMenu 
+          forsæt={() => setIsquit(false)} 
+          start_forfra={() => handleReset()}
+          afslut={() => navigate("/")}/>}
         <Header
           currentPage="Din placering"
           onBack={() => navigate(-1)}
-          onClose={() => console.log("bbbb")}
+          onClose={() => handleClose()}
         />
         {loading && <h1>Loading...</h1>}
         {!loading && (
