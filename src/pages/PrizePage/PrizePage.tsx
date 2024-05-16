@@ -29,6 +29,7 @@ function PrizePage() {
           setAchievementUnlock(true);
           setBadgeImage(findBadge(response.badgeId));
           authStore.getUser(auth.currentUser!.uid);
+          authStore.setNewAchievement(response.badge);
         }
       },
     );
@@ -92,4 +93,3 @@ function PrizePage() {
 }
 
 export default observer(PrizePage);
-

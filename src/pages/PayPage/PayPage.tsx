@@ -26,6 +26,7 @@ const PayPage = () => {
         .then((response) => {
           if (response.message === undefined) {
             authStore.getUser(auth.currentUser!.uid);
+            authStore.setNewAchievement(response.badge);
           }
         })
         .finally(() => {
@@ -90,4 +91,3 @@ const PayPage = () => {
 };
 
 export default PayPage;
-

@@ -19,6 +19,7 @@ const ProfilePage = () => {
       (response) => {
         if (response.message === undefined) {
           authStore.getUser(auth.currentUser!.uid);
+          authStore.setNewAchievement(response.badge);
         }
       },
     );
