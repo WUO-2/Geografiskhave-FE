@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useStore } from "../../../stores/store";
 import { useState } from "react";
 import back from "../../../assets/icons/backIcon.svg";
+import hide from "../../../assets/icons/hide.png"
 
 const SignInPage = () => {
   const navigate = useNavigate();
@@ -39,11 +40,15 @@ const SignInPage = () => {
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <input
-            type="password"
-            placeholder="Adgangskode"
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div id="Password_Holder">
+            <input
+              type="password"
+              placeholder="Adgangskode"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <img id="Hide_Icon" src={hide} alt="hide password" />
+          </div>
+          
           <div className="SignIn_Container_Form_Container">
             <div className="SignIn_Container_Form_Container_RememberMe">
               <input type="checkbox" id="checkbox" />

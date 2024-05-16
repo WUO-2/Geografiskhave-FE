@@ -10,7 +10,7 @@
   padding: 35px;
   &_Back {
     position: absolute;
-    top: 70px;
+    top: 77px;
     left: 35px;
     color: #fff;
     background-color: $green;
@@ -19,6 +19,7 @@
     margin: 0;
     width: 36px;
     display: flex;
+    transform: scaleX(-1);
     align-items: center;
     justify-content: center;
     font-size: 18px;
@@ -48,7 +49,7 @@
       padding-bottom: 10px;
     }
     &_Paragraph {
-      font-size: 16px;
+      font-size: $regular;
       color: $brown;
       margin: 0;
       text-align: center;
@@ -58,6 +59,7 @@
       display: flex;
       flex-direction: column;
       margin-top: 30px;
+      font-size: $regular;
 
       gap: 20px;
       Input {
@@ -116,12 +118,15 @@
     width: 100%;
     &_Button {
       padding: 15px;
-      width: calc(100% - 30px);
+      width: calc(100%);
       border-radius: 40px;
       background-color: $green;
       color: #fff;
       border: none;
       outline: none;
+      font-size: $regular;
+      font-weight: 600;
+      line-height: 20px;
       cursor: pointer;
       &:hover {
         outline: none;
@@ -141,7 +146,36 @@
         color: $orange;
         cursor: pointer;
         text-decoration: underline;
+        font-weight: 600;
       }
     }
   }
+
+  #Password_Holder {
+    display: flex;
+    align-items: center;
+    img {
+      width: 20px;
+      position: relative;
+      margin-left: -20px;
+      right: 20px;
+      pointer-events: none;
+    }
+  }
+
+  #checkbox {
+    padding: 0px;
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    &:checked{
+      appearance: auto;
+      accent-color: $white;
+    }
+  }
+
 }
+
