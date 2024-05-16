@@ -22,7 +22,7 @@ const FrontpageProfile = () => {
       <div className="frontpageProfile_InfoContainer">
         <p className="frontpageProfile_Greeting">Goddag</p>
         <p className="frontpageProfile_Username">
-          {authStore.userFirebase?.displayName}
+          {authStore.userFirebase?.displayName}!
         </p>
       </div>
       <div className="frontpageProfile_CoinContainer">
