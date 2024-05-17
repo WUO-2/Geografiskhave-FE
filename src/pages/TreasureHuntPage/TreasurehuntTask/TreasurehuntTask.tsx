@@ -53,6 +53,7 @@ const TreasurehuntTask = () => {
             afslut={() => navigate("/")}/>}
           <Header
             currentPage={`Opgave ${treasureStore.currentTask?.id}`}
+            onBack={() => navigate(-1)}
             onClose={() => handleClose()}
           />
           <div className="TreasurehuntTask_Wrapper">
