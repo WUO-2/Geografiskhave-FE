@@ -56,7 +56,7 @@ const TreasurehuntTask = () => {
           )}
           <Header
             currentPage={`Opgave ${treasureStore.currentTask?.id}`}
-            onBack={() => navigate(-1)}
+            onBack={() => navigate("/")}
             onClose={() => handleClose()}
           />
           <div className="TreasurehuntTask_Wrapper">
