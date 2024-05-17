@@ -29,11 +29,12 @@
     .yellowBubble {
         background-color: v.$beige;
         margin: auto;
-        width: 250px;
+        width: 220px;
         border-radius: 100px;
         padding: 10px 20px;
         margin-top: 30px;
         margin-bottom: 75px;
+        font-size: v.$small;
 
         .coin {
             width: 24px;
