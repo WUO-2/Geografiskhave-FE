@@ -52,7 +52,7 @@ function PuzzleCompletePage() {
       <Header currentPage="Puslespil samlet" />
       <div className="puzzlePage completedPage">
         <h2>Godt gået!</h2>
-        <p className="underTitle">Jers skattejagt-puslespil er samlet</p>
+        <p className="underTitle">Jeres skattejagt-puslespil er samlet</p>
         <div className="dropArea top">
           <Droppable id="0">{pieces[0]}</Droppable>
           <Droppable id="1">{pieces[1]}</Droppable>
