@@ -17,8 +17,6 @@ const MapPage = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const testIcon = transformIcon(t, "test");
-
   useEffect(() => {
     if (mapStore.Pois.length === 0) {
       mapStore.fetchPois().then(() => {
@@ -40,37 +38,37 @@ const MapPage = () => {
   const handleMarkerClick = (poi: IPoi) => {
     setSelectedPoi(poi);
     setShowPopup(true);
-    console.log("Selected POI: ", poi);
   };
 
   return (
     <>
-    
-      <div className="Map">
-        <Header currentPage="Find vej" />
+      <div className="Map" style={{ height: showPopup ? "0" : "auto" }}>
         {loading && <h1>Loading...</h1>}
         {!loading && (
-          <MapContainer
-            center={[mapStore.Pois[0].latitude, mapStore.Pois[0].longitude]}
-            zoom={17}
-            scrollWheelZoom={true}
-            id="Leaflet"
-          >
-            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            {mapStore.Pois.map((poi) => (
-              <Marker
-                key={poi.id}
-                position={[poi.latitude, poi.longitude]}
-                icon={transformIcon(poi.iconURL, "test")}
-                eventHandlers={{
-                  click: () => {
-                    handleMarkerClick(poi);
-                  },
-                }}
-              ></Marker>
-            ))}
-            <Location />
-          </MapContainer>
+          <>
+            <Header currentPage="Find vej" />
+            <MapContainer
+              center={[mapStore.Pois[0].latitude, mapStore.Pois[0].longitude]}
+              zoom={17}
+              scrollWheelZoom={true}
+              id="Leaflet"
+            >
+              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+              {mapStore.Pois.map((poi) => (
+                <Marker
+                  key={poi.id}
+                  position={[poi.latitude, poi.longitude]}
+                  icon={transformIcon(poi.iconURL, "test")}
+                  eventHandlers={{
+                    click: () => {
+                      handleMarkerClick(poi);
+                    },
+                  }}
+                ></Marker>
+              ))}
+              <Location />
+            </MapContainer>
+          </>
         )}
       </div>
       <PoiPage
