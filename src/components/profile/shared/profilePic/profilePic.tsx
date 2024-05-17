@@ -1,6 +1,6 @@
 import { IProfileImage } from "../../../../interfaces/IProfileImage";
 import "./profilePic.scss";
-import edit from "../../../../assets/icons/edit.svg";
+import edit from "../../../../assets/icons/pencil.svg";
 
 const profilePic = ({ imgSrc, alt, onClick, editable }: IProfileImage) => {
   return (
