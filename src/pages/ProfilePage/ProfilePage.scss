@@ -1,7 +1,9 @@
 @import "../../assets/variable.scss";
 
 .ProfilePage {
-  flex: 1;
+  flex: 1 0 0;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
