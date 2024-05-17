@@ -86,7 +86,7 @@ function PrizePage() {
         text="Indløs præmie"
         onClick={() => {
           handleUpdatePoints(55);
-          navigate("/profil");
+          navigate("/profile");
         }}
       />
     </div>
