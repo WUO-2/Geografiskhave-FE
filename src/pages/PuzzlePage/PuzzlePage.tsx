@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { DndContext, DragEndEvent, DragStartEvent } from "@dnd-kit/core";
 import Droppable from "../../components/puzzle/droppable/droppable";
 import Draggable from "../../components/puzzle/draggable/draggable";
@@ -36,8 +36,42 @@ function PuzzlePage() {
     <Draggable id="piece5">
       <img src={Piece6} alt="" />
     </Draggable>,
-    <div></div>,
   ]);
+
+  const draggableAreaRef = useRef<HTMLDivElement>(null);
+
+  const [randomPositions, setRandomPositions] = useState<Map>([
+    { top: 0, left: 0 },
+    { top: 0, left: 0 },
+    { top: 0, left: 0 },
+    { top: 0, left: 0 },
+    { top: 0, left: 0 },
+    { top: 0, left: 0 },
+    { top: 0, left: 0 },
+  ]);
+
+  useEffect(() => {
+    for (let i = 0; i < 6; i++) {
+      setRandomPositions((prevState) => {
+        const updatedPositions = [...prevState];
+        updatedPositions[i] = generateRandomPosition();
+        return updatedPositions;
+      });
+    }
+  }, []);
+
+  const generateRandomPosition = () => {
+    // Random number between 0 and 300
+    console.log(draggableAreaRef.current?.clientHeight);
+    console.log(draggableAreaRef.current?.clientWidth);
+    const randomTop = Math.floor(
+      Math.random() * (draggableAreaRef.current!.clientHeight - 100),
+    );
+    const randomLeft = Math.floor(
+      Math.random() * (draggableAreaRef.current!.clientWidth - 100),
+    );
+    return { top: randomTop, left: randomLeft };
+  };
 
   const [toPlayPeices, setToPlayPeices] = useState([
     { content: pieces[0] },
@@ -46,7 +80,6 @@ function PuzzlePage() {
     { content: pieces[3] },
     { content: pieces[4] },
     { content: pieces[5] },
-    { content: null },
   ]);
 
   const [placedContent, setplacedContent] = useState([
@@ -56,7 +89,6 @@ function PuzzlePage() {
     { content: null },
     { content: null },
     { content: null },
-    { content: pieces[6] },
   ]);
 
   let currentlyHeld: any;
@@ -114,7 +146,6 @@ function PuzzlePage() {
       });
     }
   };
-
   const puzzleCompletionChecker = () => {
     if (
       placedContent[0].content == pieces[0] &&
@@ -150,20 +181,26 @@ function PuzzlePage() {
       <div className="puzzlePage">
         <h2>Saml dit puslespil</h2>
         <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-          <div className="dropArea top">
+          <div className="dropArea ">
             <Droppable id="0">{placedContent[0].content}</Droppable>
             <Droppable id="1">{placedContent[1].content}</Droppable>
             <Droppable id="2">{placedContent[2].content}</Droppable>
-          </div>
-          <div className="dropArea bottom">
             <Droppable id="3">{placedContent[3].content}</Droppable>
             <Droppable id="4">{placedContent[4].content}</Droppable>
             <Droppable id="5">{placedContent[5].content}</Droppable>
           </div>
 
-          <div className="piecesArea">
+          <div className="piecesArea" ref={draggableAreaRef}>
             {toPlayPeices.map((piece, index) => (
-              <div key={index} id={index.toString()}>
+              <div
+                className="Draggable"
+                style={{
+                  top: randomPositions[index].top,
+                  left: randomPositions[index].left,
+                }}
+                key={index}
+                id={index.toString()}
+              >
                 {piece.content}
               </div>
             ))}

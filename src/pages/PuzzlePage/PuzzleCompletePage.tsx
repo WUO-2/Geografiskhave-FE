@@ -36,7 +36,6 @@ function PuzzleCompletePage() {
     <Draggable id="piece5">
       <img src={Piece6} alt="" />
     </Draggable>,
-    <div></div>,
   ]);
 
   const navigate = useNavigate();
@@ -51,14 +50,14 @@ function PuzzleCompletePage() {
     <>
       <Header currentPage="Puslespil samlet" />
       <div className="puzzlePage completedPage">
-        <h2>Godt gået!</h2>
-        <p className="underTitle">Jeres skattejagt-puslespil er samlet</p>
-        <div className="dropArea top">
+        <div className="puzzlePage_Title">
+          <h2>Godt gået!</h2>
+          <p className="underTitle">Jeres skattejagt-puslespil er samlet</p>
+        </div>
+        <div className="dropArea ">
           <Droppable id="0">{pieces[0]}</Droppable>
           <Droppable id="1">{pieces[1]}</Droppable>
           <Droppable id="2">{pieces[2]}</Droppable>
-        </div>
-        <div className="dropArea bottom">
           <Droppable id="3">{pieces[3]}</Droppable>
           <Droppable id="4">{pieces[4]}</Droppable>
           <Droppable id="5">{pieces[5]}</Droppable>
@@ -68,6 +67,7 @@ function PuzzleCompletePage() {
             I har samlet alle puslebrikkerne og fuldført den eventyrlige
             skattejagt gennem Geografisk Have.
           </p>
+          <br />
           <p>
             Afslut skattejagten for at indsamle jeres præmie og Eventyrmønter.
           </p>
@@ -80,6 +80,7 @@ function PuzzleCompletePage() {
             onClick={() => {
               handleComplete();
             }}
+            size="large"
           />
         </div>
       </div>
