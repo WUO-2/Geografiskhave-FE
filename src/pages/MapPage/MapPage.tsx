@@ -9,6 +9,7 @@ import { IPoi } from "../../interfaces/IPois";
 import PoiPage from "./PoiPage/PoiPage";
 import { transformIcon } from "../../utils/IconUtil";
 import t from "../../assets/icons/map.svg";
+import Header from "../../components/shared/header/header";
 
 const MapPage = () => {
   const { mapStore } = useStore();
@@ -44,7 +45,9 @@ const MapPage = () => {
 
   return (
     <>
+    
       <div className="Map">
+        <Header currentPage="Find vej" />
         {loading && <h1>Loading...</h1>}
         {!loading && (
           <MapContainer

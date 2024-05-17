@@ -51,7 +51,7 @@ const Success = () => {
 
   return (
     <>
-      <Header currentPage="Opgave klaret!" onClose={() => console.log("asd")} />
+      <Header currentPage="Opgave klaret" onClose={() => console.log("asd")} />
       <div className="Success">
         <div className="Success_Wrapper">
           <div className="Success_Wrapper_Info">
