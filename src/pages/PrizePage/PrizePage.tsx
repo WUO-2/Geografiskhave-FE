@@ -58,7 +58,6 @@ function PrizePage() {
     <div className="prizePage">
       <Confetti numberOfPieces={100} gravity={0.025} />
       <h2>Tillykke!</h2>
-      <p className="underTitle">Nyt badge</p>
       {achievementUnlock && (
         <>
           <p className="underTitle">Nyt badge</p>
@@ -68,12 +67,12 @@ function PrizePage() {
       <h2>Skatteeventyrer</h2>
       {achievementUnlock && (
         <p className="underTitle">
-          Godt gådt! Du har gennemført din første skattejagt gennem haven.
+          Godt gået! Du har gennemført din første skattejagt gennem haven.
         </p>
       )}
       {!achievementUnlock && (
         <p className="underTitle">
-           Godt gådt! Du har gennemført din første skattejagt gennem haven.
+          Godt gået! Du har gennemført din første skattejagt gennem haven.
         </p>
       )}
 
@@ -88,6 +87,7 @@ function PrizePage() {
           handleUpdatePoints(55);
           navigate("/profile");
         }}
+        size="large"
       />
     </div>
   );
