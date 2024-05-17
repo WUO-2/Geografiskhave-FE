@@ -14,6 +14,7 @@ import Header from "../shared/header/header";
 import Wrong from "./wrong/wrong";
 import QuitMenu from "./quit/quitMenu";
 import { getAuth } from "firebase/auth";
+import Loader from "../shared/loader/loader";
 
 const Quiz = () => {
   const [isPaused, setIsPaused] = useState<boolean>(true);
@@ -27,7 +28,7 @@ const Quiz = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
-  const auth = getAuth()
+  const auth = getAuth();
 
   useEffect(() => {
     if (treasureStore.currentTask === null) {
@@ -38,9 +39,6 @@ const Quiz = () => {
       setVideo(GetVideoById(treasureStore.currentTask.id));
       setLoading(false);
     }
-    return () => {
-      //treasureStore.setCurrentTask(null);
-    };
   }, [treasureStore.currentTask, id]);
 
   const load = async (id: number) => {
@@ -67,14 +65,6 @@ const Quiz = () => {
         setWrongAnswer(true);
       }
     });
-    //if (selectedAnswer === null) {
-    //  return;
-    //}
-    //if (selectedAnswer.isCorrect) {
-    //  navigate(`/quiz/success/${treasureStore.currentTask?.id || id}`);
-    //} else {
-    //  setWrongAnswer(true);
-    //}
   };
 
   const handleBack = async () => {
@@ -91,21 +81,24 @@ const Quiz = () => {
     await treasureStore
       .endTreasureHunt(authStore.user!.id)
       .then(() => {
-        treasureStore.setProgress(null)
+        treasureStore.setProgress(null);
       })
       .then(() => navigate("/"));
-  }
+  };
 
   return (
     <>
-      {loading && <div>Loading...</div>}
+      {loading && <Loader />}
       {!loading && (
         <>
           {wrongAnswer && <Wrong onClick={() => setWrongAnswer(false)} />}
-          {isQuit && <QuitMenu 
-            forsæt={() => setIsquit(false)} 
-            start_forfra={() => handleReset()}
-            afslut={() => navigate("/")}/>}
+          {isQuit && (
+            <QuitMenu
+              forsæt={() => setIsquit(false)}
+              start_forfra={() => handleReset()}
+              afslut={() => navigate("/")}
+            />
+          )}
           <Header
             currentPage={`Opgave ${Clamp(parseInt(id), 1, 6)}`}
             onBack={() => handleBack()}

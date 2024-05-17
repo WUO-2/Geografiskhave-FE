@@ -10,6 +10,7 @@ import PoiPage from "./PoiPage/PoiPage";
 import { transformIcon } from "../../utils/IconUtil";
 import t from "../../assets/icons/map.svg";
 import Header from "../../components/shared/header/header";
+import Loader from "../../components/shared/loader/loader";
 
 const MapPage = () => {
   const { mapStore } = useStore();
@@ -43,7 +44,7 @@ const MapPage = () => {
   return (
     <>
       <div className="Map" style={{ height: showPopup ? "0" : "auto" }}>
-        {loading && <h1>Loading...</h1>}
+        {loading && <Loader />}
         {!loading && (
           <>
             <Header currentPage="Find vej" />

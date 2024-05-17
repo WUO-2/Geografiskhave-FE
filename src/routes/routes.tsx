@@ -19,7 +19,8 @@ import PrizePage from "../pages/PrizePage/PrizePage.tsx";
 import TreasureHuntTask from "../pages/TreasureHuntPage/TreasurehuntTask/TreasurehuntTask.tsx";
 import TreasureHuntMap from "../pages/TreasureHuntPage/TreasurehuntMap/TreasurehuntMap.tsx";
 import EditProfilePage from "../pages/ProfilePage/EditProfilePage/EditProfilePage.tsx";
-import PayPage from "../pages/PayPage/PayPage.tsx"
+import PayPage from "../pages/PayPage/PayPage.tsx";
+import Quiz from "../components/quiz/quiz.tsx";
 
 export const Routes: IRoute[] = [
   {
@@ -93,7 +94,7 @@ export const Routes: IRoute[] = [
         path: "/quiz/:id",
         title: "Opgave",
         routeType: RouteType.INTERNAL,
-        component: <TestPage />,
+        component: <Quiz />,
         hasNavbar: false,
       },
       {
@@ -152,7 +153,6 @@ export const Routes: IRoute[] = [
         routeType: RouteType.INTERNAL,
         hasNavbar: false,
       },
-      
     ],
   },
 ];
