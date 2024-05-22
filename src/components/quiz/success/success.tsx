@@ -6,12 +6,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Clamp } from "../../../utils/Clamp";
 import Header from "../../shared/header/header.tsx";
 import { useStore } from "../../../stores/store.ts";
-import puzzle1 from "../../../assets/puzzlePieces/puzzle_piece1.png"
-import puzzle2 from "../../../assets/puzzlePieces/puzzle_piece2.png"
-import puzzle3 from "../../../assets/puzzlePieces/puzzle_piece3.png"
-import puzzle4 from "../../../assets/puzzlePieces/puzzle_piece4.png"
-import puzzle5 from "../../../assets/puzzlePieces/puzzle_piece5.png"
-import puzzle6 from "../../../assets/puzzlePieces/puzzle_piece6.png"
+import puzzle1 from "../../../assets/puzzlePieces/puzzle_piece1.png";
+import puzzle2 from "../../../assets/puzzlePieces/puzzle_piece2.png";
+import puzzle3 from "../../../assets/puzzlePieces/puzzle_piece3.png";
+import puzzle4 from "../../../assets/puzzlePieces/puzzle_piece4.png";
+import puzzle5 from "../../../assets/puzzlePieces/puzzle_piece5.png";
+import puzzle6 from "../../../assets/puzzlePieces/puzzle_piece6.png";
+import QuitMenu from "../quit/quitMenu.tsx";
 
 const Success = () => {
   const [totalSteps, setTotalSteps] = useState(6);
@@ -19,7 +20,8 @@ const Success = () => {
   const params = useParams();
   const navigate = useNavigate();
   const { treasureStore, authStore } = useStore();
-  const pieces = [puzzle1, puzzle2, puzzle3, puzzle4, puzzle5, puzzle6]
+  const pieces = [puzzle1, puzzle2, puzzle3, puzzle4, puzzle5, puzzle6];
+  const [isQuit, setIsquit] = useState<boolean>(false);
 
   useEffect(() => {
     setCurrentStep(
@@ -46,12 +48,27 @@ const Success = () => {
     treasureStore
       .startTreasureHunt(authStore.user!.id)
       .then(() => navigate("/skattejagt"));
-    // navigate(`/quiz/${currentStep + 1}`);
+  };
+
+  const handleReset = async () => {
+    await treasureStore
+      .endTreasureHunt(authStore.user!.id)
+      .then(() => {
+        treasureStore.setProgress(null);
+      })
+      .then(() => navigate("/"));
   };
 
   return (
     <>
-      <Header currentPage="Opgave klaret!" onClose={() => console.log("asd")} />
+      {isQuit && (
+        <QuitMenu
+          forsæt={() => setIsquit(false)}
+          start_forfra={() => handleReset()}
+          afslut={() => navigate("/")}
+        />
+      )}
+      <Header currentPage="Opgave klaret" onClose={() => setIsquit(true)} />
       <div className="Success">
         <div className="Success_Wrapper">
           <div className="Success_Wrapper_Info">
@@ -59,10 +76,7 @@ const Success = () => {
             <p className="Success_Wrapper_Info_Paragraph">Ny puslebrik</p>
           </div>
           <div className="Success_Wrapper_ImageContainer">
-            <img
-              src={pieces[currentStep-1]}
-              alt="treasure"
-            />
+            <img src={pieces[currentStep - 1]} alt="treasure" />
           </div>
           <div className="Success_Wrapper_Flavor">
             <p className="Success_Wrapper_Flavor_Text">

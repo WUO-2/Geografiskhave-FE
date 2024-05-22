@@ -32,7 +32,12 @@ const Navbar = ({ routes }: { routes: IRoute[] }) => {
       ))}
       <button className="Navbar_Link" onClick={() => handleLogout()}>
         <div className="Navbar_Link_Icon_Container">
-          <img src={logoutIcon} alt="icon" id="LogOutIcon" className="Navbar_Link_Icon" />
+          <img
+            src={logoutIcon}
+            alt="icon"
+            id="LogOutIcon"
+            className="Navbar_Link_Icon"
+          />
         </div>
         <p className="Navbar_Link_Text">Log ud</p>
       </button>

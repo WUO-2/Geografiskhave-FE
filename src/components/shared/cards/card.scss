@@ -1,9 +1,9 @@
 @use "../../../assets/variable.scss" as v;
 
 .card {
-    background-color: white;
+    background-color: v.$white;
     border-radius: 20px;
-    padding: 10px;
+    padding: 25px;
     color: v.$brown;
     border: none;
     display: block;

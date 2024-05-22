@@ -23,19 +23,19 @@
     &_Content {
       display: flex;
       padding: 35px;
-      width: calc(100% - 70px);
-      height: calc(100% - 70px);
+      width: calc(100% - 65px);
+      height: calc(100% - 65px);
       flex: 1;
       flex-direction: column;
       gap: 10px;
       &_Title {
-        font-size: $h1;
+        font-size: $h2;
         font-weight: bold;
-        color: $black;
+        color: $brown;
         margin: 0;
       }
       &_Description {
-        color: $black;
+        color: $brown;
         font-weight: 400;
         margin: 0;
         flex: 1 0 0;

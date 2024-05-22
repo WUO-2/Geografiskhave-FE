@@ -48,7 +48,6 @@ export const findRoute = (route: string) => {
 };
 
 export const transformRoutes = (routes: IRoute[]) => {
-  console.log(routes);
   return routes.map((route: IRoute) => {
     if (route.children) {
       return {

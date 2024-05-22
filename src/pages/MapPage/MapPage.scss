@@ -5,9 +5,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: $green;
   #Leaflet {
     width: 100%;
     height: 100%;
+    z-index: 1;
   }
 }
 
@@ -19,7 +21,7 @@
   width: 32px !important;
   height: 32px !important;
   border-radius: 50%;
-  background-color: $orange;
+  background-color: $yellow;
   img {
     width: 24px;
     height: 24px;

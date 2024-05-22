@@ -12,7 +12,7 @@ import { ITask } from "../../../interfaces/ITreasureHunt";
 import { useNavigate } from "react-router-dom";
 import { Toaster, toast, useToasterStore } from "react-hot-toast";
 import { Distance } from "../../../utils/distanceUtil";
-
+import Loader from "../../../components/shared/loader/loader";
 import QuitMenu from "../../../components/quiz/quit/quitMenu";
 
 const TreasurehuntMap = () => {
@@ -58,16 +58,6 @@ const TreasurehuntMap = () => {
     if (treasureStore.currentTask?.id !== task.id) {
       return;
     }
-
-    console.log(
-      Distance(
-        task.latitude,
-        task.longitude,
-        authStore.position.lat,
-        authStore.position.lng,
-      ) > distanceThreshold,
-    );
-
     if (
       Distance(
         task.latitude,
@@ -93,24 +83,27 @@ const TreasurehuntMap = () => {
     await treasureStore
       .endTreasureHunt(authStore.user!.id)
       .then(() => {
-        treasureStore.setProgress(null)
+        treasureStore.setProgress(null);
       })
       .then(() => navigate("/"));
-  }
+  };
 
   return (
     <>
       <div className={`TreasurehuntMap TreasurehuntMap_Show`}>
-        {isQuit && <QuitMenu 
-          forsæt={() => setIsquit(false)} 
-          start_forfra={() => handleReset()}
-          afslut={() => navigate("/")}/>}
+        {isQuit && (
+          <QuitMenu
+            forsæt={() => setIsquit(false)}
+            start_forfra={() => handleReset()}
+            afslut={() => navigate("/")}
+          />
+        )}
         <Header
           currentPage="Din placering"
           onBack={() => navigate(-1)}
           onClose={() => handleClose()}
         />
-        {loading && <h1>Loading...</h1>}
+        {loading && <Loader />}
         {!loading && (
           <MapContainer
             center={[

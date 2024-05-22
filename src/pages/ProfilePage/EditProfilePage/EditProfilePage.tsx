@@ -9,6 +9,7 @@ import Input from "../../../components/shared/inputField/input";
 import Button from "../../../components/shared/buttons/button";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { set } from "firebase/database";
+import Loader from "../../../components/shared/loader/loader";
 
 const EditProfilePage = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const EditProfilePage = () => {
     }
 
     const avatar = authStore.avatars.find(
-      (avatar) => avatar.imageURL === authStore.user?.imageURL
+      (avatar) => avatar.imageURL === authStore.user?.imageURL,
     );
 
     setSelectedImage(avatar);
@@ -94,7 +95,7 @@ const EditProfilePage = () => {
           </div>
         </>
       )}
-      {!loaded && <div>Loading...</div>}
+      {!loaded && <Loader />}
     </>
   );
 };
