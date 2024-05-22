@@ -1,30 +1,6 @@
 version: "3.9"
 
 services:
-  frontend:
-    image: franno0/geografiskhave:frontend-prod
-    container_name: geografisk-frontend
-    restart: unless-stopped
-    ports:
-      - 5173:5173
-    environment:
-      - VITE_API_BASEURL=backend:5000/api/v1/
-    depends_on:
-      - backend
-
-  backend:
-    image: franno0/geografiskhave:backend-prod
-    container_name: geografisk-backend
-    restart: unless-stopped
-    ports:
-      - 5000:5000
-    environment:
-      - DATABASE_URL=postgresql://root:yp76llfhd4@db:5432/geografisk?schema=public
-    links:
-      - "db:db"
-    depends_on:
-      - db
-
   db:
     image: postgres
     container_name: geografisk_db
