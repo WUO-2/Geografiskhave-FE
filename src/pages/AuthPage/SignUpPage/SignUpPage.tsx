@@ -5,7 +5,8 @@ import { useStore } from "../../../stores/store";
 import { IUserFirebase } from "../../../interfaces/IUser";
 import Input from "../../../components/shared/inputField/input";
 import back from "../../../assets/icons/backIcon.svg";
-import hide from "../../../assets/icons/hide.png"
+import show from "../../../assets/icons/show.svg"
+import hide from "../../../assets/icons/hide.svg"
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -51,15 +52,14 @@ const SignUpPage = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <div id="Password_Holder">
-            <Input
-              type="password"
-              placeholder="Adgangskode"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <img src={hide} alt="Hide password" />
-          </div>
+          <Input
+            type="password"
+            placeholder="Adgangskode"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            iconHide={hide}
+            iconShow={show}
+          />
           
         </form>
       </div>

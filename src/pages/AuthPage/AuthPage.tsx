@@ -6,7 +6,7 @@ const AuthPage = () => {
   const navigate = useNavigate();
 
   const handleTilmeld = () => {
-    navigate("/register");
+    navigate("/tilmeld");
   };
   const handleLogin = () => {
     navigate("/login");

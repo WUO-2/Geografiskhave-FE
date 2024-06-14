@@ -80,7 +80,6 @@ function PuzzleCompletePage() {
             onClick={() => {
               handleComplete();
             }}
-            size="large"
           />
         </div>
       </div>

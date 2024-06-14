@@ -49,7 +49,7 @@ const EditProfilePage = () => {
   const handleSave = () => {
     authStore.updateUserAvatar(selectedImage);
     authStore.updateUserName(newUsername);
-    navigate("/profile");
+    navigate("/profil");
   };
 
   return (

@@ -3,7 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useStore } from "../../../stores/store";
 import { useState } from "react";
 import back from "../../../assets/icons/backIcon.svg";
-import hide from "../../../assets/icons/hide.png"
+import show from "../../../assets/icons/show.svg"
+import hide from "../../../assets/icons/hide.svg"
+import Input from "../../../components/shared/inputField/input";
 
 const SignInPage = () => {
   const navigate = useNavigate();
@@ -35,24 +37,23 @@ const SignInPage = () => {
           Velkommen tilbage! Log ind for at forsætte med dit eventyr.{" "}
         </p>
         <div className="SignIn_Container_Form">
-          <input
+          <Input
             type="text"
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <div id="Password_Holder">
-            <input
-              type="password"
-              placeholder="Adgangskode"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <img id="Hide_Icon" src={hide} alt="hide password" />
-          </div>
+          <Input
+            type="password"
+            placeholder="Adgangskode"
+            onChange={(e) => setPassword(e.target.value)}
+            iconHide={hide}
+            iconShow={show}
+          />
           
           <div className="SignIn_Container_Form_Container">
             <div className="SignIn_Container_Form_Container_RememberMe">
               <input type="checkbox" id="checkbox" />
-              <label for="checkbox">Husk mig</label>
+              {/* <label for="checkbox">Husk mig</label> */}
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@ import { IInput } from "../../../interfaces/IInput";
 import "./input.scss";
 import React, { useState } from "react";
 
-const Input = ({ type, placeholder, value, onChange, icon }: IInput) => {
+const Input = ({ type, placeholder, value, onChange, iconShow, iconHide }: IInput) => {
   const [inputType, setInputType] = useState(
     type !== undefined ? type : "text",
   );
@@ -18,11 +18,17 @@ const Input = ({ type, placeholder, value, onChange, icon }: IInput) => {
         onChange={(e) => (onChange ? onChange(e) : {})}
         value={value}
       />
-      {icon !== undefined && (
+      {iconShow !== undefined && iconHide !== undefined ? (
         <div className="input_icon_container" onClick={handleClick}>
-          <img src={icon} />
+          {inputType === "password" ? 
+          <img src={iconHide} /> :
+          <img src={iconShow} />
+          }
+          
         </div>
-      )}
+      ) : 
+      ""
+      }
     </div>
   );
 };
