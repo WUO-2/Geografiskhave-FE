@@ -86,6 +86,13 @@ const Quiz = () => {
       .then(() => navigate("/"));
   };
 
+  const handleExit = async () => {
+    if (authStore.user?.id === undefined) return;
+    await treasureStore.getCurrentTask(authStore.user.id).then(() => {
+      navigate("/");
+    });
+  };
+
   return (
     <>
       {loading && <Loader />}
@@ -96,7 +103,7 @@ const Quiz = () => {
             <QuitMenu
               forsæt={() => setIsquit(false)}
               start_forfra={() => handleReset()}
-              afslut={() => navigate("/")}
+              afslut={() => handleExit()}
             />
           )}
           <Header

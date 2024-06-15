@@ -43,6 +43,13 @@ const TreasurehuntTask = () => {
       .then(() => navigate("/"));
   };
 
+  const handleExit = async () => {
+    if (authStore.user?.id === undefined) return;
+    await treasureStore
+      .getCurrentTask(authStore.user!.id)
+      .then(() => navigate("/"));
+  };
+
   return (
     <>
       {!loading && (
@@ -51,7 +58,7 @@ const TreasurehuntTask = () => {
             <QuitMenu
               forsæt={() => setIsquit(false)}
               start_forfra={() => handleReset()}
-              afslut={() => navigate("/")}
+              afslut={() => handleExit()}
             />
           )}
           <Header
