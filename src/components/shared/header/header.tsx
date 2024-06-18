@@ -13,9 +13,13 @@ const Header = ({ currentPage, onBack, onClose }: IHeader) => {
   const handleBack = async () => {
     if (authStore.user?.id === undefined) return;
     if (onBack === undefined) return;
-    await treasureStore.getCurrentTask(authStore.user.id).then(() => {
+    try {
+      await treasureStore.getCurrentTask(authStore.user.id).then(() => {
+        onBack();
+      });
+    } catch (e) {
       onBack();
-    });
+    }
   };
 
   const handleClose = async () => {

@@ -7,7 +7,9 @@ const PoiPage = ({ showPopup, setShowPopup, selectedPoi }: IPoiPage) => {
     <div className={`selected-poi ${showPopup ? "selected-poi_active" : ""}`}>
       <Header
         currentPage={`${selectedPoi?.name}`}
-        onBack={() => setShowPopup(false)}
+        onBack={() => {
+          setShowPopup(false);
+        }}
       />
       <img
         src={selectedPoi?.imageURL}

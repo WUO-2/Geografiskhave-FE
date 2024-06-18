@@ -1,4 +1,4 @@
-import { MapContainer, Marker, TileLayer, Popup } from "react-leaflet";
+import { MapContainer, Marker, TileLayer, useMapEvent } from "react-leaflet";
 import "./MapPage.scss";
 import "../../../node_modules/leaflet/dist/leaflet.css";
 import { useEffect, useState } from "react";
@@ -11,9 +11,17 @@ import { transformIcon } from "../../utils/IconUtil";
 import t from "../../assets/icons/map.svg";
 import Header from "../../components/shared/header/header";
 import Loader from "../../components/shared/loader/loader";
+import { ERole } from "../../interfaces/IUser";
+
+const MapEvents = () => {
+  useMapEvent("click", (e) => {
+    console.log(e.latlng);
+  });
+  return false;
+};
 
 const MapPage = () => {
-  const { mapStore } = useStore();
+  const { mapStore, authStore } = useStore();
   const [selectedPoi, setSelectedPoi] = useState<IPoi | null>(null);
   const [showPopup, setShowPopup] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -48,6 +56,11 @@ const MapPage = () => {
         {!loading && (
           <>
             <Header currentPage="Find vej" />
+            {authStore.user?.role === ERole.ADMIN && (
+              <p className="admin-text">
+                Hold shift og klik for at tilføje en ny POI
+              </p>
+            )}
             <MapContainer
               center={[mapStore.Pois[0].latitude, mapStore.Pois[0].longitude]}
               zoom={17}
@@ -68,6 +81,7 @@ const MapPage = () => {
                 ></Marker>
               ))}
               <Location />
+              <MapEvents />
             </MapContainer>
           </>
         )}

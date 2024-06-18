@@ -15,6 +15,12 @@ export interface IUser {
   imageURL: string;
   treasureHuntStatus: EUserTreasureHuntStatus;
   badges: IBadges[];
+  role: ERole;
+}
+
+export enum ERole {
+  USER = "USER",
+  ADMIN = "ADMIN",
 }
 
 export interface IBadges {

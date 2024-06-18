@@ -11,6 +11,7 @@ export const getUser = async (id: string) => {
   return http
     .get("auth/user", { headers: { requesterid: id } })
     .then((response) => {
+      console.log(response);
       return response.data;
     });
 };
@@ -32,7 +33,7 @@ export const getAvatars = async () => {
   return http.get("auth/avatars").then((response) => {
     return response.data;
   });
-}
+};
 
 export const updateAvatar = async (id: string, imageURL: string) => {
   return http
@@ -40,7 +41,7 @@ export const updateAvatar = async (id: string, imageURL: string) => {
     .then((response) => {
       return response.data;
     });
-}
+};
 
 export const assignAchievement = async (id: string, achievementId: number) => {
   return http
