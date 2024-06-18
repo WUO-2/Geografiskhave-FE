@@ -1,4 +1,5 @@
 import html from "../http-common";
+import httpForm from "../http-form";
 
 export const getPois = async () => {
   const response = await html.get("/map/pois");
@@ -11,6 +12,6 @@ export const getIcons = async () => {
 };
 
 export const createPoi = async (poi: any) => {
-  const response = await html.post("/map/poi", poi);
+  const response = await httpForm.post("/map/poi", poi);
   return response.data;
 };
