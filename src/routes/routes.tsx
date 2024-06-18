@@ -21,6 +21,7 @@ import TreasureHuntMap from "../pages/TreasureHuntPage/TreasurehuntMap/Treasureh
 import EditProfilePage from "../pages/ProfilePage/EditProfilePage/EditProfilePage.tsx";
 import PayPage from "../pages/PayPage/PayPage.tsx";
 import Quiz from "../components/quiz/quiz.tsx";
+import Onboarding from "../pages/AuthPage/SignUpPage/Onboarding/Onboarding.tsx";
 
 export const Routes: IRoute[] = [
   {
@@ -122,6 +123,13 @@ export const Routes: IRoute[] = [
         path: "/tilmeld",
         title: "Register",
         component: <SignUpPage />,
+        routeType: RouteType.AUTH,
+        hasNavbar: false,
+      },
+      {
+        path: "/onboarding",
+        title: "Onboarding",
+        component: <Onboarding />,
         routeType: RouteType.AUTH,
         hasNavbar: false,
       },

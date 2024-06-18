@@ -1,0 +1,72 @@
+@import "../../../../assets/variable.scss";
+
+.OnboardingPage {
+  display: flex;
+  flex-direction: column;
+
+  &_ContentContainer_Header {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &_ImageContainer {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+
+  .backButton {
+    position: absolute;
+    top: 77px;
+    left: 35px;
+    color: #fff;
+    background-color: $green;
+    border: none;
+    border-radius: 50%;
+    margin: 0;
+    width: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scaleX(-1);
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+    height: 36px;
+    img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+      filter: invert(1);
+    }
+  }
+
+
+  .skipButton {
+    position: absolute;
+    top: 77px; 
+    right: 35px; 
+    color: #fff;
+    background-color: $orange; 
+    border: none;
+    border-radius: 40px;
+    margin: 0;
+    width: 117px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+
+}
