@@ -22,6 +22,8 @@ import EditProfilePage from "../pages/ProfilePage/EditProfilePage/EditProfilePag
 import PayPage from "../pages/PayPage/PayPage.tsx";
 import Quiz from "../components/quiz/quiz.tsx";
 
+import ForgotPasswordPage from "../pages/AuthPage/ForgotPasswordPage/ForgetPasswordPage.tsx"
+
 export const Routes: IRoute[] = [
   {
     path: "/",
@@ -119,9 +121,16 @@ export const Routes: IRoute[] = [
         hasNavbar: false,
       },
       {
-        path: "/tilmeld",
+        path: "/register",
         title: "Register",
         component: <SignUpPage />,
+        routeType: RouteType.AUTH,
+        hasNavbar: false,
+      },
+      {
+        path: "/forgot",
+        title: "Forgot Password",
+        component: <ForgotPasswordPage />,
         routeType: RouteType.AUTH,
         hasNavbar: false,
       },

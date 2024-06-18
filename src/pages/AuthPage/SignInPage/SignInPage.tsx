@@ -53,8 +53,14 @@ const SignInPage = () => {
           <div className="SignIn_Container_Form_Container">
             <div className="SignIn_Container_Form_Container_RememberMe">
               <input type="checkbox" id="checkbox" />
-              {/* <label for="checkbox">Husk mig</label> */}
+              { <label for="checkbox">Husk mig</label> }
             </div>
+            <div className="SignIn_Container_Form_Container_Forgot">
+              <Link to="/forgot" className="bold">
+                Glemt password?
+              </Link>
+            </div>
+            
           </div>
         </div>
       </div>

@@ -101,10 +101,13 @@
           }
         }
         &_Forgot {
-          color: $orange;
-          font-size: 14px;
-          cursor: pointer;
-          text-decoration: underline;
+          a {
+            color: $orange;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: underline;
+          }
+          
         }
       }
     }
@@ -148,18 +151,6 @@
         text-decoration: underline;
         font-weight: 600;
       }
-    }
-  }
-
-  #Password_Holder {
-    display: flex;
-    align-items: center;
-    img {
-      width: 20px;
-      position: relative;
-      margin-left: -20px;
-      right: 20px;
-      pointer-events: none;
     }
   }
 
