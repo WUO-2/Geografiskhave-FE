@@ -21,6 +21,7 @@ import TreasureHuntMap from "../pages/TreasureHuntPage/TreasurehuntMap/Treasureh
 import EditProfilePage from "../pages/ProfilePage/EditProfilePage/EditProfilePage.tsx";
 import PayPage from "../pages/PayPage/PayPage.tsx";
 import Quiz from "../components/quiz/quiz.tsx";
+import CreatePoi from "../pages/MapPage/createPoi/CreatePoi.tsx";
 
 export const Routes: IRoute[] = [
   {
@@ -44,6 +45,13 @@ export const Routes: IRoute[] = [
         component: <MapPage />,
         routeType: RouteType.NAVBAR,
         hasNavbar: true,
+      },
+      {
+        path: "/kort/add",
+        title: "Tilføj POI",
+        component: <CreatePoi />,
+        routeType: RouteType.INTERNAL,
+        hasNavbar: false,
       },
       {
         path: "/skattejagt",

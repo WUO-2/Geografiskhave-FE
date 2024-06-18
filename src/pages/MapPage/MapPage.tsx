@@ -12,6 +12,8 @@ import t from "../../assets/icons/map.svg";
 import Header from "../../components/shared/header/header";
 import Loader from "../../components/shared/loader/loader";
 import { ERole } from "../../interfaces/IUser";
+import Button from "../../components/shared/buttons/button";
+import { useNavigate } from "react-router-dom";
 
 const MapEvents = () => {
   useMapEvent("click", (e) => {
@@ -25,6 +27,8 @@ const MapPage = () => {
   const [selectedPoi, setSelectedPoi] = useState<IPoi | null>(null);
   const [showPopup, setShowPopup] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (mapStore.Pois.length === 0) {
@@ -57,9 +61,14 @@ const MapPage = () => {
           <>
             <Header currentPage="Find vej" />
             {authStore.user?.role === ERole.ADMIN && (
-              <p className="admin-text">
-                Hold shift og klik for at tilføje en ny POI
-              </p>
+              <div className="Map_AddPoi">
+                <Button
+                  text="Tilføj POI"
+                  color="orange"
+                  size="small"
+                  onClick={() => navigate("/kort/add")}
+                />
+              </div>
             )}
             <MapContainer
               center={[mapStore.Pois[0].latitude, mapStore.Pois[0].longitude]}

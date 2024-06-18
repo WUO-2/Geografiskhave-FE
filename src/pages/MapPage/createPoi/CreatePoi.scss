@@ -1,0 +1,23 @@
+@import "../../../assets/variable.scss";
+.CreatePoi {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $green;
+  #Leaflet {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  &_ButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 15px;
+    width: calc(100% - 30px);
+    z-index: 2;
+  }
+}
