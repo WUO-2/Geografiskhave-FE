@@ -8,7 +8,7 @@
   background-color: $green;
 
   .header {
-    width: 100%;
+    width: calc(100% - 30px);
   }
 
   #Leaflet {
@@ -63,7 +63,7 @@
     flex: 1 0 0;
     flex-direction: column;
     width: calc(100%);
-    height: calc(100%);
+    height: calc(100% - 30px);
     overflow-y: auto;
     overflow-x: hidden;
     background-color: $lightGreen;
@@ -72,6 +72,17 @@
     align-items: center;
     &_ImageContainer {
       position: relative;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      &_text {
+        margin: 0;
+        padding: 15px;
+        width: calc(100% - 30px);
+        text-align: center;
+        color: $brown;
+      }
+
       .fileInput {
         position: absolute;
         top: 0;
@@ -87,36 +98,51 @@
         width: 100%;
         height: 300px;
         object-fit: cover;
+        background-color: $grey;
       }
     }
-    &_input_Name {
-      width: calc(100% - 30px);
-      height: 30px;
-      padding: 5px;
-      font-size: $regular;
-      border: none;
-      border-bottom: 1px solid $brown;
-      background-color: $lightGreen;
-      color: $brown;
-      padding: 15px 0;
-
-      &::placeholder {
-        color: $grey;
-      }
-    }
-    &_input_Description {
-      width: calc(100% - 30px);
-      height: calc(100% - 30px);
+    &_input {
+      flex: 1 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
       padding: 15px;
-      flex: 1;
-      padding: 5px;
-      font-size: $regular;
-      border: none;
-      border-bottom: 1px solid $brown;
-      background-color: $lightGreen;
-      color: $brown;
-      &::placeholder {
-        color: $grey;
+      width: calc(100% - 30px);
+      &_Name {
+        padding: 15px;
+        width: calc(100% - 30px);
+        border-radius: 40px;
+        background-color: #fff;
+        color: $brown;
+        border: none;
+        outline: none;
+        &:focus {
+          outline: none;
+          border: none;
+        }
+
+        &::placeholder {
+          color: $grey;
+        }
+      }
+      &_Description {
+        width: calc(100% - 30px);
+        height: calc(100% - 30px);
+        padding: 15px;
+        flex: 1;
+        border-radius: 20px;
+        background-color: #fff;
+        color: $brown;
+        border: none;
+        outline: none;
+        &:focus {
+          outline: none;
+          border: none;
+        }
+
+        &::placeholder {
+          color: $grey;
+        }
       }
     }
   }

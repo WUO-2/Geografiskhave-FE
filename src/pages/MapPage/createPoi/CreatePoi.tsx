@@ -11,6 +11,7 @@ import Button from "../../../components/shared/buttons/button";
 import { ERole } from "../../../interfaces/IUser";
 import Loader from "../../../components/shared/loader/loader.tsx";
 import toast, { Toaster } from "react-hot-toast";
+import placeholder from "../../../assets/images/upload_image.webp";
 
 const MapEvents = ({ handleClick }: { handleClick: (e: any) => void }) => {
   useMapEvent("click", (e) => {
@@ -159,8 +160,11 @@ const CreatePoi = () => {
               <Header currentPage="Opret Poi" onBack={() => setStep(1)} />
               <div className="CreatePoi_Form">
                 <div className="CreatePoi_Form_ImageContainer">
+                  <p className="CreatePoi_Form_ImageContainer_text">
+                    Klik på billedet for at ændre
+                  </p>
                   <img
-                    src={` ${imagePreview !== undefined ? imagePreview : "https://placehold.jp/768x300.png"}`}
+                    src={` ${imagePreview !== undefined ? imagePreview : placeholder}`}
                     alt="placeholder"
                     className="CreatePoi_Form_ImageContainer_image"
                   />
@@ -171,23 +175,25 @@ const CreatePoi = () => {
                     accept=".png, .jpg, jpeg"
                   />
                 </div>
-                <input
-                  className="CreatePoi_Form_input_Name"
-                  type="text"
-                  placeholder="Navn"
-                  onChange={(e) => setName(e.target.value)}
-                />
-                <textarea
-                  className="CreatePoi_Form_input_Description"
-                  placeholder="Beskrivelse"
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-                <Button
-                  text="Opret Point Of Interest"
-                  onClick={handleCreatePoi}
-                  size="large"
-                  color="green"
-                />
+                <div className="CreatePoi_Form_input">
+                  <input
+                    className="CreatePoi_Form_input_Name"
+                    type="text"
+                    placeholder="Navn"
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  <textarea
+                    className="CreatePoi_Form_input_Description"
+                    placeholder="Beskrivelse"
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                  <Button
+                    text="Opret Point Of Interest"
+                    onClick={handleCreatePoi}
+                    size="large"
+                    color="green"
+                  />
+                </div>
               </div>
             </>
           )}

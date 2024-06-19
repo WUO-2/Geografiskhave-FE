@@ -108,12 +108,15 @@ const UpdatePoi = () => {
     <div className="UpdatePoi">
       <>
         <Header currentPage="Opdater Poi" onBack={() => navigate("/kort")} />
-        <div className="CreatePoi_Form">
-          <div className="CreatePoi_Form_ImageContainer">
+        <div className="UpdatePoi_Form">
+          <div className="UpdatePoi_Form_ImageContainer">
+            <p className="UpdatePoi_Form_ImageContainer_text">
+              Klik på billedet for at ændre
+            </p>
             <img
               src={` ${imagePreview !== undefined ? imagePreview : mapStore.selectedPoi !== null ? mapStore.selectedPoi!.imageURL : ""}`}
               alt="placeholder"
-              className="CreatePoi_Form_ImageContainer_image"
+              className="UpdatePoi_Form_ImageContainer_image"
             />
             <input
               className="fileInput"
@@ -122,25 +125,27 @@ const UpdatePoi = () => {
               accept=".png, .jpg, jpeg"
             />
           </div>
-          <input
-            className="CreatePoi_Form_input_Name"
-            type="text"
-            placeholder="Navn"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-          />
-          <textarea
-            className="CreatePoi_Form_input_Description"
-            placeholder="Beskrivelse"
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
-          />
-          <Button
-            text="Opret Point Of Interest"
-            onClick={() => handleUpdatePoi()}
-            size="large"
-            color="green"
-          />
+          <div className="UpdatePoi_Form_input">
+            <input
+              className="UpdatePoi_Form_input_Name"
+              type="text"
+              placeholder="Navn"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+            />
+            <textarea
+              className="UpdatePoi_Form_input_Description"
+              placeholder="Beskrivelse"
+              onChange={(e) => setDescription(e.target.value)}
+              value={description}
+            />
+            <Button
+              text="Opret Point Of Interest"
+              onClick={() => handleUpdatePoi()}
+              size="large"
+              color="green"
+            />
+          </div>
         </div>
       </>
     </div>
