@@ -16,6 +16,9 @@ const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [emailWrong, setEmailWrong] = useState<Boolean>(true)
+  const [passwordWrong, setPasswordWrong] = useState<Boolean>(true)
+
 
   const handleGoBack = () => {
     navigate("/auth");
@@ -30,6 +33,14 @@ const SignUpPage = () => {
 
     authStore.registerUser(user);
   };
+
+  const checkEmail = (email : string) => {
+    setEmailWrong(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+  }
+
+  const checkPassword = (password : string) => {
+    setPasswordWrong(password.length > 7)
+  }
 
   return (
     <div className="SignUp">
@@ -53,14 +64,18 @@ const SignUpPage = () => {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            onBlur={(e) => checkEmail(e.target.value)}
+            isWrong={!emailWrong}
           />
           <Input
             type="password"
             placeholder="Adgangskode"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            onBlur={(e) => checkPassword(e.target.value)}
             iconHide={hide}
             iconShow={show}
+            isWrong={!passwordWrong}
           />
           
         </form>

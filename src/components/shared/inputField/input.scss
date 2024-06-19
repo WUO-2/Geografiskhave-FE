@@ -10,6 +10,7 @@
   border-radius: 40px;
   gap: 10px;
   align-items: center;
+  border: solid 3px transparent;
 
   input {
     display: flex;
@@ -44,4 +45,8 @@
       filter: v.$greenFilter;
     }
   }
+}
+
+.wrong {
+  border: solid 3px red;
 }

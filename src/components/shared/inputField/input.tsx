@@ -2,20 +2,21 @@ import { IInput } from "../../../interfaces/IInput";
 import "./input.scss";
 import React, { useState } from "react";
 
-const Input = ({ type, placeholder, value, onChange, iconShow, iconHide }: IInput) => {
+const Input = ({ type, placeholder, value, onChange, onBlur,isWrong, iconShow, iconHide }: IInput) => {
   const [inputType, setInputType] = useState(
     type !== undefined ? type : "text",
   );
   const handleClick = () => {
     setInputType(inputType === "password" ? "text" : "password");
   };
-
+  
   return (
-    <div className="input_container">
+    <div className={`input_container ${isWrong? "wrong" : ""}`}>
       <input
         type={inputType}
         placeholder={placeholder}
         onChange={(e) => (onChange ? onChange(e) : {})}
+        onBlur={(e) => onBlur ? onBlur(e) : {}}
         value={value}
       />
       {iconShow !== undefined && iconHide !== undefined ? (
