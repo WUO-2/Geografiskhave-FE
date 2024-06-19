@@ -9,8 +9,11 @@ import FAQ from "../../assets/icons/FAQ.svg";
 import Event from "../../assets/icons/event.svg";
 import Button from "../../components/shared/buttons/button";
 import Header from "../../components/shared/header/header";
+import { getAuth } from "firebase/auth";
 
 const HomePage = () => {
+  const auth = getAuth()
+  console.log(auth.currentUser?.emailVerified);
   return (
     <>
       <Header currentPage="Hjem" />
