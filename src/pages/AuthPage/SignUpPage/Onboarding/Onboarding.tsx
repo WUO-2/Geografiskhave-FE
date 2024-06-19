@@ -53,7 +53,7 @@ const Onboarding = () => {
             className="OnboardingPage_ImageContainer"
           />
           <div className="TextContainer">
-            <h1>1.Brugerprofil</h1>
+            <h1>Brugerprofil</h1>
             <p>
               På din profil kan du se dine optjente Eventyrmønter, indløse
               præmier og se dine badges.
@@ -70,7 +70,7 @@ const Onboarding = () => {
             className="OnboardingPage_ImageContainer"
           />
           <div className="TextContainer">
-            <h1>2Mønter & præmier</h1>
+            <h1>Mønter & præmier</h1>
             <p>
               Optjen Eventyrmønter ved at løse opgaver i appen og gennemføre
               vores skattejagt. Mønterne kan du indløse til fede præmier på din
@@ -88,7 +88,7 @@ const Onboarding = () => {
             className="OnboardingPage_ImageContainer"
           />
           <div className="TextContainer">
-            <h1>3Kort over haven</h1>
+            <h1>Kort over haven</h1>
             <p>
               Hold styr på, hvor du befinder dig, og hvor de næste ting du vil
               udforske er, med det interaktive kort i ‘Find vej’.
@@ -105,7 +105,7 @@ const Onboarding = () => {
             className="OnboardingPage_ImageContainer"
           />
           <div className="TextContainer">
-            <h1>4Skattejagt</h1>
+            <h1>Skattejagt</h1>
             <p>
               Tag på en skattejagt gennem haven og bliv klogere på Geografisk
               Have. Løs opgaver, saml puslebrikker og optjen Eventyrmønter og
@@ -117,7 +117,9 @@ const Onboarding = () => {
    
       <div className="OnboardingPage_ContentContainer_Footer">
         <div className="leftContent">
-          <div className="topDiv">03/04</div>
+          <div className="topDiv">
+            <div className="stepNumber">0{currentStep}/04</div>
+          </div>
           <div className="bottomDiv">
             <div
               className={`progress ${currentStep === 1 ? "selected" : ""}`}
