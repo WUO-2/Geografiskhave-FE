@@ -5,7 +5,7 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Navbar from "./components/shared/navbar/navbar";
 import { routeHasGuard, routeHasNavbar } from "./utils/RouteUtil";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, sendEmailVerification } from "firebase/auth";
 import { useStore } from "./stores/store";
 import NewAchievement from "./components/newAchievement/newAchievement";
 
@@ -24,10 +24,24 @@ const App = () => {
         location.pathname === "/login" ||
         location.pathname === "/register"
       ) {
-        navigate("/");
+        if(auth.currentUser?.emailVerified) {
+          navigate("/");
+        } else {
+          navigate("/verification")
+        }
+        
       }
       if (authStore.userFirebase === null) {
         authStore.setUserFirebase(user);
+        
+        if(!auth.currentUser?.emailVerified){
+          sendEmailVerification(auth.currentUser!, {url: "http://localhost:5173/"})
+            .then(() => {
+              console.log("email send");
+            }).catch((error) => {
+              console.log(error);
+            });
+        };
       }
       if (authStore.user === null) {
         await authStore.getUser(user.uid);

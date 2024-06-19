@@ -12,8 +12,9 @@ import Header from "../../components/shared/header/header";
 import { getAuth } from "firebase/auth";
 
 const HomePage = () => {
-  const auth = getAuth()
-  console.log(auth.currentUser?.emailVerified);
+  const auth = getAuth();
+  console.log(auth.currentUser?.emailVerified + " verified");
+
   return (
     <>
       <Header currentPage="Hjem" />

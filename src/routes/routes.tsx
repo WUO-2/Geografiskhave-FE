@@ -23,6 +23,7 @@ import PayPage from "../pages/PayPage/PayPage.tsx";
 import Quiz from "../components/quiz/quiz.tsx";
 
 import ForgotPasswordPage from "../pages/AuthPage/ForgotPasswordPage/ForgetPasswordPage.tsx"
+import VerificationPage from "../pages/AuthPage/VerificationPage/VerificationPage.tsx"
 
 export const Routes: IRoute[] = [
   {
@@ -131,6 +132,13 @@ export const Routes: IRoute[] = [
         path: "/forgot",
         title: "Forgot Password",
         component: <ForgotPasswordPage />,
+        routeType: RouteType.AUTH,
+        hasNavbar: false,
+      },
+      {
+        path: "/verification",
+        title: "Verification",
+        component: <VerificationPage />,
         routeType: RouteType.AUTH,
         hasNavbar: false,
       },

@@ -1,0 +1,21 @@
+@import "../../../assets/variable.scss";
+
+.Verification{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex: 1;
+    padding: 35px;
+
+    &_Secondary {
+        font-size: 14px;
+        b {
+            color: $orange;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        
+    }
+}

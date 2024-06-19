@@ -8,12 +8,14 @@ import back from "../../../assets/icons/backIcon.svg";
 import show from "../../../assets/icons/show.svg"
 import hide from "../../../assets/icons/hide.svg"
 
+
 const SignUpPage = () => {
   const navigate = useNavigate();
   const { authStore } = useStore();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
 
   const handleGoBack = () => {
     navigate("/auth");
