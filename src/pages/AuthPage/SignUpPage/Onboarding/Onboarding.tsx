@@ -1,7 +1,7 @@
 import "./Onboarding.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import back from "../../../../backIcon.svg";
+import Button from "../../../../components/shared/buttons/button";
 
 const Onboarding = () => {
   // State to track the current step
@@ -33,12 +33,16 @@ const Onboarding = () => {
           <img src="src\assets\icons\backIcon.svg" alt="Back" />
         </button>
 
-        <button
-          className={`skipButton ${currentStep === 4 ? "hidden" : ""}`}
-          onClick={navigateToHome}
+        <div
+          className={`skipButton_wrapper ${currentStep === 4 ? "hidden" : ""}`}
         >
-          Spring over
-        </button>
+          <Button
+            onClick={navigateToHome}
+            text="Spring over"
+            size="small"
+            color="orange"
+          />
+        </div>
       </div>
 
       {currentStep === 1 && (
@@ -48,11 +52,13 @@ const Onboarding = () => {
             alt="Brugerprofil"
             className="OnboardingPage_ImageContainer"
           />
-          <h1>1.Brugerprofil</h1>
-          <p>
-            På din profil kan du se dine optjente Eventyrmønter, indløse præmier
-            og se dine badges.
-          </p>
+          <div className="TextContainer">
+            <h1>1.Brugerprofil</h1>
+            <p>
+              På din profil kan du se dine optjente Eventyrmønter, indløse
+              præmier og se dine badges.
+            </p>
+          </div>
         </div>
       )}
 
@@ -63,12 +69,14 @@ const Onboarding = () => {
             alt="Brugerprofil"
             className="OnboardingPage_ImageContainer"
           />
-          <h1>2Mønter & præmier</h1>
-          <p>
-            Optjen Eventyrmønter ved at løse opgaver i appen og gennemføre vores
-            skattejagt. Mønterne kan du indløse til fede præmier på din profil.
-          </p>
-          <div className="OnboardingPage_ContentContainer_Footer"></div>
+          <div className="TextContainer">
+            <h1>2Mønter & præmier</h1>
+            <p>
+              Optjen Eventyrmønter ved at løse opgaver i appen og gennemføre
+              vores skattejagt. Mønterne kan du indløse til fede præmier på din
+              profil.
+            </p>
+          </div>
         </div>
       )}
 
@@ -79,12 +87,13 @@ const Onboarding = () => {
             alt="Brugerprofil"
             className="OnboardingPage_ImageContainer"
           />
-          <h1>3Kort over haven</h1>
-          <p>
-            Hold styr på, hvor du befinder dig, og hvor de næste ting du vil
-            udforske er, med det interaktive kort i ‘Find vej’.
-          </p>
-          <div className="OnboardingPage_ContentContainer_Footer"></div>
+          <div className="TextContainer">
+            <h1>3Kort over haven</h1>
+            <p>
+              Hold styr på, hvor du befinder dig, og hvor de næste ting du vil
+              udforske er, med det interaktive kort i ‘Find vej’.
+            </p>
+          </div>
         </div>
       )}
 
@@ -95,23 +104,46 @@ const Onboarding = () => {
             alt="Brugerprofil"
             className="OnboardingPage_ImageContainer"
           />
-          <h1>4Skattejagt</h1>
-          <p>
-            Tag på en skattejagt gennem haven og bliv klogere på Geografisk
-            Have. Løs opgaver, saml puslebrikker og optjen Eventyrmønter og fede
-            præmier.
-          </p>
-          <div className="OnboardingPage_ContentContainer_Footer"></div>
+          <div className="TextContainer">
+            <h1>4Skattejagt</h1>
+            <p>
+              Tag på en skattejagt gennem haven og bliv klogere på Geografisk
+              Have. Løs opgaver, saml puslebrikker og optjen Eventyrmønter og
+              fede præmier.
+            </p>
+          </div>
         </div>
       )}
-      {currentStep !== 4 && (
-        <button
-          onClick={nextStep}
-          className={currentStep === 4 ? "nextButton" : ""}
-        >
-          Næste
-        </button>
-      )}
+   
+      <div className="OnboardingPage_ContentContainer_Footer">
+        <div className="leftContent">
+          <div className="topDiv">03/04</div>
+          <div className="bottomDiv">
+            <div
+              className={`progress ${currentStep === 1 ? "selected" : ""}`}
+            ></div>
+            <div
+              className={`progress ${currentStep === 2 ? "selected" : ""}`}
+            ></div>
+            <div
+              className={`progress ${currentStep === 3 ? "selected" : ""}`}
+            ></div>
+            <div
+              className={`progress ${currentStep === 4 ? "selected" : ""}`}
+            ></div>
+          </div>
+        </div>
+        {currentStep !== 4 && (
+          <div className="wrapper_Button">
+            <Button onClick={nextStep} text="Næste" size="large" />
+          </div>
+        )}
+        {currentStep == 4 && (
+          <div className="wrapper_Button">
+            <Button text="Kom i gang" onClick={navigateToHome} size="large" />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
