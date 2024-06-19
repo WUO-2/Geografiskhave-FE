@@ -109,7 +109,10 @@ const CreatePoi = () => {
           <Toaster />
           {step === 1 && (
             <>
-              <Header currentPage="Opret Poi" onBack={() => navigate(-1)} />
+              <Header
+                currentPage="Opret Point of Interest"
+                onBack={() => navigate(-1)}
+              />
               <div className="CreatePoi_IconContainer">
                 {mapStore.Icons.map((icon: string) => (
                   <div
@@ -157,7 +160,10 @@ const CreatePoi = () => {
           )}
           {step === 2 && (
             <>
-              <Header currentPage="Opret Poi" onBack={() => setStep(1)} />
+              <Header
+                currentPage="Opret Point of Interest"
+                onBack={() => setStep(1)}
+              />
               <div className="CreatePoi_Form">
                 <div className="CreatePoi_Form_ImageContainer">
                   <p className="CreatePoi_Form_ImageContainer_text">

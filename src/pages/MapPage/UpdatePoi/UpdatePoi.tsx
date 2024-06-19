@@ -5,7 +5,7 @@ import Button from "../../../components/shared/buttons/button";
 import "./UpdatePoi.scss";
 import { useStore } from "../../../stores/store";
 import Loader from "../../../components/shared/loader/loader";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { IPoiPage } from "../../../interfaces/IPages";
 import { IPoi } from "../../../interfaces/IPois";
 
@@ -107,7 +107,11 @@ const UpdatePoi = () => {
   return (
     <div className="UpdatePoi">
       <>
-        <Header currentPage="Opdater Poi" onBack={() => navigate("/kort")} />
+        <Toaster />
+        <Header
+          currentPage="Opdater Point of Interest"
+          onBack={() => navigate("/kort")}
+        />
         <div className="UpdatePoi_Form">
           <div className="UpdatePoi_Form_ImageContainer">
             <p className="UpdatePoi_Form_ImageContainer_text">
@@ -140,7 +144,7 @@ const UpdatePoi = () => {
               value={description}
             />
             <Button
-              text="Opret Point Of Interest"
+              text="Opdater Point Of Interest"
               onClick={() => handleUpdatePoi()}
               size="large"
               color="green"

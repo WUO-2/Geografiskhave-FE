@@ -64,7 +64,7 @@ const MapPage = () => {
             {authStore.user?.role === ERole.ADMIN && (
               <div className="Map_AddPoi">
                 <Button
-                  text="Tilføj POI"
+                  text="Tilføj Point of Interest"
                   color="orange"
                   size="small"
                   onClick={() => navigate("/kort/add")}
