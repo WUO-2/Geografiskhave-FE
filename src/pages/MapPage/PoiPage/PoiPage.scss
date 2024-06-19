@@ -13,6 +13,17 @@
     height: 300px;
     object-fit: cover;
   }
+
+  &-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    width: calc(100% - 30px);
+    background: $green;
+  }
+
   &-wrapper {
     padding: 35px;
     width: calc(100% - 70px);

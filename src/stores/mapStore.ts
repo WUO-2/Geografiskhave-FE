@@ -1,10 +1,21 @@
 import { action, makeAutoObservable, observable } from "mobx";
 import { IPoi } from "../interfaces/IPois";
-import { createPoi, getIcons, getPois } from "../services/mapService";
+import {
+  createPoi,
+  deletePoi,
+  getIcons,
+  getPois,
+  updatePoi,
+} from "../services/mapService";
 
 export class MapStore {
   @observable Pois: IPoi[] = [];
   @observable Icons: any[] = [];
+  @observable selectedPoi: IPoi | null = null;
+
+  @action setSelectedPoi(poi: IPoi) {
+    this.selectedPoi = poi;
+  }
 
   @action setPois(pois: IPoi[]) {
     this.Pois = pois;
@@ -31,6 +42,22 @@ export class MapStore {
   createPoi = async (poi: any) => {
     await createPoi(poi).then((data) => {
       this.setPois([...this.Pois, data]);
+    });
+  };
+
+  @action
+  deletePoi = async (id: number, userId: string) => {
+    await deletePoi(id, userId).then(() => {
+      this.setPois(this.Pois.filter((poi) => poi.id !== id));
+    });
+  };
+
+  @action
+  updatePoi = async (id: number, poi: any) => {
+    await updatePoi(id, poi).then((p) => {
+      this.setPois(
+        this.Pois.map((poi) => (poi.id === id ? { ...poi, ...p } : poi)),
+      );
     });
   };
 

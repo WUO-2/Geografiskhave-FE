@@ -22,6 +22,7 @@ import EditProfilePage from "../pages/ProfilePage/EditProfilePage/EditProfilePag
 import PayPage from "../pages/PayPage/PayPage.tsx";
 import Quiz from "../components/quiz/quiz.tsx";
 import CreatePoi from "../pages/MapPage/createPoi/CreatePoi.tsx";
+import UpdatePoi from "../pages/MapPage/UpdatePoi/UpdatePoi.tsx";
 
 export const Routes: IRoute[] = [
   {
@@ -50,6 +51,13 @@ export const Routes: IRoute[] = [
         path: "/kort/add",
         title: "Tilføj POI",
         component: <CreatePoi />,
+        routeType: RouteType.INTERNAL,
+        hasNavbar: false,
+      },
+      {
+        path: "kort/update",
+        title: "Opdater POI",
+        component: <UpdatePoi />,
         routeType: RouteType.INTERNAL,
         hasNavbar: false,
       },

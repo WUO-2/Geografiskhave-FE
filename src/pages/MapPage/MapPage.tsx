@@ -50,6 +50,7 @@ const MapPage = () => {
 
   const handleMarkerClick = (poi: IPoi) => {
     setSelectedPoi(poi);
+    mapStore.setSelectedPoi(poi);
     setShowPopup(true);
   };
 
