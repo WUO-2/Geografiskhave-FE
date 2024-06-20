@@ -30,24 +30,32 @@ const SignUpPage = () => {
   };
 
   const handleSignUp = () => {
-    if(nameCorrect && emailCorrect && passwordCorrect) {
-      const user: IUserFirebase = {
-        name: name,
-        email: email,
-        password: password,
+    if (name != "" && email != "" && password != "") {
+      if(nameCorrect && emailCorrect && passwordCorrect) {
+        const user: IUserFirebase = {
+          name: name,
+          email: email,
+          password: password,
+        };
+  
+        authStore.registerUser(user);
+      } else {
+        toast.error("Alle felter skal udfyldes korrekt", { duration: 2000 });
       };
-
-      authStore.registerUser(user);
     } else {
-      toast.error("alle felter skal udfyldes korrekt", { duration: 2000 });
+      setNameCorrect(false);
+      setEmailCorrect(false);
+      setPasswordCorrect(false);
+      toast.error("Alle felter skal være udfyldt", { duration: 2000 });
     };
+    
   };
 
   const checkName = () => {
     let bool = name.length > 2;
     setNameCorrect(bool);
     if(!bool) {
-      toast.error("dit navn skal være 3 tegn eller længere", { duration: 2000 });
+      toast.error("Dit navn skal være 3 tegn eller længere", { duration: 2000 });
     };
   };
 
@@ -55,7 +63,7 @@ const SignUpPage = () => {
     let bool = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     setEmailCorrect(bool);
     if(!bool) {
-      toast.error("emailen skal være valid", { duration: 2000 });
+      toast.error("Emailen skal være valid", { duration: 2000 });
     };
   };
 
@@ -63,7 +71,7 @@ const SignUpPage = () => {
     let bool = password.length > 7;
     setPasswordCorrect(bool);
     if(!bool) {
-      toast.error("din adgangskode skal være 8 tegn eller længere", { duration: 2000 });
+      toast.error("Din adgangskode skal være 8 tegn eller længere", { duration: 2000 });
     };
   };
 
