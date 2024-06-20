@@ -9,7 +9,14 @@ import {
 } from "firebase/auth";
 import { LatLngLiteral } from "leaflet";
 import { initializeApp } from "firebase/app";
-import { registerUser, getCoins, getUser, getAvatars, updateAvatar } from "../services/authService";
+import {
+  registerUser,
+  getSeasonPass,
+  getCoins,
+  getUser,
+  getAvatars,
+  updateAvatar,
+} from "../services/authService";
 const firebaseConfig = {
   apiKey: "AIzaSyB5k3ues-VyvT8rxUwuWHyFwospSFIKgCc",
   authDomain: "geografiskhave-wuo2.firebaseapp.com",
@@ -30,6 +37,7 @@ export class AuthStore {
   @observable avatars: any[] = [];
   @observable selectedItem: any | null = null;
   @observable newAchievement: IBadge | null = null;
+  @observable seasonPass: any | null = null;
 
   @action setPosition(position: LatLngLiteral) {
     console.log(position);
@@ -104,7 +112,6 @@ export class AuthStore {
     await updateAvatar(this.user!.id, avatar.imageURL).then(() => {
       this.getUser(this.user!.id);
     });
-    
   }
   constructor() {
     makeAutoObservable(this);
@@ -116,5 +123,10 @@ export class AuthStore {
       const updatedUser = await getUser(auth.currentUser!.uid);
       this.setUser(updatedUser);
     }
+  }
+
+  @action async getSeasonPass(id: string) {
+    const response = await getSeasonPass(id);
+    this.seasonPass = response;
   }
 }

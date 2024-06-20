@@ -32,7 +32,7 @@ export const getAvatars = async () => {
   return http.get("auth/avatars").then((response) => {
     return response.data;
   });
-}
+};
 
 export const updateAvatar = async (id: string, imageURL: string) => {
   return http
@@ -40,11 +40,19 @@ export const updateAvatar = async (id: string, imageURL: string) => {
     .then((response) => {
       return response.data;
     });
-}
+};
 
 export const assignAchievement = async (id: string, achievementId: number) => {
   return http
     .post("auth/achievement", { userId: id, badgeId: achievementId })
+    .then((response) => {
+      return response.data;
+    });
+};
+
+export const getSeasonPass = async (id: string) => {
+  return http
+    .get("auth/seasonpass", { headers: { requesterid: id } })
     .then((response) => {
       return response.data;
     });
