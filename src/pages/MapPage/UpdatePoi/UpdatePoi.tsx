@@ -78,32 +78,6 @@ const UpdatePoi = () => {
     }
   };
 
-  const test = () => {
-    console.log(mapStore.selectedPoi);
-    if (mapStore.selectedPoi === null) return;
-
-    if (name === "" || description === "") {
-      toast.error("Udfyld alle felter");
-      return;
-    }
-
-    if (authStore.user === null) return navigate("/auth");
-    const formData = new FormData();
-
-    formData.append("userId", authStore.user!.id);
-    formData.append("name", name);
-    formData.append("description", description);
-    if (image !== undefined) {
-      formData.append("image", image);
-    } else {
-      formData.append("imageURL", mapStore.selectedPoi.imageURL);
-    }
-    formData.append("latitude", mapStore.selectedPoi.latitude.toString());
-    formData.append("longitude", mapStore.selectedPoi.longitude.toString());
-    formData.append("iconURL", mapStore.selectedPoi.iconURL);
-    console.log(formData);
-  };
-
   return (
     <div className="UpdatePoi">
       <>
