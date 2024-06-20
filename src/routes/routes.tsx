@@ -22,6 +22,7 @@ import EditProfilePage from "../pages/ProfilePage/EditProfilePage/EditProfilePag
 import PayPage from "../pages/PayPage/PayPage.tsx";
 import Quiz from "../components/quiz/quiz.tsx";
 import Onboarding from "../pages/AuthPage/SignUpPage/Onboarding/Onboarding.tsx";
+import SeasonPassPage from "../pages/ProfilePage/SeasonPassPage/SeasonPassPage.tsx";
 
 export const Routes: IRoute[] = [
   {
@@ -83,7 +84,13 @@ export const Routes: IRoute[] = [
         routeType: RouteType.INTERNAL,
         hasNavbar: false,
       },
-      //TODO: REMOVE THIS IN PRODUCTION
+      {
+      path: "/seasonpass",
+      title: "Årskort",
+      component: <SeasonPassPage />,
+      routeType: RouteType.INTERNAL,
+      hasNavbar: false,
+    },
       {
         path: "/test",
         title: "Test",

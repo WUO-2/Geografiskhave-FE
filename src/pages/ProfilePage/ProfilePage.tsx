@@ -9,11 +9,15 @@ import { useStore } from "../../stores/store";
 import { AchievementType, checkAchievement } from "../../utils/achievementUtil";
 import { getAuth } from "firebase/auth";
 import { observer } from "mobx-react-lite";
+import Button from "../../components/shared/buttons/button";
+import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
   const [page, setPage] = useState<EProfilePage>(EProfilePage.PRIZES);
   const { authStore } = useStore();
   const auth = getAuth();
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     checkAchievement(authStore.user!.id, AchievementType.PROFILE).then(
@@ -31,6 +35,12 @@ const ProfilePage = () => {
       <Header currentPage="Profil" />
       <div className="ProfilePage">
         <Profile />
+        <div className="Button_Wrapper">
+        <Button
+        text="Årskort/billet"
+        onClick={() => navigate("/seasonpass")}
+        />
+        </div>
         <div className="ProfilePage_Interaction">
           <button
             className={`ProfilePage_Interaction_Button ${page === EProfilePage.PRIZES ? "ProfilePage_Interaction_Button_Active" : ""}`}
