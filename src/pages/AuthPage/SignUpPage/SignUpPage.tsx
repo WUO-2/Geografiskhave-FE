@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SignUpPage.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useStore } from "../../../stores/store";
@@ -8,6 +8,8 @@ import back from "../../../assets/icons/backIcon.svg";
 import show from "../../../assets/icons/show.svg"
 import hide from "../../../assets/icons/hide.svg"
 
+import { toast, Toaster, useToasterStore } from "react-hot-toast";
+
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -16,8 +18,11 @@ const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [emailWrong, setEmailWrong] = useState<Boolean>(true)
-  const [passwordWrong, setPasswordWrong] = useState<Boolean>(true)
+  const [nameCorrect, setNameCorrect] = useState<Boolean>(true);
+  const [emailCorrect, setEmailCorrect] = useState<Boolean>(true);
+  const [passwordCorrect, setPasswordCorrect] = useState<Boolean>(true);
+
+  const { toasts } = useToasterStore();
 
 
   const handleGoBack = () => {
@@ -25,22 +30,51 @@ const SignUpPage = () => {
   };
 
   const handleSignUp = () => {
-    const user: IUserFirebase = {
-      name: name,
-      email: email,
-      password: password,
-    };
+    if(nameCorrect && emailCorrect && passwordCorrect) {
+      const user: IUserFirebase = {
+        name: name,
+        email: email,
+        password: password,
+      };
 
-    authStore.registerUser(user);
+      authStore.registerUser(user);
+    } else {
+      toast.error("alle felter skal udfyldes korrekt", { duration: 2000 });
+    };
   };
 
-  const checkEmail = (email : string) => {
-    setEmailWrong(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-  }
+  const checkName = () => {
+    let bool = name.length > 2;
+    setNameCorrect(bool);
+    if(!bool) {
+      toast.error("dit navn skal være 3 tegn eller længere", { duration: 2000 });
+    };
+  };
 
-  const checkPassword = (password : string) => {
-    setPasswordWrong(password.length > 7)
-  }
+  const checkEmail = () => {
+    let bool = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    setEmailCorrect(bool);
+    if(!bool) {
+      toast.error("emailen skal være valid", { duration: 2000 });
+    };
+  };
+
+  const checkPassword = () => {
+    let bool = password.length > 7;
+    setPasswordCorrect(bool);
+    if(!bool) {
+      toast.error("din adgangskode skal være 8 tegn eller længere", { duration: 2000 });
+    };
+  };
+
+  const TOAST_LIMIT = 1;
+
+  useEffect(() => {
+      toasts
+      .filter((t) => t.visible)
+      .filter((_, i) => i >= TOAST_LIMIT)
+      .forEach((t) => toast.dismiss(t.id));
+  }, [toasts]);
 
   return (
     <div className="SignUp">
@@ -58,24 +92,26 @@ const SignUpPage = () => {
             placeholder="Fornavn"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            onBlur={() => checkName()}
+            isWrong={!nameCorrect}
           />
           <Input
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            onBlur={(e) => checkEmail(e.target.value)}
-            isWrong={!emailWrong}
+            onBlur={() => checkEmail()}
+            isWrong={!emailCorrect}
           />
           <Input
             type="password"
             placeholder="Adgangskode"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            onBlur={(e) => checkPassword(e.target.value)}
+            onBlur={() => checkPassword()}
             iconHide={hide}
             iconShow={show}
-            isWrong={!passwordWrong}
+            isWrong={!passwordCorrect}
           />
           
         </form>
@@ -91,6 +127,7 @@ const SignUpPage = () => {
           </Link>
         </p>
       </div>
+      <Toaster />
     </div>
   );
 };

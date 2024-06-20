@@ -3,7 +3,7 @@ export interface IInput {
     placeholder?: string;
     value?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+    onBlur?: () => void;
     isWrong?: Boolean;
     iconShow?: string;
     iconHide?: string;
