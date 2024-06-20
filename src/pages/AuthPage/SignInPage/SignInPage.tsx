@@ -1,4 +1,5 @@
 import "./SignInPage.scss";
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useStore } from "../../../stores/store";
 import { useState } from "react";
@@ -7,24 +8,47 @@ import show from "../../../assets/icons/show.svg"
 import hide from "../../../assets/icons/hide.svg"
 import Input from "../../../components/shared/inputField/input";
 
+import { toast, Toaster, useToasterStore } from "react-hot-toast";
+
 const SignInPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { authStore } = useStore();
 
-  const handleSignIn = async () => {
-    const user = {
-      email: email,
-      password: password,
-    };
+  const [isWrong, setIsWrong] = useState(false);
 
-    await authStore.loginUser(user);
+  const { toasts } = useToasterStore();
+
+  const handleSignIn = async () => {
+    if(email != "" && password != ""){
+      const user = {
+        email: email,
+        password: password,
+      };
+
+      await authStore.loginUser(user)
+        .catch(() => {
+          setIsWrong(true);
+          toast.error("Email eller adgangskode er forkert", { duration: 2000 });
+        });
+    } else {
+      toast.error("Begge felter skal være udfyldt", { duration: 2000 });
+    }
   };
 
   const handleGoBack = () => {
     navigate("/auth");
   };
+
+  const TOAST_LIMIT = 1;
+
+  useEffect(() => {
+      toasts
+      .filter((t) => t.visible)
+      .filter((_, i) => i >= TOAST_LIMIT)
+      .forEach((t) => toast.dismiss(t.id));
+  }, [toasts]);
 
   return (
     <div className="SignIn">
@@ -41,19 +65,23 @@ const SignInPage = () => {
             type="text"
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
+            onBlur={() => setIsWrong(false)}
+            isWrong={isWrong}
           />
           <Input
             type="password"
             placeholder="Adgangskode"
             onChange={(e) => setPassword(e.target.value)}
+            onBlur={() => setIsWrong(false)}
             iconHide={hide}
             iconShow={show}
+            isWrong={isWrong}
           />
           
           <div className="SignIn_Container_Form_Container">
             <div className="SignIn_Container_Form_Container_RememberMe">
               <input type="checkbox" id="checkbox" />
-              { <label for="checkbox">Husk mig</label> }
+              <label>Husk mig</label>
             </div>
             <div className="SignIn_Container_Form_Container_Forgot">
               <Link to="/forgot" className="bold">
@@ -76,6 +104,7 @@ const SignInPage = () => {
           </Link>
         </p>
       </div>
+      <Toaster />
     </div>
   );
 };
