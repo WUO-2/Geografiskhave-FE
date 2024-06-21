@@ -30,6 +30,12 @@ const ProfilePage = () => {
     );
   }, []);
 
+  useEffect(() => {
+    authStore.getSeasonPass(authStore.user!.id).then(() => {
+      console.log("SEASONPASS :-)" + authStore.seasonPass);
+    });
+  });
+
   return (
     <>
       <Header currentPage="Profil" />

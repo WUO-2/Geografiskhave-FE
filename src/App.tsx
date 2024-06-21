@@ -21,10 +21,14 @@ const App = () => {
     if (user) {
       if (
         location.pathname === "/auth" ||
-        location.pathname === "/login" ||
-        location.pathname === "/register"
+        location.pathname === "/login"
       ) {
         navigate("/");
+      }
+      if (
+        location.pathname === "/register"
+      ) {
+        navigate("/onboarding");
       }
       if (authStore.userFirebase === null) {
         authStore.setUserFirebase(user);

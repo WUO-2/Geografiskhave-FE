@@ -127,7 +127,7 @@ export const Routes: IRoute[] = [
         hasNavbar: false,
       },
       {
-        path: "/tilmeld",
+        path: "/register",
         title: "Register",
         component: <SignUpPage />,
         routeType: RouteType.AUTH,

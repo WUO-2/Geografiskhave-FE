@@ -54,6 +54,6 @@ export const getSeasonPass = async (id: string) => {
   return http
     .get("auth/seasonpass", { headers: { requesterid: id } })
     .then((response) => {
-      return response.data;
+      return response.data.seasonPass;
     });
 };
