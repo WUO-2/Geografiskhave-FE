@@ -1,2 +1,17 @@
-@import "../../../assets/variable.scss"
+@import "../../../assets/variable.scss";
 
+.SeasonPassPage {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.NoSeasonPass {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: $h3;
+  color: $brown;
+  font-weight: 700;
+  padding: 30px;
+}
