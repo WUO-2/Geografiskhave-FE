@@ -6,10 +6,8 @@ const SeasonPass = () => {
   const { authStore } = useStore();
   const [daysLeft, setDaysLeft] = useState<number>();
   useEffect(() => {
-    const expiration = new Date(authStore.seasonPass); // Assuming authStore.seasonPass is in a valid date format
-    console.log(expiration);
+    const expiration = new Date(authStore.seasonPass); 
     const today = new Date();
-    console.log(today);
     const difference = expiration.getTime() - today.getTime();
     console.log(difference); // Difference in milliseconds
     const daysLeft = Math.ceil(difference / (1000 * 3600 * 24)); // Convert milliseconds to days
@@ -31,14 +29,12 @@ const SeasonPass = () => {
         <div className="SeasonPass_Info">
           <div className="SeasonPass_Info_Name"> 
             <h2>Navn</h2>
-            <br />
             {authStore.userFirebase?.displayName}
           </div>
 
           <div className="SeasonPass_Info_Date">
           <h2>Udløbsdato</h2>
-          <br />
-          {new Date(authStore.seasonPass).toLocaleDateString('da-DK')}
+          {new Date(authStore.seasonPass).toLocaleDateString('da-DK').replace(/\./g, '/')}
           <br />
             {daysLeft} dage tilbage</div>
         </div>

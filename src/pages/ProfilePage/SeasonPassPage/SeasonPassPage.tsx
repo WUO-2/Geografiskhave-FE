@@ -10,7 +10,6 @@ const SeasonPassPage = () => {
     navigate(-1);
   };
   const { authStore } = useStore();
-  console.log(authStore.seasonPass);
 
   return (
     <>
