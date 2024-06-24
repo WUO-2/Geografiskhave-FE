@@ -16,7 +16,7 @@ const Input = ({ type, placeholder, value, onChange, onBlur,isWrong, iconShow, i
         type={inputType}
         placeholder={placeholder}
         onChange={(e) => (onChange ? onChange(e) : {})}
-        onBlur={(e) => onBlur ? onBlur(e) : {}}
+        onBlur={() => onBlur ? onBlur() : {}}
         value={value}
       />
       {iconShow !== undefined && iconHide !== undefined ? (
