@@ -6,6 +6,8 @@ const Input = ({ type, placeholder, value, onChange, onBlur,isWrong, iconShow, i
   const [inputType, setInputType] = useState(
     type !== undefined ? type : "text",
   );
+
+  // --------------------------------------
   const handleClick = () => {
     setInputType(inputType === "password" ? "text" : "password");
   };
@@ -19,6 +21,7 @@ const Input = ({ type, placeholder, value, onChange, onBlur,isWrong, iconShow, i
         onBlur={() => onBlur ? onBlur() : {}}
         value={value}
       />
+         {/* -------------------------------------- */}
       {iconShow !== undefined && iconHide !== undefined ? (
         <div className="input_icon_container" onClick={handleClick}>
           {inputType === "password" ? 

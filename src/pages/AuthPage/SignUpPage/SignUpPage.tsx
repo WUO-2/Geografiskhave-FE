@@ -30,6 +30,7 @@ const SignUpPage = () => {
   };
 
   const handleSignUp = () => {
+    // -----------------------------------------------
     if (name != "" && email != "" && password != "") {
       if(nameCorrect && emailCorrect && passwordCorrect) {
         const user: IUserFirebase = {
@@ -51,6 +52,7 @@ const SignUpPage = () => {
     
   };
 
+  // -----------------------------------------------
   const checkName = () => {
     let bool = name.length > 2;
     setNameCorrect(bool);
@@ -95,6 +97,7 @@ const SignUpPage = () => {
           Velkommen til! Tilmeld dig for at begynde dit eventyr.
         </p>
         <form className="SignUp_Container_Form">
+        {/* ----------------------------------------------- */}
           <Input
             type="text"
             placeholder="Fornavn"

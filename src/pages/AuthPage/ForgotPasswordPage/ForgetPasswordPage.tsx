@@ -21,6 +21,7 @@ const ForgotPasswordPage = () => {
         navigate("/login");
     };
 
+    // ---------------------------------------
     const handleSendMail = () => {
         sendPasswordResetEmail(auth, email, {url: "http://localhost:5173/"})
         .then(() => {

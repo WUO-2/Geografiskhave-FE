@@ -3,8 +3,8 @@ export interface IInput {
     placeholder?: string;
     value?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    onBlur?: () => void;
-    isWrong?: Boolean;
-    iconShow?: string;
-    iconHide?: string;
+    onBlur?: () => void; //added
+    isWrong?: Boolean; //added
+    iconShow?: string; //added
+    iconHide?: string; //added
 }

@@ -7,6 +7,8 @@ const VerificationPage = () => {
     const auth = getAuth()
     const { toasts } = useToasterStore();
 
+
+    // ----------------------------------------
     const handleClick = () => {
         sendEmailVerification(auth.currentUser!, {url: "http://localhost:5173/"})
             .then(() => {

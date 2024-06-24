@@ -24,6 +24,7 @@ const App = () => {
         location.pathname === "/login" ||
         location.pathname === "/register"
       ) {
+        // ------------------------------------------
         if(auth.currentUser?.emailVerified) {
           navigate("/");
         } else {
@@ -33,7 +34,7 @@ const App = () => {
       }
       if (authStore.userFirebase === null) {
         authStore.setUserFirebase(user);
-        
+        // ------------------------------------------
         if(!auth.currentUser?.emailVerified){
           sendEmailVerification(auth.currentUser!, {url: "http://localhost:5173/"})
             .then(() => {

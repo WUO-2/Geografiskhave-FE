@@ -16,6 +16,7 @@ const SignInPage = () => {
   const [password, setPassword] = useState("");
   const { authStore } = useStore();
 
+  // ------------------------------------
   const [isWrong, setIsWrong] = useState(false);
 
   const { toasts } = useToasterStore();
@@ -28,6 +29,7 @@ const SignInPage = () => {
       };
 
       await authStore.loginUser(user)
+      // ------------------------------------
         .catch(() => {
           setIsWrong(true);
           toast.error("Email eller adgangskode er forkert", { duration: 2000 });
