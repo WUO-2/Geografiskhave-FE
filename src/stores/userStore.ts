@@ -127,7 +127,6 @@ export class AuthStore {
 
   @action async getSeasonPass(id: string) {
     const response = await getSeasonPass(id);
-    console.log(response);
     this.seasonPass = response;
   }
 }

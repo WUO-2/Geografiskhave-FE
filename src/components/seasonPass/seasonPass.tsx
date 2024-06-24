@@ -9,7 +9,6 @@ const SeasonPass = () => {
     const expiration = new Date(authStore.seasonPass); 
     const today = new Date();
     const difference = expiration.getTime() - today.getTime();
-    console.log(difference); // Difference in milliseconds
     const daysLeft = Math.ceil(difference / (1000 * 3600 * 24)); // Convert milliseconds to days
 
     setDaysLeft(daysLeft);
@@ -20,7 +19,7 @@ const SeasonPass = () => {
     <>
       <div className="SeasonPass">
         <div
-          className={`SeasonPass_Header ${daysLeft! < 31 ? "Warning" : ""} ${
+          className={`SeasonPass_Header ${daysLeft! < 32 ? "Warning" : ""} ${
             daysLeft! < 0 ? "Expired" : ""
           }`}
         >
@@ -36,7 +35,8 @@ const SeasonPass = () => {
           <h2>Udløbsdato</h2>
           {new Date(authStore.seasonPass).toLocaleDateString('da-DK').replace(/\./g, '/')}
           <br />
-            {daysLeft} dage tilbage</div>
+          {daysLeft! >= 0 && `${daysLeft} dage tilbage`}
+        </div>
         </div>
       </div>
     </>
